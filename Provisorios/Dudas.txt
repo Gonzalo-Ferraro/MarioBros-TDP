@@ -1,0 +1,3 @@
+- BloqueDePregunta tiene un powerUP, preguntar
+- Utilizar AbstractFactory con los modos de juego, los sprites de Mario
+- Composición entre mundo y niveles, como se modela?
