@@ -9836,8 +9836,8 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 2096,
-							"top": 840,
+							"left": 2080,
+							"top": 1080,
 							"width": 96,
 							"height": 32,
 							"text": "nivel.txt"
@@ -9853,10 +9853,10 @@
 								"$ref": "AAAAAAGSJAEE87+byfg="
 							},
 							"tail": {
-								"$ref": "AAAAAAGSI/JPZnn7rSQ="
+								"$ref": "AAAAAAGSBSe5ZZ8BEBU="
 							},
 							"lineStyle": 1,
-							"points": "2025:856;2095:856"
+							"points": "2033:1094;2079:1095"
 						},
 						{
 							"_type": "UMLClassView",
