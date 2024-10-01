@@ -1567,7 +1567,7 @@
 											"font": "Arial;13;1",
 											"left": 429,
 											"top": 2255,
-											"width": 177,
+											"width": 177.30615234375,
 											"height": 13,
 											"text": "Vacio"
 										},
@@ -1602,7 +1602,7 @@
 									"font": "Arial;13;0",
 									"left": 424,
 									"top": 2248,
-									"width": 187,
+									"width": 187.30615234375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGSDCBw+3Gx+5A="
@@ -1629,7 +1629,7 @@
 									"font": "Arial;13;0",
 									"left": 424,
 									"top": 2273,
-									"width": 187,
+									"width": 187.30615234375,
 									"height": 10
 								},
 								{
@@ -1672,7 +1672,7 @@
 											"font": "Arial;13;0",
 											"left": 429,
 											"top": 2290,
-											"width": 177,
+											"width": 177.30615234375,
 											"height": 13,
 											"text": "+afectarMario(p: Personaje): +",
 											"horizontalAlignment": 0
@@ -1681,7 +1681,7 @@
 									"font": "Arial;13;0",
 									"left": 424,
 									"top": 2283,
-									"width": 187,
+									"width": 187.30615234375,
 									"height": 25
 								},
 								{
@@ -1721,7 +1721,7 @@
 							"containerChangeable": true,
 							"left": 424,
 							"top": 2248,
-							"width": 186,
+							"width": 186.30615234375,
 							"height": 161,
 							"nameCompartment": {
 								"$ref": "AAAAAAGSDCBw+3GwT+I="
@@ -4737,7 +4737,7 @@
 											"top": 1110,
 											"width": 271.9560546875,
 											"height": 13,
-											"text": "#modos: ModoDeJuego[2]",
+											"text": "#modo: ModoDeJuego",
 											"horizontalAlignment": 0
 										},
 										{
@@ -14299,12 +14299,11 @@
 							"_parent": {
 								"$ref": "AAAAAAGSDCqM3HR83WA="
 							},
-							"name": "modos",
+							"name": "modo",
 							"visibility": "protected",
 							"type": {
 								"$ref": "AAAAAAGSDCreH3SqTeg="
-							},
-							"multiplicity": "2"
+							}
 						},
 						{
 							"_type": "UMLAttribute",

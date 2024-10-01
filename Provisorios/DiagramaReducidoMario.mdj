@@ -6337,7 +6337,7 @@
 										"$ref": "AAAAAAGSI+3U6k7E+34="
 									},
 									"edgePosition": 1,
-									"text": "#modos"
+									"text": "#modo"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6443,7 +6443,7 @@
 										"$ref": "AAAAAAGSI+3U6k7E+34="
 									},
 									"edgePosition": 2,
-									"text": "2"
+									"text": "1"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -18887,9 +18887,9 @@
 										"$ref": "AAAAAAGSM4TdG7UiLuc="
 									},
 									"font": "Arial;13;0",
-									"left": 368,
+									"left": 367,
 									"top": 1191,
-									"width": 129,
+									"width": 130.0888671875,
 									"height": 13,
 									"alpha": -1.8231745448484038,
 									"distance": 65.5133574166368,
@@ -19204,7 +19204,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"top": -112,
-											"width": 72,
+											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -19467,7 +19467,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"width": 72,
+											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -19971,6 +19971,18 @@
 							"width": 100,
 							"height": 25,
 							"text": "1"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAGSRa+vRvMRAZ4=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 1059,
+							"top": 806,
+							"width": 100,
+							"height": 25
 						}
 					]
 				},
@@ -21500,7 +21512,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGSI+1vkDxaQnE="
 							},
-							"name": "modos",
+							"name": "modo",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAGSI+3U6k7BfCU=",
@@ -21510,7 +21522,7 @@
 								"reference": {
 									"$ref": "AAAAAAGSI+1vkDxaQnE="
 								},
-								"multiplicity": "2"
+								"multiplicity": "1"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
