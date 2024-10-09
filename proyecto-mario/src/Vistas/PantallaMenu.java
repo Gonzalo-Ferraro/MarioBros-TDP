@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class PantallaMenu extends JPanel {
     private ControladorVistas controladorVistas;
-    private final String rutaFondo = "/Users/manuelducos/Desktop/tdp/proyecto-mario/src/Datos/sprites/menu.jpeg";
+    private final String rutaFondo = "/Datos/sprites/menu.jpeg";
     private Image imagenFondo;
     private JButton modoNormal;
     private JButton modoBarbie;
@@ -31,7 +31,7 @@ public class PantallaMenu extends JPanel {
     }
 
     private void crearFondo() {
-		ImageIcon iconoImagen = new ImageIcon(rutaFondo);
+        ImageIcon iconoImagen = new ImageIcon(getClass().getResource(rutaFondo));
         imagenFondo = iconoImagen.getImage();
     }
 
