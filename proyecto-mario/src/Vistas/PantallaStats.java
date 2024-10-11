@@ -11,7 +11,7 @@ import Logica.Entidades.EntidadJugador;
 public class PantallaStats extends JPanel  {
     protected EntidadJugador personaje;
     protected ControladorVistas controladorVistas;
-    private final String rutaImagen = "/Datos/sprites/pantallaVidas.jpeg";
+    private final String rutaImagen = "/Datos/sprites/pantallaVidas.png";
     private int nivel;
 
     protected Image imagenFondo;
@@ -19,7 +19,7 @@ public class PantallaStats extends JPanel  {
     protected JLabel etiquetaPuntaje;
     protected JLabel etiquetaNivel;
     
-    public PantallaStats(ControladorVistas c,EntidadJugador p){
+    public PantallaStats(ControladorVistas c, EntidadJugador p){
         super();
 
         controladorVistas = c;
@@ -48,8 +48,10 @@ public class PantallaStats extends JPanel  {
 
 
     private void  crearEtiquetas(){
-        etiquetaVidas = new JLabel(String.valueOf(personaje.getVidas()), SwingConstants.CENTER);
-        etiquetaPuntaje = new JLabel(String.valueOf(personaje.getPuntaje()), SwingConstants.CENTER);
+        // etiquetaVidas = new JLabel(String.valueOf(personaje.getVidas()), SwingConstants.CENTER);
+        etiquetaVidas = new JLabel("3", SwingConstants.CENTER);
+        // etiquetaPuntaje = new JLabel(String.valueOf(personaje.getPuntaje()), SwingConstants.CENTER);
+        etiquetaPuntaje = new JLabel("1000000000", SwingConstants.CENTER);
         etiquetaNivel=new JLabel(String.valueOf(nivel),SwingConstants.CENTER);
     
             // Hacer que las etiquetas sean opacas para que el fondo se muestre

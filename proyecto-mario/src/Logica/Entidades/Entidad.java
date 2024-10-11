@@ -1,6 +1,6 @@
 package Logica.Entidades;
 
-public abstract class Entidad implements EntidadLogica{
+public abstract class Entidad implements EntidadLogica {
     protected int x;
     protected int y;
     protected Sprite sprite;
@@ -13,4 +13,18 @@ public abstract class Entidad implements EntidadLogica{
         this.sprite = s;
     }
 
+    @Override
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
 }

@@ -20,10 +20,6 @@ public class PantallaMenu extends JPanel {
     private JButton modoNormal;
     private JButton modoBarbie;
 
-    // DEBERIA TENER LA RUTA DEL MODO ORIGINAL Y MODO BARBIE
-    String rutaOriginal = "x"; // LINEA 76
-    String rutaBarbie = "x";   // LINEA 85
-
     // -------------------------------------------------------
 
     public PantallaMenu(ControladorVistas c) {
@@ -73,7 +69,7 @@ public class PantallaMenu extends JPanel {
         modoNormal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controladorVistas.accionarInicioJuego(new ModoOriginal(rutaOriginal));
+                controladorVistas.accionarInicioJuego(new ModoOriginal());
             }
         });
     }
@@ -82,7 +78,7 @@ public class PantallaMenu extends JPanel {
         modoBarbie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controladorVistas.accionarInicioJuego(new ModoBarbie(rutaBarbie));
+                controladorVistas.accionarInicioJuego(new ModoBarbie());
             }
         });
     }

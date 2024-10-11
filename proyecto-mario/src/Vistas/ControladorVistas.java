@@ -25,7 +25,7 @@ public class ControladorVistas extends JFrame {
 
 		pantallaMenu = new PantallaMenu(this);
 		pantallaJuego = new PantallaJuego();
-		pantallaStats = new PantallaStats(this, new Personaje());
+		pantallaStats = new PantallaStats(this, new Personaje(0, 0, null));
 
 		configurar_ventana();
 		registrar_oyente_ventana();
@@ -50,30 +50,29 @@ public class ControladorVistas extends JFrame {
 
 	public void accionarInicioJuego(ModoDeJuego modo) {
 		mostrarStats();
-		pantallaStats=new PantallaStats(this,juego.obtenerPersonaje());
+		pantallaStats = new PantallaStats(this, juego.obtenerPersonaje());
 
 		juego.iniciar(modo);
 	}
 
-	private void actualizarPanel(){
-		revalidate();
-        repaint();
-	}
-
-	public void mostrarStats(){
+	public void mostrarStats() {
 		this.setContentPane(pantallaStats);
 		actualizarPanel();
+		
 		// Crear un Timer para cambiar de panel después de 5 seg
         Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              mostrarMenu();  //vuelve a mostrar el menu, pero deberia mostrar la pantalla juego
+				setContentPane(pantallaJuego);
+				actualizarPanel();
             }
         }); 
         timer.setRepeats(false); // Solo ejecutarlo una vez
         timer.start();
     }
 
+	private void actualizarPanel(){
+		revalidate();
+        repaint();
+	}
 }
-
-

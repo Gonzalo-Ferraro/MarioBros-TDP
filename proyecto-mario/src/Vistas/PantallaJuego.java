@@ -1,9 +1,15 @@
 package Vistas;
 
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-public class PantallaJuego extends JPanel {
+import Logica.Entidades.EntidadJugador;
+
+public class PantallaJuego extends JScrollPane {
     public PantallaJuego() {
         super();
+    }
+
+    public void actualizarScroll(EntidadJugador personaje) {
+        // TO DO
     }
 }

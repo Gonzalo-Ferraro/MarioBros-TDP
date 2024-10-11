@@ -9,7 +9,7 @@ public abstract class ModoDeJuego {
     }
 
     public SuperChampignon crearSuperChampignon(int x, int y){
-        Sprite spriteSuperChampignon = new Sprite(ruta + "/superChampignon.png");
+        Sprite spriteSuperChampignon = new Sprite(ruta + "/super-champignon.png");
         SuperChampignon toReturn = new SuperChampignon(x, y, spriteSuperChampignon);
         return toReturn;
     }

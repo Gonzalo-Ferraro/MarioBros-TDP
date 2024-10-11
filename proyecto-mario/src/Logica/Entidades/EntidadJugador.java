@@ -1,6 +1,6 @@
 package Logica.Entidades;
 
-public interface EntidadJugador {
+public interface EntidadJugador extends EntidadLogica {
     public int getVidas();
     public int getPuntaje();
     
