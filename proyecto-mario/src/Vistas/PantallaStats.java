@@ -30,7 +30,7 @@ public class PantallaStats extends JPanel  {
 
         insertarFondo();
         crearEtiquetas();
-        agregarEtiquetas();
+        agregarEtiquetasPanel();
     }
 
     private void insertarFondo(){
@@ -47,18 +47,6 @@ public class PantallaStats extends JPanel  {
         g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
     }
 
-    public void actualizarValores(){
-        etiquetaVidas = new JLabel(String.valueOf(personaje.getVidas()), SwingConstants.CENTER);
-        etiquetaPuntaje = new JLabel(String.valueOf(personaje.getPuntaje()), SwingConstants.CENTER);
-        aumentarNivel();
-        etiquetaNivel=new JLabel(String.valueOf(nivel),SwingConstants.CENTER);
-    }
-
-
-
-    public void aumentarNivel(){
-        nivel++;
-    }
 
 
     private void  crearEtiquetas(){
@@ -77,8 +65,8 @@ public class PantallaStats extends JPanel  {
             etiquetaNivel.setBackground(Color.BLACK);
         
             // Establecer el color de texto blanco
-            etiquetaVidas.setForeground(Color.WHITE); // Color de texto para vidas
-            etiquetaPuntaje.setForeground(Color.WHITE); // Color de texto para puntaje
+            etiquetaVidas.setForeground(Color.WHITE); 
+            etiquetaPuntaje.setForeground(Color.WHITE); 
             etiquetaNivel.setForeground(Color.WHITE);
         
             // Establecer la fuente
@@ -87,7 +75,6 @@ public class PantallaStats extends JPanel  {
             etiquetaVidas.setFont(font);
             etiquetaNivel.setFont(font);
         
-            agregarEtiquetas();
             
     
         etiquetaPuntaje.setBounds(125, 55,150, 60);
@@ -96,11 +83,26 @@ public class PantallaStats extends JPanel  {
 
         
     }
-    private void agregarEtiquetas(){
+    private void agregarEtiquetasPanel(){
         this.add(etiquetaNivel);
         this.add(etiquetaVidas);
         this.add(etiquetaPuntaje);
         
     }
+
+    
+    public void actualizarValores(int nivel){
+        etiquetaVidas.setText(String.valueOf(personaje.getVidas())); 
+        etiquetaPuntaje.setText(String.valueOf(personaje.getPuntaje()));
+        aumentarNivel(nivel);
+        etiquetaNivel.setText(String.valueOf(this.nivel));
+    }
+
+
+
+    public void aumentarNivel(int nivel){
+        this.nivel=nivel;
+    }
+
 
 }

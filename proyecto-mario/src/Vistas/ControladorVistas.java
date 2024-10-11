@@ -64,7 +64,7 @@ public class ControladorVistas extends JFrame {
 		this.setContentPane(pantallaStats);
 		actualizarPanel();
 		// Crear un Timer para cambiar de panel después de 5 seg
-        Timer timer = new Timer(10000, new ActionListener() {
+        Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
               mostrarMenu();  //vuelve a mostrar el menu, pero deberia mostrar la pantalla juego
