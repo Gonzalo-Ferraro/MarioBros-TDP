@@ -11,7 +11,7 @@ import Logica.Entidades.EntidadJugador;
 public class PantallaStats extends JPanel  {
     protected EntidadJugador personaje;
     protected ControladorVistas controladorVistas;
-    private final String rutaImagen="/Datos/sprites/pantallaVidas.png";
+    private final String rutaImagen = "/Datos/sprites/pantallaVidas.png";
     private int nivel;
 
     protected Image imagenFondo;
