@@ -1,5 +1,5 @@
 package Logica.Entidades;
 
-public abstract class Entidad {
+public abstract class Entidad  implements EntidadLogica{
 
 }

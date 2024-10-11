@@ -55,7 +55,9 @@ public class PantallaMenu extends JPanel {
 
         agregarOyenteBotonNormal();
         agregarOyenteBotonBarbie();
-
+        
+        modoNormal.setEnabled(true);
+        modoBarbie.setEnabled(false);
         // Agregar los botones al panel
         add(modoNormal);
         add(modoBarbie);
