@@ -1,5 +1,11 @@
 package Logica.Entidades;
+import Logica.Fabricas.Sprite;
 
-public abstract class Plataforma {
+
+public abstract class Plataforma extends Entidad {
+
+    protected Plataforma(int x, int y, Sprite s){
+        super(x, y, s);
+    }
 
 }
