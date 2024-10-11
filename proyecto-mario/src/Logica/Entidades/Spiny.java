@@ -1,5 +1,4 @@
 package Logica.Entidades;
-import Logica.Fabricas.Sprite;
 
 public class Spiny extends Enemigo {
 

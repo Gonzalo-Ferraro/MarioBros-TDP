@@ -25,7 +25,7 @@ public class ControladorVistas extends JFrame {
 
 		pantallaMenu = new PantallaMenu(this);
 		pantallaJuego = new PantallaJuego();
-		pantallaStats = new PantallaStats(this, new Personaje(3));
+		pantallaStats = new PantallaStats(this, new Personaje());
 
 		configurar_ventana();
 		registrar_oyente_ventana();

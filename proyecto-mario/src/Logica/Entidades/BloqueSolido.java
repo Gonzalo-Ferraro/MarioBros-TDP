@@ -1,5 +1,4 @@
 package Logica.Entidades;
-import Logica.Fabricas.Sprite;
 
 public class BloqueSolido extends Plataforma implements AfectablePorMario {
 

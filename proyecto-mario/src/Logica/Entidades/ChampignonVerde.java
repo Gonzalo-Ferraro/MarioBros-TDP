@@ -1,6 +1,4 @@
 package Logica.Entidades;
-import Logica.Fabricas.Sprite;
-
 
 public class ChampignonVerde extends PowerUp {
 

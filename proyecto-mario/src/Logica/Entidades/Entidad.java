@@ -1,7 +1,6 @@
 package Logica.Entidades;
-import Logica.Fabricas.Sprite;
 
-public abstract class Entidad  implements EntidadLogica{
+public abstract class Entidad implements EntidadLogica{
     protected int x;
     protected int y;
     protected Sprite sprite;

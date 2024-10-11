@@ -1,6 +1,4 @@
 package Logica.Entidades;
-import Logica.Fabricas.Sprite;
-
 
 public abstract class Enemigo extends Entidad implements AfectablePorMario, AfectadorAMario {
 

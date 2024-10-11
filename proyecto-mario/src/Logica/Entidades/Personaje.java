@@ -1,11 +1,13 @@
 package Logica.Entidades;
 
-public class Personaje implements EntidadJugador {
+public class Personaje extends Entidad implements EntidadJugador {
     protected int vidas;
     protected int puntaje;
 
-    public Personaje(int vidas){
-        this.vidas=vidas;
+    public Personaje(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
+        
+        this.vidas=3;
     }
 
     public int getPuntaje(){
