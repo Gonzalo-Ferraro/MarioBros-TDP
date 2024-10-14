@@ -34,6 +34,5 @@ public abstract class Entidad implements EntidadLogica {
 
     public void registrarObserver(Observer obs) {
         observador = obs;
-        
     }
 }

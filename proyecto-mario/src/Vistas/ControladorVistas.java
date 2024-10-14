@@ -1,20 +1,18 @@
 package Vistas;
 
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 import Logica.Fabricas.ModoDeJuego;
 import Logica.Juego.Juego;
 import Logica.Entidades.EntidadJugador;
 import Logica.Entidades.EntidadLogica;
-import Logica.Entidades.Personaje;
 import Logica.Entidades.Fondo;
 
 
-public class ControladorVistas extends JFrame {
+public class ControladorVistas extends JFrame implements KeyListener {
     private Juego juego;
 	
     private PantallaJuego pantallaJuego;
@@ -28,10 +26,9 @@ public class ControladorVistas extends JFrame {
 
 		pantallaMenu = new PantallaMenu(this);
 		pantallaJuego = new PantallaJuego();
-		pantallaStats = new PantallaStats(this, new Personaje(0, 0, null));
 
 		configurar_ventana();
-		registrar_oyente_ventana();
+		registrarOyentes();
 	}
 	
 	protected void configurar_ventana() {
@@ -41,38 +38,20 @@ public class ControladorVistas extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	protected void registrar_oyente_ventana() {
-		// To DO
-	}
 
     public void mostrarMenu() {
-        setContentPane(pantallaMenu);
-       actualizarPanel();
+    	setContentPane(pantallaMenu);
+        actualizarPanel();
     }
 
 	public void accionarInicioJuego(ModoDeJuego modo) {
-		mostrarStats();
-		pantallaStats = new PantallaStats(this, juego.obtenerPersonaje());
-
 		juego.iniciar(modo);
 	}
 
-	public void mostrarStats() {
-		this.setContentPane(pantallaStats);
-		actualizarPanel();
-		
-		// Crear un Timer para cambiar de panel después de 5 seg
-        Timer timer = new Timer(5000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-				setContentPane(pantallaJuego);
-				actualizarPanel();
-            }
-        }); 
-        timer.setRepeats(false); // Solo ejecutarlo una vez
-        timer.start();
-    }
+	public void mostrarPantallaStats() {
+	    this.setContentPane(pantallaStats);
+	    actualizarPanel();
+	}
 
 	private void actualizarPanel(){
 		revalidate();
@@ -96,4 +75,60 @@ public class ControladorVistas extends JFrame {
         actualizarPanel();
         return observerFondo;
     }
+
+	public void setPantallaStats(PantallaStats pantallaStats) {
+		this.pantallaStats = pantallaStats;
+	}
+
+	public void mostrarPantallaJuego() {
+		setContentPane(pantallaJuego);
+		actualizarPanel();
+	}
+
+	protected void registrarOyentes() {
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocusInWindow();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        switch (keyCode) {
+            case KeyEvent.VK_A:
+                juego.iniciarMovimientoIzquierda();
+                break;
+            case KeyEvent.VK_W:
+                System.out.println("Tecla W presionada");
+                break;
+            case KeyEvent.VK_D:
+				juego.iniciarMovimientoDerecha();
+                break;
+            case KeyEvent.VK_SPACE:
+                System.out.println("Tecla Espacio presionada");
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        switch (keyCode) {
+            case KeyEvent.VK_A:
+                juego.detenerMovimientoIzquierda();
+                break;
+            case KeyEvent.VK_W:
+                System.out.println("Tecla W soltada");
+                break;
+            case KeyEvent.VK_D:
+				juego.detenerMovimientoDerecha();
+                break;
+            case KeyEvent.VK_SPACE:
+                System.out.println("Tecla Espacio soltada");
+                break;
+        }
+    }
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
 }

@@ -19,14 +19,6 @@ public class Nivel {
     private String rutaNivel;
     private Personaje personaje;
 
-    public Personaje getPersonaje() {
-        return personaje;
-    }
-
-    public void setPersonaje(Personaje personaje) {
-        this.personaje = personaje;
-    }
-
     public Nivel(int n) {
         rutaNivel = "/Datos/niveles/nivel-" + n + ".txt";
 
@@ -34,6 +26,14 @@ public class Nivel {
         powerUps = new LinkedList<>();
         plataformas = new LinkedList<>();
         bolasDeFuego = new LinkedList<>();
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
     }
 
     public String getRutaNivel() {

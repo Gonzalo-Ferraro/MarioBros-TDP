@@ -1,7 +1,8 @@
 package Vistas;
 
+import javax.swing.SwingUtilities;
+
 import Logica.Entidades.EntidadJugador;
-import Vistas.PantallaJuego;
 
 public class ObserverJugador extends ObserverGrafico {
 	private PantallaJuego pantallaJuego;
@@ -16,6 +17,6 @@ public class ObserverJugador extends ObserverGrafico {
 	
 	public void actualizar() {
 		super.actualizar();
-		pantallaJuego.actualizarScroll(jugador_observado);
+		SwingUtilities.invokeLater(() -> pantallaJuego.actualizarScroll(jugador_observado));
 	}
 }

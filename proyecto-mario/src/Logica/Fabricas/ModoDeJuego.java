@@ -15,7 +15,7 @@ public abstract class ModoDeJuego {
     }
 
     public Personaje crearPersonaje(int x, int y) {
-        Sprite spriteMario = new Sprite(ruta + "/mario-derecha.png");
+        Sprite spriteMario = new Sprite(ruta + "/mario-quieto-derecha.png");
         Personaje personaje = new Personaje(x, y, spriteMario);
         return personaje;
     }
@@ -36,5 +36,11 @@ public abstract class ModoDeJuego {
         Sprite sprite = new Sprite(ruta + "/ladrillo.png");
         BloqueSolido bloque = new BloqueSolido(x, y, sprite);
         return bloque;
+    }
+
+    public Fondo crearFondo(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/fondo.png");
+        Fondo fondo = new Fondo(x, y, sprite);
+        return fondo;
     }
 }

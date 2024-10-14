@@ -12,7 +12,7 @@ public class Sprite {
         imagen = new ImageIcon(rutaImagen);
     }
 
-    public String get_ruta_imagen() {
+    public String getRutaImagen() {
         return rutaImagen;
     }
 
