@@ -61,7 +61,11 @@ public abstract class ModoDeJuego {
         Goomba goomba = new Goomba(x, y, sprite);
         return goomba;
     }
-
+    public BuzzyBeetle crearBuzzyBeetle(int x,int y){
+        Sprite sprite = new Sprite(ruta + "/buzzy-beetle-izquierda.gif");
+        BuzzyBeetle buzzyBeetle = new BuzzyBeetle(x, y, sprite);
+        return buzzyBeetle;
+    }
     public KoopaTroopa crearKoopaTroopa(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/koopa-troopa-izquierda.gif");
         KoopaTroopa koopa = new KoopaTroopa(x, y, sprite);

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import Logica.Entidades.BloqueDePregunta;
+import Logica.Entidades.BuzzyBeetle;
 import Logica.Entidades.Fondo;
 import Logica.Entidades.Goomba;
 import Logica.Entidades.KoopaTroopa;
@@ -112,7 +113,14 @@ public class GeneradorDeNiveles {
                 );
                 nivel.getEnemigos().add(koopaGenerado);
                 break;
-
+            
+            case 'b':
+               BuzzyBeetle buzzyBeetleGenerado=modo.crearBuzzyBeetle(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+               );
+               nivel.getEnemigos().add(buzzyBeetleGenerado); 
+               break;
             case 'm':
                 Personaje jugador = modo.crearPersonaje(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
