@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 
 import Logica.Fabricas.ModoDeJuego;
 import Logica.Juego.Juego;
+import Logica.Entidades.EntidadJugador;
+import Logica.Entidades.EntidadLogica;
 import Logica.Entidades.Personaje;
+import Logica.Entidades.Fondo;
 
 
 public class ControladorVistas extends JFrame {
@@ -75,4 +78,22 @@ public class ControladorVistas extends JFrame {
 		revalidate();
         repaint();
 	}
+
+	public Observer registrarEntidadLogica(EntidadLogica entidad_logica) {
+        Observer observerEntidad = pantallaJuego.incorporarEntidadLogica(entidad_logica);
+        actualizarPanel();
+        return observerEntidad;
+    }
+
+    public Observer registrarEntidadJugador(EntidadJugador entidad_jugador) {
+        Observer observerJugador = pantallaJuego.incorporarEntidadJugador(entidad_jugador);
+        actualizarPanel();
+        return observerJugador;
+    }
+
+    public Observer registrarFondo(Fondo fondo) {
+        Observer observerFondo = pantallaJuego.incorporarFondo(fondo);
+        actualizarPanel();
+        return observerFondo;
+    }
 }

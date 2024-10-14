@@ -8,6 +8,7 @@ import Logica.Entidades.Enemigo;
 import Logica.Entidades.Fondo;
 import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
+import Logica.Entidades.Personaje;
 
 public class Nivel {
     private List<Enemigo> enemigos;
@@ -16,6 +17,15 @@ public class Nivel {
     private List<BolaDeFuego> bolasDeFuego;
     private Fondo fondo;
     private String rutaNivel;
+    private Personaje personaje;
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
+    }
 
     public Nivel(int n) {
         rutaNivel = "/Datos/niveles/nivel-" + n + ".txt";
