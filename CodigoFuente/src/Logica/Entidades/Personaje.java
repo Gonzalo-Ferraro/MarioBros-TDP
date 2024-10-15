@@ -112,92 +112,93 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void saltar(){}
     public void espacio(){}
     public void serAfectadoPor(ChampignonVerde champignonVerde) {
-        // Implementation here
+        estado.serAfectadoPor(champignonVerde);
     }
 
 
 	public void serAfectadoPor(Estrella estrella) {
-		// Implementation here
+		estado.serAfectadoPor(estrella);
 	}
 
 
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
-		// Implementation here
+        estado.serAfectadoPor(florDeFuego);
+	 
 	}
 
 
 	public void serAfectadoPor(BuzzyBeetle buzzyBeetle) {
-		// Implementation here
+	   estado.serAfectadoPor(buzzyBeetle);
 	}
 
 
 	public void serAfectadoPor(Spiny spiny) {
-		// Implementation here
+	 estado.serAfectadoPor(spiny);
 	}
 
 
 	public void serAfectadoPor(Lakitu lakitu) {
-		// Implementation here
+	 estado.serAfectadoPor(lakitu);
 	}
 
 
 	public void serAfectadoPor(PiranhaPlant piranhaPlant) {
-		// Implementation here
+	 estado.serAfectadoPor(piranhaPlant);
 	}
 
 
 	public void serAfectadoPor(KoopaTroopa koopaTroopa) {
-		// Implementation here
+	 estado.serAfectadoPor(koopaTroopa);
 	}
 
 
 	public void serAfectadoPor(SuperChampignon superChampignon) {
-		// Implementation here
+	 estado.serAfectadoPor(superChampignon);
 	}
 
 
 	public void serAfectadoPor(Goomba goomba) {
-		// Implementation here
+	 estado.serAfectadoPor(goomba);
 	}
 
 
 	public void AfectarA(LadrilloSolido ladrilloSolido) {
-		// Implementation here
+	 estado.AfectarA(ladrilloSolido);
 	}
 
 
 	public void AfectarA(BloqueDePregunta bloqueDePregunta) {
-		// Implementation here
+	 estado.AfectarA(bloqueDePregunta);
 	}
 
 
 	public void AfectarA(BuzzyBeetle buzzyBeetle) {
-		// Implementation here
+	 estado.AfectarA(buzzyBeetle);
 	}
 
 
 	public void AfectarA(Spiny spiny) {
-		// Implementation here
+	 estado.AfectarA(spiny);
 	}
 
 
 	public void AfectarA(Lakitu lakitu) {
-		// Implementation here
+	 estado.AfectarA(lakitu);
 	}
 
 
 	public void AfectarA(PiranhaPlant piranhaPlant) {
-		// Implementation here
+	 estado.AfectarA(piranhaPlant);
 	}
 
 
 	public void AfectarA(KoopaTroopa koopaTroopa) {
-		// Implementation here
+	 estado.AfectarA(koopaTroopa);
 	}
 
 
 	public void AfectarA(Goomba goomba) {
-		// Implementation here
+	 estado.AfectarA(goomba);
 	}
 
     public void serAfectadoPor(Moneda moneda) {

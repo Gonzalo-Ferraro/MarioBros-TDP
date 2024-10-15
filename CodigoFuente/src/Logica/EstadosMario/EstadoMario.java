@@ -24,16 +24,28 @@ protected Personaje personaje;
             personaje = p;
         }
         
-        public abstract void serAfectadoPor(Goomba g);
+        public void serAfectadoPor(Goomba g){
+            personaje.setPuntaje(personaje.getPuntaje()+60);
+        }
         public abstract void serAfectadoPor(SuperChampignon s);
-        public abstract void serAfectadoPor(KoopaTroopa k);
-        public abstract void serAfectadoPor(PiranhaPlant p);
+        public void serAfectadoPor(KoopaTroopa k){
+            personaje.setPuntaje(personaje.getPuntaje()+90);
+        }
+        public void serAfectadoPor(PiranhaPlant p){
+            personaje.setPuntaje(personaje.getPuntaje()+30);
+        }
         public  void serAfectadoPor(ChampignonVerde c){
             personaje.setPuntaje((personaje.getPuntaje()+100));
         }
-        public abstract void serAfectadoPor(Lakitu l);
-        public abstract void serAfectadoPor(Spiny s);
-        public abstract void serAfectadoPor(BuzzyBeetle b);
+        public void serAfectadoPor(Lakitu l){
+            personaje.setPuntaje(personaje.getPuntaje()+60);
+        }
+        public void serAfectadoPor(Spiny s){
+            personaje.setPuntaje(personaje.getPuntaje()+600);
+        }
+        public void serAfectadoPor(BuzzyBeetle b){
+            personaje.setPuntaje(personaje.getPuntaje()+30);
+        }
         public abstract void serAfectadoPor(FlorDeFuego f);
         public abstract void serAfectadoPor(Estrella e);
         public  void serAfectadoPor(Vacio v){}
