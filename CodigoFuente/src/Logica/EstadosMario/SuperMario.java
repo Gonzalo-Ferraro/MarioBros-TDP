@@ -26,7 +26,8 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void serAfectadoPor(SuperChampignon s) {
-       
+        personaje.setPuntaje(personaje.getPuntaje() + 50);
+        
     }
 
     @Override

@@ -4,11 +4,11 @@ import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
 
 public class MarioNormal extends EstadoMario {
+
     public MarioNormal(Personaje p) {
         super(p);
     }
 
-  
     @Override
     public void serAfectadoPor(Estrella estrella) {
         personaje.setPuntaje(personaje.getPuntaje() + 20);
@@ -22,40 +22,12 @@ public class MarioNormal extends EstadoMario {
     }
 
     @Override
-    public void serAfectadoPor(BuzzyBeetle buzzyBeetle) {
-        
-    }
-
-    @Override
-    public void serAfectadoPor(Spiny spiny) {
-        
-    }
-
-    @Override
-    public void serAfectadoPor(Lakitu lakitu) {
-        
-    }
-
-    @Override
-    public void serAfectadoPor(PiranhaPlant piranhaPlant) {
-      
-    }
-
-    @Override
-    public void serAfectadoPor(KoopaTroopa koopaTroopa) {
-        
-    }
-
-    @Override
     public void serAfectadoPor(SuperChampignon superChampignon) {
         personaje.setPuntaje(personaje.getPuntaje() + 10);
         personaje.setEstado(new SuperMario(personaje));
     }
 
-    @Override
-    public void serAfectadoPor(Goomba goomba) {
-        
-    }
+    // LOS serAfectadoPor concretos en la clase EstadoMario fueron eliminados ( agregar en caso de querer usarlo para sprites )
 
     @Override
     public void AfectarA(LadrilloSolido ladrilloSolido) {

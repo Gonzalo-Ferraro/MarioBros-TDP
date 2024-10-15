@@ -128,77 +128,77 @@ public class Personaje extends Entidad implements EntidadJugador {
 
 
 	public void serAfectadoPor(BuzzyBeetle buzzyBeetle) {
-	   estado.serAfectadoPor(buzzyBeetle);
+	    estado.serAfectadoPor(buzzyBeetle);
 	}
 
 
 	public void serAfectadoPor(Spiny spiny) {
-	 estado.serAfectadoPor(spiny);
+	    estado.serAfectadoPor(spiny);
 	}
 
 
 	public void serAfectadoPor(Lakitu lakitu) {
-	 estado.serAfectadoPor(lakitu);
+	    estado.serAfectadoPor(lakitu);
 	}
 
 
 	public void serAfectadoPor(PiranhaPlant piranhaPlant) {
-	 estado.serAfectadoPor(piranhaPlant);
+	    estado.serAfectadoPor(piranhaPlant);
 	}
 
 
 	public void serAfectadoPor(KoopaTroopa koopaTroopa) {
-	 estado.serAfectadoPor(koopaTroopa);
+	    estado.serAfectadoPor(koopaTroopa);
 	}
 
 
 	public void serAfectadoPor(SuperChampignon superChampignon) {
-	 estado.serAfectadoPor(superChampignon);
+	    estado.serAfectadoPor(superChampignon);
 	}
 
 
 	public void serAfectadoPor(Goomba goomba) {
-	 estado.serAfectadoPor(goomba);
+	    estado.serAfectadoPor(goomba);
 	}
 
 
 	public void AfectarA(LadrilloSolido ladrilloSolido) {
-	 estado.AfectarA(ladrilloSolido);
+	    estado.AfectarA(ladrilloSolido);
 	}
 
 
 	public void AfectarA(BloqueDePregunta bloqueDePregunta) {
-	 estado.AfectarA(bloqueDePregunta);
+	    estado.AfectarA(bloqueDePregunta);
 	}
 
 
 	public void AfectarA(BuzzyBeetle buzzyBeetle) {
-	 estado.AfectarA(buzzyBeetle);
+	    estado.AfectarA(buzzyBeetle);
 	}
 
 
 	public void AfectarA(Spiny spiny) {
-	 estado.AfectarA(spiny);
+	    estado.AfectarA(spiny);
 	}
 
 
 	public void AfectarA(Lakitu lakitu) {
-	 estado.AfectarA(lakitu);
+	    estado.AfectarA(lakitu);
 	}
 
 
 	public void AfectarA(PiranhaPlant piranhaPlant) {
-	 estado.AfectarA(piranhaPlant);
+	    estado.AfectarA(piranhaPlant);
 	}
 
 
 	public void AfectarA(KoopaTroopa koopaTroopa) {
-	 estado.AfectarA(koopaTroopa);
+	    estado.AfectarA(koopaTroopa);
 	}
 
 
 	public void AfectarA(Goomba goomba) {
-	 estado.AfectarA(goomba);
+	    estado.AfectarA(goomba);
 	}
 
     public void serAfectadoPor(Moneda moneda) {
