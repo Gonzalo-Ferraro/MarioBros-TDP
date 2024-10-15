@@ -57,7 +57,7 @@ public class Juego {
     private void crearControladores() {
         ControladorJugador controladorJugador = new ControladorJugador();
         controladorJugador.setPersonaje(nivelActual.getPersonaje());
-        controladorJugador.start();
+        controladorJugador.empezarJuego();
     }
 
     protected void registrarObservers() {
