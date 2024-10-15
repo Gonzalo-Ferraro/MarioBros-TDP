@@ -6,4 +6,14 @@ public class Goomba extends Enemigo {
         super(x, y, s);
     }
 
+    @Override
+    public void serAfectadoPor(Personaje p) {
+        p.AfectarA(this);
+    }
+
+    @Override
+    public void afectarAMario(Personaje p) {
+        p.serAfectadoPor(this);
+    }
+
 }   

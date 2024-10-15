@@ -6,4 +6,14 @@ public class Spiny extends Enemigo {
         super(x, y, s);
     }
 
+    @Override
+    public void serAfectadoPor(Personaje p) {
+        p.serAfectadoPor(this);
+    }
+
+    @Override
+    public void afectarAMario(Personaje p) {
+        p.serAfectadoPor(this);
+    }
+
 }

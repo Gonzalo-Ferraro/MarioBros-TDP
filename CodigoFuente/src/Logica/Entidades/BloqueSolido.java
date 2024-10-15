@@ -6,4 +6,10 @@ public class BloqueSolido extends Plataforma implements AfectablePorMario {
         super(x, y, s);
     }
 
-}
+    @Override
+    public void serAfectadoPor(Personaje p){}
+    }
+
+    
+
+

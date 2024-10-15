@@ -2,6 +2,11 @@ package Logica.Entidades;
 
 public class Vacio extends Plataforma implements AfectadorAMario {
 
+    @Override
+    public void afectarAMario(Personaje personaje) {
+        personaje.serAfectadoPor(this);
+    }
+
     // CHECKEAR QUE SEA ASI
 
     public Vacio(int x, int y, Sprite s){

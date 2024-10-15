@@ -28,14 +28,18 @@ protected Personaje personaje;
         public abstract void serAfectadoPor(SuperChampignon s);
         public abstract void serAfectadoPor(KoopaTroopa k);
         public abstract void serAfectadoPor(PiranhaPlant p);
-        public abstract void serAfectadoPor(ChampignonVerde c0);
+        public  void serAfectadoPor(ChampignonVerde c){
+            personaje.setPuntaje((personaje.getPuntaje()+100));
+        }
         public abstract void serAfectadoPor(Lakitu l);
         public abstract void serAfectadoPor(Spiny s);
         public abstract void serAfectadoPor(BuzzyBeetle b);
         public abstract void serAfectadoPor(FlorDeFuego f);
         public abstract void serAfectadoPor(Estrella e);
-        public abstract void serAfectadoPor(Vacio v);
-        public abstract void serAfectadoPor(Moneda m);
+        public  void serAfectadoPor(Vacio v){}
+        public  void serAfectadoPor(Moneda m){
+            personaje.setPuntaje(personaje.getPuntaje() + 5);
+        }
         public abstract void AfectarA(Goomba g);
         public abstract void AfectarA(KoopaTroopa k);
         public abstract void AfectarA(PiranhaPlant p);
@@ -44,6 +48,7 @@ protected Personaje personaje;
         public abstract void AfectarA(BuzzyBeetle b);
         public abstract void AfectarA(BloqueDePregunta bloq);
         public abstract void AfectarA(LadrilloSolido ladrillo);
+        // cambiar parametro cuando agreguemos el arreglo de sprites
         public abstract void cambiarSprite(ModoDeJuego modo );
         public void saltar(){
             personaje.saltar();
