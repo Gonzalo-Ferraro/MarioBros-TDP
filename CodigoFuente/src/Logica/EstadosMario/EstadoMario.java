@@ -18,75 +18,69 @@ import Logica.Entidades.Vacio;
 import Logica.Fabricas.ModoDeJuego;
 
 public abstract class EstadoMario  {
-protected Personaje personaje;
+
+    protected Personaje personaje;
         
-        public EstadoMario(Personaje p) {
-            personaje = p;
-        }
+    public EstadoMario(Personaje p) {
+        personaje = p;
+    }
         
-        public void serAfectadoPor(Goomba g){
-            personaje.setPuntaje(personaje.getPuntaje()+60);
-        }
+    public void serAfectadoPor(Goomba g){
+        personaje.setPuntaje(personaje.getPuntaje() + 60);
+    }
 
-        public abstract void serAfectadoPor(SuperChampignon s);
+    public abstract void serAfectadoPor(SuperChampignon s);
 
-        public void serAfectadoPor(KoopaTroopa k){
-            personaje.setPuntaje(personaje.getPuntaje()+90);
-        }
+    public void serAfectadoPor(KoopaTroopa k){
+        personaje.setPuntaje(personaje.getPuntaje()+90);
+    }
 
-        public void serAfectadoPor(PiranhaPlant p){
-            personaje.setPuntaje(personaje.getPuntaje()+30);
-        }
+    public void serAfectadoPor(PiranhaPlant p){
+        personaje.setPuntaje(personaje.getPuntaje()+30);
+       }
 
-        public  void serAfectadoPor(ChampignonVerde c){
-            personaje.setPuntaje((personaje.getPuntaje()+100));
-        }
+    public  void serAfectadoPor(ChampignonVerde c){
+        personaje.setPuntaje((personaje.getPuntaje()+100));
+    }
 
-        public void serAfectadoPor(Lakitu l){
-            personaje.setPuntaje(personaje.getPuntaje()+60);
-        }
+    public void serAfectadoPor(Lakitu l){
+        personaje.setPuntaje(personaje.getPuntaje()+60);
+    }
 
-        public void serAfectadoPor(Spiny s){
-            personaje.setPuntaje(personaje.getPuntaje()+600);
-        }
+    public void serAfectadoPor(Spiny s){
+        personaje.setPuntaje(personaje.getPuntaje()+600);
+    }
 
-        public void serAfectadoPor(BuzzyBeetle b){
-            personaje.setPuntaje(personaje.getPuntaje()+30);
-        }
+    public void serAfectadoPor(BuzzyBeetle b){
+        personaje.setPuntaje(personaje.getPuntaje()+30);
+    }
 
-        public abstract void serAfectadoPor(FlorDeFuego f);
+    public abstract void serAfectadoPor(FlorDeFuego f);
+    public abstract void serAfectadoPor(Estrella e);
 
-        public abstract void serAfectadoPor(Estrella e);
+    public  void serAfectadoPor(Vacio v){}
 
-        public  void serAfectadoPor(Vacio v){
+    public  void serAfectadoPor(Moneda m){
+        personaje.setPuntaje(personaje.getPuntaje() + 5);
+    }
+    
+    public abstract void AfectarA(Goomba g);
 
-        }
+    public abstract void AfectarA(KoopaTroopa k);
+    public abstract void AfectarA(PiranhaPlant p);
+    public abstract void AfectarA(Lakitu l);
+    public abstract void AfectarA(Spiny s);
+    public abstract void AfectarA(BuzzyBeetle b);
+    public abstract void AfectarA(BloqueDePregunta bloq);
+    public abstract void AfectarA(LadrilloSolido ladrillo);
 
-        public  void serAfectadoPor(Moneda m){
-            personaje.setPuntaje(personaje.getPuntaje() + 5);
-        }
+    // cambiar parametro cuando agreguemos el arreglo de sprites
+    public abstract void cambiarSprite(ModoDeJuego modo );
+    public void saltar(){
+        personaje.saltar();
+    }
 
-        public abstract void AfectarA(Goomba g);
-
-        public abstract void AfectarA(KoopaTroopa k);
-
-        public abstract void AfectarA(PiranhaPlant p);
-
-        public abstract void AfectarA(Lakitu l);
-
-        public abstract void AfectarA(Spiny s);
-
-        public abstract void AfectarA(BuzzyBeetle b);
-
-        public abstract void AfectarA(BloqueDePregunta bloq);
-
-        public abstract void AfectarA(LadrilloSolido ladrillo);
-
-        // cambiar parametro cuando agreguemos el arreglo de sprites
-        public abstract void cambiarSprite(ModoDeJuego modo );
-
-       
-        public void  espacio(){
-            
-        }
+    public void  espacio(){
+        personaje.espacio();
+    }
 }
