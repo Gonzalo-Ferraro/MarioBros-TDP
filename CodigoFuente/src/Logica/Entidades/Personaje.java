@@ -1,5 +1,6 @@
 package Logica.Entidades;
 
+import Logica.EstadosMario.EstadoMario;
 import Logica.Juego.Juego;
 import Vistas.Observer;
 
@@ -11,6 +12,8 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     private boolean derecha;
     private boolean izquierda;
+
+    private EstadoMario estado;
 
     public Personaje(int x, int y, Sprite sprite) {
         super(x, y, sprite);
@@ -94,4 +97,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 
         return velocidadActual;
     }
+    //falta implementar
+    public void saltar(){}
+    public void espacio(){}
 }
