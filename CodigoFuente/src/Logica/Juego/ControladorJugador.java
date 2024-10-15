@@ -11,8 +11,11 @@ public class ControladorJugador implements Runnable {
 
     private final double TIME_PER_FRAME = 1_000_000_000.0 / ConstantesVistas.FPS;
 
+    /*
     private int frames = 0;
+    */
     private int actualizaciones = 0;
+
 
     public synchronized void empezarJuego() {
         if (running) return; // Prevent starting multiple threads
@@ -36,7 +39,8 @@ public class ControladorJugador implements Runnable {
         // Timing variables
         long ultimoTiempo = System.nanoTime();
         double delta = 0;
-        long timer = System.currentTimeMillis();
+
+        //long timer = System.currentTimeMillis(); Utilizado para el conteo de fps
 
         while (running) {
             long ahora = System.nanoTime();
@@ -51,16 +55,19 @@ public class ControladorJugador implements Runnable {
             }
 
             // Render the game
-
+            /* 
             frames++;
 
             // Print FPS and UPS every second
+            
             if (System.currentTimeMillis() - timer >= 1000) {
                 System.out.println("FPS: " + frames + ", UPS: " + actualizaciones);
                 frames = 0;
                 actualizaciones = 0;
                 timer += 1000;
             }
+            Comentado para tener mayor fluidez en el juego. 
+            */
         }
     }
 

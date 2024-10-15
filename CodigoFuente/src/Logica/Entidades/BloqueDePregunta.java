@@ -9,4 +9,5 @@ public class BloqueDePregunta extends BloqueSolido {
 
         // SE LE SETEA EL POWER UP
     }
+    //falta ser afectado por
 }

@@ -44,8 +44,20 @@ public class Nivel {
         return enemigos;
     }
 
+    public void ingresarEntidad(Enemigo e) {
+        enemigos.add(e);
+    }
+    
+    public void ingresarEntidad(PowerUp p) {
+        powerUps.add(p);
+    }
+
     public List<PowerUp> getPowerUps() {
         return powerUps;
+    }
+
+    public void ingresarEntidad(Plataforma p) {
+        plataformas.add(p);
     }
 
     public List<Plataforma> getPlataformas() {
@@ -54,6 +66,10 @@ public class Nivel {
 
     public List<BolaDeFuego> getBolasDeFuego() {
         return bolasDeFuego;
+    }
+
+    public void ingresarEntidad(BolaDeFuego b) {
+        bolasDeFuego.add(b);
     }
 
     public Fondo getFondo() {

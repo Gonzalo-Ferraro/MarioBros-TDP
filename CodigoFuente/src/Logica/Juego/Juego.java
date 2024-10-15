@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.Timer;
 
+import Datos.EntidadSonora;
 import Datos.GeneradorDeNiveles;
 import Logica.Fabricas.ModoDeJuego;
 import Vistas.ConstantesVistas;
@@ -18,11 +19,20 @@ public class Juego {
     private ControladorVistas controladorVistas;
     private ModoDeJuego modo;
     private Nivel nivelActual;
-    
+    private EntidadSonora entidadSonora;
+
     private GeneradorDeNiveles generadorDeNiveles;
 
     public void setControladorVistas(ControladorVistas c) {
         controladorVistas = c;
+    }
+
+    public void setEntidadSonora(EntidadSonora e) {
+        entidadSonora = e;
+    }
+    
+    public EntidadSonora getEntidadSonora(){
+        return entidadSonora;
     }
 
     public ModoDeJuego getModo() {
@@ -33,25 +43,35 @@ public class Juego {
         modo = m;
         generadorDeNiveles = new GeneradorDeNiveles();
         nivelActual = generadorDeNiveles.generarNivel(m, 1);
-
         registrarObservers();
-
         obtenerPersonaje().setJuego(this);
         PantallaStats pantallaStats = new PantallaStats(controladorVistas, obtenerPersonaje());
 
         controladorVistas.setPantallaStats(pantallaStats);
         controladorVistas.mostrarPantallaStats();
 
-        Timer timer = new Timer(ConstantesVistas.TIEMPO_STATS * 1000, new ActionListener() {
+
+        Timer temporizadorPantallaJuego = new Timer(ConstantesVistas.TIEMPO_STATS * 1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controladorVistas.mostrarPantallaJuego();
             }
         });
-        timer.setRepeats(false); // Solo ejecutarlo una vez
-        timer.start();
+        temporizadorPantallaJuego.setRepeats(false); // Solo ejecutarlo una vez
+        temporizadorPantallaJuego.start();
 
         crearControladores();
+
+        Timer temporizadorLoop = new Timer(ConstantesVistas.TIEMPO_STATS * 1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                entidadSonora.iniciarLoopMario();
+            }
+        });
+        temporizadorLoop.setRepeats(false); // Solo ejecutarlo una vez
+        temporizadorLoop.start();
+        
+        
     }
 
     private void crearControladores() {

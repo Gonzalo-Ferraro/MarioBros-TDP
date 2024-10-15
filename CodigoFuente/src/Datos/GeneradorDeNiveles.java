@@ -3,17 +3,9 @@ package Datos;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 
-import Logica.Entidades.BloqueDePregunta;
-import Logica.Entidades.BuzzyBeetle;
-import Logica.Entidades.Fondo;
-import Logica.Entidades.Goomba;
-import Logica.Entidades.KoopaTroopa;
-import Logica.Entidades.Moneda;
-import Logica.Entidades.Personaje;
-import Logica.Entidades.Plataforma;
+import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
 import Logica.Juego.Nivel;
 import Vistas.ConstantesVistas;
@@ -58,12 +50,15 @@ public class GeneradorDeNiveles {
 
     private void generarEntidad(int indiceLinea, int indiceCaracter, Character caracter) {
         switch (caracter) {
+
+            //PLATAFORMAS--------------------------	
+
             case 'P':
                 Plataforma plataformaGenerada = modo.crearPiso(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getPlataformas().add(plataformaGenerada);
+                nivel.ingresarEntidad(plataformaGenerada);
                 break;
             
             case '?':
@@ -71,7 +66,7 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getPlataformas().add(bloqueGenerado);
+                nivel.ingresarEntidad(bloqueGenerado);
                 break;
 
             case 'S':
@@ -79,7 +74,7 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getPlataformas().add(ladrilloGenerado);
+                nivel.ingresarEntidad(ladrilloGenerado);
                 break;
 
             case 'T':
@@ -87,7 +82,41 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getPlataformas().add(tuberiaGenerada);
+                nivel.ingresarEntidad(tuberiaGenerada);
+                break;
+
+            //POWERUPS--------------------------
+
+            case 'e':
+                Estrella estrellaGenerada = modo.crearEstrella(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(estrellaGenerada);
+                break;
+
+            case 'c':
+            SuperChampignon superChampignonGenerado = modo.crearSuperChampignon(
+                indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+            );
+            nivel.ingresarEntidad(superChampignonGenerado);
+            break;
+
+            case 'f':
+                FlorDeFuego florDeFuegoGenerada = modo.crearFlorDeFuego(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(florDeFuegoGenerada);
+                break;
+            
+            case 'v':
+                ChampignonVerde champignonVerdeGenerado = modo.crearChampignonVerde(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(champignonVerdeGenerado);
                 break;
 
             case '$':
@@ -95,15 +124,33 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getPowerUps().add(monedaGenerada);
+                nivel.ingresarEntidad(monedaGenerada);
                 break;
+
+            //ENEMIGOS--------------------------
 
             case 'g':
                 Goomba goombaGenerado = modo.crearGoomba(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getEnemigos().add(goombaGenerado);
+                nivel.ingresarEntidad(goombaGenerado);
+                break;
+
+            case 'p':
+                PiranhaPlant piranhaPlantGenerada = modo.crearPiranhaPlant(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(piranhaPlantGenerada);
+                break;
+
+            case 'l':
+                Lakitu lakituGenerado = modo.crearLakitu(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(lakituGenerado);
                 break;
 
             case 'k':
@@ -111,7 +158,7 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                 );
-                nivel.getEnemigos().add(koopaGenerado);
+                nivel.ingresarEntidad(koopaGenerado);
                 break;
             
             case 'b':
@@ -119,8 +166,19 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
                );
-               nivel.getEnemigos().add(buzzyBeetleGenerado); 
+               nivel.ingresarEntidad(buzzyBeetleGenerado); 
                break;
+            
+            case 's':
+                Spiny spinyGenerado = modo.crearSpiny(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                );
+                nivel.ingresarEntidad(spinyGenerado);
+                break;
+
+            //PERSONAJE--------------------------
+
             case 'm':
                 Personaje jugador = modo.crearPersonaje(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,

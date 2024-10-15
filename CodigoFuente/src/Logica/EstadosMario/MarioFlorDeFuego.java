@@ -12,5 +12,7 @@ public MarioFlorDeFuego(Personaje p){
 public void serAfectadoPor(FlorDeFuego f) {}
 public void AfectarA(PiranhaPlant P){}
 
+
+
 }
 

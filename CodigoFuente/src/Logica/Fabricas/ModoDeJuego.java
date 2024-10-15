@@ -8,17 +8,15 @@ public abstract class ModoDeJuego {
         this.ruta = ruta;
     }
 
-    public SuperChampignon crearSuperChampignon(int x, int y){
-        Sprite spriteSuperChampignon = new Sprite(ruta + "/super-champignon.png");
-        SuperChampignon toReturn = new SuperChampignon(x, y, spriteSuperChampignon);
-        return toReturn;
-    }
-
+    
+    
     public Personaje crearPersonaje(int x, int y) {
         Sprite spriteMario = new Sprite(ruta + "/mario-quieto-derecha.png");
         Personaje personaje = new Personaje(x, y, spriteMario);
         return personaje;
     }
+
+
 
     public BloqueSolido crearPiso(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/piso.png");
@@ -44,12 +42,6 @@ public abstract class ModoDeJuego {
         return tuberia;
     }
 
-    public Moneda crearMoneda(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/moneda.gif");
-        Moneda moneda = new Moneda(x, y, sprite);
-        return moneda;
-    }
-
     public PiranhaPlant crearPiranhaPlant(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/piranha-plant.gif");
         PiranhaPlant piranha = new PiranhaPlant(x, y, sprite);
@@ -71,6 +63,51 @@ public abstract class ModoDeJuego {
         KoopaTroopa koopa = new KoopaTroopa(x, y, sprite);
         return koopa;
     }
+
+    public Lakitu crearLakitu(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/lakitu-izquierda.png");
+        Lakitu lakitu = new Lakitu(x, y, sprite);
+        return lakitu;
+    }
+
+    public Spiny crearSpiny(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/spiny-izquierda.gif");
+        Spiny spiny = new Spiny(x, y, sprite);
+        return spiny;
+    }
+
+
+    public Estrella crearEstrella(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/estrella.gif");
+        Estrella estrella = new Estrella(x, y, sprite);
+        return estrella;
+    }
+
+    public SuperChampignon crearSuperChampignon(int x, int y){
+        Sprite spriteSuperChampignon = new Sprite(ruta + "/superchampinon.png");
+        SuperChampignon toReturn = new SuperChampignon(x, y, spriteSuperChampignon);
+        return toReturn;
+    }
+    
+    public Moneda crearMoneda(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/moneda.gif");
+        Moneda moneda = new Moneda(x, y, sprite);
+        return moneda;
+    }
+
+    public ChampignonVerde crearChampignonVerde(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/champinonverde.png");
+        ChampignonVerde champignon = new ChampignonVerde(x, y, sprite);
+        return champignon;
+    }
+
+    public FlorDeFuego crearFlorDeFuego(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/flordefuego.gif");
+        FlorDeFuego flor = new FlorDeFuego(x, y, sprite);
+        return flor;
+    }
+
+
 
     public Fondo crearFondo(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/fondo.png");

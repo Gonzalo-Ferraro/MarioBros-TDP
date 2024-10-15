@@ -5,6 +5,7 @@ import Logica.EstadosMario.MarioNormal;
 import Logica.Juego.Juego;
 import Vistas.Observer;
 
+
 public class Personaje extends Entidad implements EntidadJugador {
     private Juego juego;
 
@@ -40,6 +41,7 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void setJuego(Juego j) {
         juego = j;
     }
+
     public void setEstado(EstadoMario estado){
         this.estado = estado;
     }
@@ -109,19 +111,30 @@ public class Personaje extends Entidad implements EntidadJugador {
     }
     
     //falta implementar
-    public void saltar(){}
-    public void espacio(){}
+
+    public void saltar(){
+        juego.getEntidadSonora().reproducirSonido("salto");
+    }
+
+    public void espacio(){
+        //ver como hacer lo del efecto de bola de fuego
+    }
+
     public void serAfectadoPor(ChampignonVerde champignonVerde) {
+        juego.getEntidadSonora().reproducirSonido("vida");
         estado.serAfectadoPor(champignonVerde);
     }
 
 
 	public void serAfectadoPor(Estrella estrella) {
+        juego.getEntidadSonora().reproducirSonido("estrella");
 		estado.serAfectadoPor(estrella);
+        //LUEGO DEL TIMER juego.getEntidadSonora.detenerLoopEstrella();
 	}
 
 
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
+        juego.getEntidadSonora().reproducirSonido("powerup");
         estado.serAfectadoPor(florDeFuego);
 	 
 	}
@@ -153,6 +166,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 
 
 	public void serAfectadoPor(SuperChampignon superChampignon) {
+     juego.getEntidadSonora().reproducirSonido("powerup");
 	 estado.serAfectadoPor(superChampignon);
 	}
 
@@ -202,13 +216,12 @@ public class Personaje extends Entidad implements EntidadJugador {
 	}
 
     public void serAfectadoPor(Moneda moneda) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serAfectadoPor'");
+        juego.getEntidadSonora().reproducirSonido("moneda");
+        estado.serAfectadoPor(moneda);
     }
 
     public void serAfectadoPor(Vacio vacio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'serAfectadoPor'");
+        estado.serAfectadoPor(vacio);
     }
 
 
