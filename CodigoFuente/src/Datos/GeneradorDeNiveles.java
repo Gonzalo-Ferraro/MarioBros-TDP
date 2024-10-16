@@ -97,7 +97,7 @@ public class GeneradorDeNiveles {
             case 'e':
                 Estrella estrellaGenerada = modo.crearEstrella(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE
                 );
                 nivel.ingresarEntidad(estrellaGenerada);
                 break;
@@ -105,7 +105,7 @@ public class GeneradorDeNiveles {
             case 'c':
             SuperChampignon superChampignonGenerado = modo.crearSuperChampignon(
                 indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE
             );
             nivel.ingresarEntidad(superChampignonGenerado);
             break;
@@ -113,7 +113,7 @@ public class GeneradorDeNiveles {
             case 'f':
                 FlorDeFuego florDeFuegoGenerada = modo.crearFlorDeFuego(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE
                 );
                 nivel.ingresarEntidad(florDeFuegoGenerada);
                 break;
@@ -121,7 +121,7 @@ public class GeneradorDeNiveles {
             case 'v':
                 ChampignonVerde champignonVerdeGenerado = modo.crearChampignonVerde(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE
                 );
                 nivel.ingresarEntidad(champignonVerdeGenerado);
                 break;

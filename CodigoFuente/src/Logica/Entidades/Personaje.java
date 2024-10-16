@@ -45,8 +45,17 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void setEstado(EstadoMario estado){
         this.estado = estado;
     }
+
     public void setPuntaje(int punt){
-        puntaje += punt;
+        if(puntaje + punt <= 0)
+            puntaje = 0;
+        else puntaje += punt;
+    }
+
+    public void setVidas(int vida){
+        if(vidas + vida == 0)
+            juego.perdiste();
+        else vidas += vida;
     }
 
     public void mover() {
@@ -64,9 +73,9 @@ public class Personaje extends Entidad implements EntidadJugador {
         derecha = b;
         
         if (!b && !izquierda)
-        sprite = juego.getModo().getMarioQuietoDerecha();
+        sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-derecha");
         else if (b && izquierda)
-        sprite = juego.getModo().getMarioQuietoIzquierda();
+        sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-izquierda");
         
         actualizarSprite();
     }
@@ -76,18 +85,18 @@ public class Personaje extends Entidad implements EntidadJugador {
         actualizarSprite();
 
         if (!b && !derecha)
-            sprite = juego.getModo().getMarioQuietoIzquierda();
+            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-izquierda");
         else if (b && derecha)
-            sprite = juego.getModo().getMarioQuietoDerecha();
+            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-derecha");
 
         actualizarSprite();
     }
 
     private void actualizarSprite() {
         if (derecha && !izquierda) 
-            sprite = juego.getModo().getMarioMoviendoDerecha();
+            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-movimiento-derecha");
         else if (izquierda && !derecha)
-            sprite = juego.getModo().getMarioMoviendoIzquierda();
+            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-movimiento-izquierda");
 
         observador.actualizarImagen();
     }

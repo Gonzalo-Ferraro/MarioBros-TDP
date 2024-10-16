@@ -15,9 +15,14 @@ import Logica.Entidades.SuperChampignon;
 import Logica.Fabricas.ModoDeJuego;
 
 public class SuperMario extends EstadoMario {
+    
     public SuperMario(Personaje p) {
         super(p);
     }
+
+    public String getString(){
+		return "super";
+	}
 
     @Override
     public void serAfectadoPor(Goomba g) {

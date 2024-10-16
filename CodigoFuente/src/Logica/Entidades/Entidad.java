@@ -9,6 +9,7 @@ public abstract class Entidad implements EntidadLogica {
     protected Sprite sprite;
     protected static int velocidad;
     protected Observer observador;
+    protected EntidadGrafica entidadGrafica;
    
 
     protected Entidad(int x, int y, Sprite s){
@@ -34,5 +35,9 @@ public abstract class Entidad implements EntidadLogica {
 
     public void registrarObserver(Observer obs) {
         observador = obs;
+    }
+
+    public void setEntidadGrafica(EntidadGrafica entidadGrafica){
+        this.entidadGrafica = entidadGrafica;
     }
 }

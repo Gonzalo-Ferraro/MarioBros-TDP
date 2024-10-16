@@ -24,63 +24,74 @@ public abstract class EstadoMario  {
     public EstadoMario(Personaje p) {
         personaje = p;
     }
+
+    public abstract String getString();
         
     public void serAfectadoPor(Goomba g){
-        personaje.setPuntaje(personaje.getPuntaje() + 60);
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-30);
     }
 
-    public abstract void serAfectadoPor(SuperChampignon s);
-
     public void serAfectadoPor(KoopaTroopa k){
-        personaje.setPuntaje(personaje.getPuntaje()+90);
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-45);
     }
 
     public void serAfectadoPor(PiranhaPlant p){
-        personaje.setPuntaje(personaje.getPuntaje()+30);
-       }
-
-    public  void serAfectadoPor(ChampignonVerde c){
-        personaje.setPuntaje((personaje.getPuntaje()+100));
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-30);
     }
 
     public void serAfectadoPor(Lakitu l){
-        personaje.setPuntaje(personaje.getPuntaje()+60);
+        personaje.setVidas(-1);
     }
 
     public void serAfectadoPor(Spiny s){
-        personaje.setPuntaje(personaje.getPuntaje()+600);
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-30);
     }
 
     public void serAfectadoPor(BuzzyBeetle b){
-        personaje.setPuntaje(personaje.getPuntaje()+30);
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-15);
+    }
+
+    public  void serAfectadoPor(Vacio v){
+        personaje.setVidas(-1);
+        personaje.setPuntaje(-15);
+    }
+
+    public void serAfectadoPor(ChampignonVerde c){
+        personaje.setVidas(1);
+        personaje.setPuntaje(100);
+    }
+
+    public  void serAfectadoPor(Moneda m){
+        personaje.setPuntaje(5);
     }
 
     public abstract void serAfectadoPor(FlorDeFuego f);
     public abstract void serAfectadoPor(Estrella e);
-
-    public  void serAfectadoPor(Vacio v){}
-
-    public  void serAfectadoPor(Moneda m){
-        personaje.setPuntaje(personaje.getPuntaje() + 5);
-    }
+    public abstract void serAfectadoPor(SuperChampignon s);
     
     public abstract void AfectarA(Goomba g);
-
     public abstract void AfectarA(KoopaTroopa k);
     public abstract void AfectarA(PiranhaPlant p);
     public abstract void AfectarA(Lakitu l);
     public abstract void AfectarA(Spiny s);
     public abstract void AfectarA(BuzzyBeetle b);
+
     public abstract void AfectarA(BloqueDePregunta bloq);
     public abstract void AfectarA(LadrilloSolido ladrillo);
 
     // cambiar parametro cuando agreguemos el arreglo de sprites
     public abstract void cambiarSprite(ModoDeJuego modo );
+
     public void saltar(){
         personaje.saltar();
     }
 
-    public void  espacio(){
+    public void espacio(){
         personaje.espacio();
     }
 }

@@ -11,12 +11,31 @@ public abstract class ModoDeJuego {
     
     
     public Personaje crearPersonaje(int x, int y) {
-        Sprite spriteMario = new Sprite(ruta + "/mario-quieto-derecha.png");
-        Personaje personaje = new Personaje(x, y, spriteMario);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("marionormal-quieto-derecha", new Sprite(ruta + "/mario-quieto-derecha.png"));
+        entidadGrafica.setSprite("marionormal-quieto-izquierda", new Sprite(ruta + "/mario-quieto-izquierda.png"));
+        entidadGrafica.setSprite("marionormal-movimiento-derecha", new Sprite(ruta + "/mario-movimiento-derecha.gif"));
+        entidadGrafica.setSprite("marionormal-movimiento-izquierda", new Sprite(ruta + "/mario-movimiento-izquierda.gif"));
+        entidadGrafica.setSprite("marionormal-saltando-derecha", new Sprite(ruta + "/mario-saltando-derecha.png"));
+        entidadGrafica.setSprite("marionormal-saltando-izquierda", new Sprite(ruta + "/mario-saltando-izquierda.png"));
+        entidadGrafica.setSprite("mariosuper-quieto-derecha", new Sprite(ruta + "/supermario-quieto-derecha.png"));
+        entidadGrafica.setSprite("mariosuper-quieto-izquierda", new Sprite(ruta + "/supermario-quieto-izquierda.png"));
+        entidadGrafica.setSprite("mariosuper-movimiento-derecha", new Sprite(ruta + "/supermario-movimiento-derecha.gif"));
+        entidadGrafica.setSprite("mariosuper-movimiento-izquierda", new Sprite(ruta + "/supermario-movimiento-izquierda.gif"));
+        entidadGrafica.setSprite("mariosuper-saltando-derecha", new Sprite(ruta + "/supermario-saltando-derecha.png"));
+        entidadGrafica.setSprite("mariosuper-saltando-izquierda", new Sprite(ruta + "/supermario-saltando-izquierda.png"));
+        entidadGrafica.setSprite("marioflordefuego-quieto-derecha", new Sprite(ruta + "/marioflordefuego-quieto-derecha.png"));
+        entidadGrafica.setSprite("marioflordefuego-quieto-izquierda", new Sprite(ruta + "/marioflordefuego-quieto-izquierda.png"));
+        entidadGrafica.setSprite("marioflordefuego-movimiento-derecha", new Sprite(ruta + "/marioflordefuego-movimiento-derecha.gif"));
+        entidadGrafica.setSprite("marioflordefuego-movimiento-izquierda", new Sprite(ruta + "/marioflordefuego-movimiento-izquierda.gif"));
+        entidadGrafica.setSprite("marioflordefuego-saltando-derecha", new Sprite(ruta + "/marioflordefuego-saltando-derecha.png"));
+        entidadGrafica.setSprite("marioflordefuego-saltando-izquierda", new Sprite(ruta + "/marioflordefuego-saltando-izquierda.png"));
+        entidadGrafica.setSprite("marioflordefuego-lanzando-derecha", new Sprite(ruta + "/marioflordefuego-lanzando-derecha.png"));
+        entidadGrafica.setSprite("marioflordefuego-lanzando-izquierda", new Sprite(ruta + "/marioflordefuego-lanzando-izquierda.png"));
+        Personaje personaje = new Personaje(x, y, entidadGrafica.getSprite("marionormal-quieto-derecha"));
+        personaje.setEntidadGrafica(entidadGrafica);
         return personaje;
     }
-
-
 
     public BloqueSolido crearPiso(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/piso.png");
@@ -55,30 +74,51 @@ public abstract class ModoDeJuego {
     }
 
     public Goomba crearGoomba(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/goomba.gif");
-        Goomba goomba = new Goomba(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("goomba", new Sprite(ruta + "/goomba.gif"));
+        entidadGrafica.setSprite("goomba-eliminado", new Sprite(ruta + "/goomba-eliminado.gif"));
+        Goomba goomba = new Goomba(x, y, entidadGrafica.getSprite("goomba"));
+        goomba.setEntidadGrafica(entidadGrafica);
         return goomba;
     }
+
     public BuzzyBeetle crearBuzzyBeetle(int x,int y){
-        Sprite sprite = new Sprite(ruta + "/buzzy-beetle-izquierda.gif");
-        BuzzyBeetle buzzyBeetle = new BuzzyBeetle(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("buzzy-beetle-izquierda", new Sprite(ruta + "/buzzy-beetle-izquierda.gif"));
+        entidadGrafica.setSprite("buzzy-beetle-derecha", new Sprite(ruta + "/buzzy-beetle-derecha.gif"));
+        entidadGrafica.setSprite("buzzy-beetle-caparazon", new Sprite(ruta + "/buzzy-beetle-caparazon.gif"));
+        BuzzyBeetle buzzyBeetle = new BuzzyBeetle(x, y, entidadGrafica.getSprite("buzzy-beetle-izquierda"));
+        buzzyBeetle.setEntidadGrafica(entidadGrafica);
         return buzzyBeetle;
     }
+
     public KoopaTroopa crearKoopaTroopa(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/koopa-troopa-izquierda.gif");
-        KoopaTroopa koopa = new KoopaTroopa(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("koopa-troopa-izquierda", new Sprite(ruta + "/koopa-troopa-izquierda.gif"));
+        entidadGrafica.setSprite("koopa-troopa-derecha", new Sprite(ruta + "/koopa-troopa-derecha.gif"));
+        entidadGrafica.setSprite("koopa-troopa-caparazon", new Sprite(ruta + "/koopa-troopa-caparazon.gif"));
+        KoopaTroopa koopa = new KoopaTroopa(x, y, entidadGrafica.getSprite("koopa-troopa-izquierda"));
+        koopa.setEntidadGrafica(entidadGrafica);
         return koopa;
     }
 
     public Lakitu crearLakitu(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/lakitu-izquierda.png");
-        Lakitu lakitu = new Lakitu(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("lakitu-izquierda", new Sprite(ruta + "/lakitu-izquierda.png"));
+        entidadGrafica.setSprite("lakitu-derecha", new Sprite(ruta + "/lakitu-derecha.png"));
+        entidadGrafica.setSprite("lakitu-lanzando", new Sprite(ruta + "/lakitu-lanzando.png"));
+        Lakitu lakitu = new Lakitu(x, y, entidadGrafica.getSprite("lakitu-izquierda"));
+        lakitu.setEntidadGrafica(entidadGrafica);
         return lakitu;
     }
 
     public Spiny crearSpiny(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/spiny-izquierda.gif");
-        Spiny spiny = new Spiny(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+        entidadGrafica.setSprite("spiny-izquierda", new Sprite(ruta + "/spiny-izquierda.gif"));
+        entidadGrafica.setSprite("spiny-derecha", new Sprite(ruta + "/spiny-derecha.gif"));
+        entidadGrafica.setSprite("spiny-lanzado", new Sprite(ruta + "/spiny-lanzado.gif"));
+        Spiny spiny = new Spiny(x, y, entidadGrafica.getSprite("spiny-izquierda"));
+        spiny.setEntidadGrafica(entidadGrafica);
         return spiny;
     }
 
@@ -121,19 +161,5 @@ public abstract class ModoDeJuego {
         return fondo;
     }
 
-    public Sprite getMarioMoviendoDerecha() {
-        return new Sprite(ruta + "/mario-movimiento-derecha.gif");
-    }
 
-    public Sprite getMarioMoviendoIzquierda() {
-        return new Sprite(ruta + "/mario-movimiento-izquierda.gif");
-    }
-
-    public Sprite getMarioQuietoDerecha() {
-        return new Sprite(ruta + "/mario-quieto-derecha.png");
-    }
-
-    public Sprite getMarioQuietoIzquierda() {
-        return new Sprite(ruta + "/mario-quieto-izquierda.png");
-    }
 }

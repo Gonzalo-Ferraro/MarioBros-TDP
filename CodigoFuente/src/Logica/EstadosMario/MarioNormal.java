@@ -9,6 +9,10 @@ public class MarioNormal extends EstadoMario {
         super(p);
     }
 
+    public String getString(){
+        return "normal";
+    }
+
     @Override
     public void serAfectadoPor(Estrella estrella) {
         personaje.setPuntaje(personaje.getPuntaje() + 20);

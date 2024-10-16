@@ -54,7 +54,7 @@ public class PantallaJuego extends JPanel {
 
     public Observer incorporarEntidadLogica(EntidadLogica entidadLogica) {
         ObserverGrafico observer = new ObserverEntidades(entidadLogica);
-        panelJuego.add(observer);
+        imagenFondo.add(observer);
         actualizarPanel();
         return observer;
     }

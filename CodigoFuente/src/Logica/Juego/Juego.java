@@ -125,4 +125,8 @@ public class Juego {
     public void detenerMovimientoIzquierda() {
         nivelActual.getPersonaje().setIzquierda(false);
     }
+
+    public void perdiste(){
+        // TO DO
+    }
 }

@@ -5,12 +5,17 @@ import Logica.Entidades.Personaje; // Ensure this class exists and is correctly 
 import Logica.Entidades.PiranhaPlant;
 
 public class MarioFlorDeFuego extends SuperMario{
-public MarioFlorDeFuego(Personaje p){
-      super(p);      
-}
-@Override
-public void serAfectadoPor(FlorDeFuego f) {}
-public void AfectarA(PiranhaPlant P){}
+      public MarioFlorDeFuego(Personaje p){
+            super(p);      
+      }
+
+      public String getString(){
+		return "flordefuego";
+	}
+
+      @Override
+      public void serAfectadoPor(FlorDeFuego f) {}
+      public void AfectarA(PiranhaPlant P){}
 
 
 

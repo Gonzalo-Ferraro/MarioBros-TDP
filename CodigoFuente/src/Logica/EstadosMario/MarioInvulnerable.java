@@ -11,6 +11,10 @@ public class MarioInvulnerable extends EstadoMario {
         this.estadoAnterior = e;
 	}
 
+	public String getString(){
+		return "invulnerable";
+	}
+
 	@Override
 	public void serAfectadoPor(Estrella estrella) {
 		// Implementation here
