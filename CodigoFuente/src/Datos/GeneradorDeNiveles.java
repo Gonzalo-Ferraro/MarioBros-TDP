@@ -80,11 +80,18 @@ public class GeneradorDeNiveles {
             case 'T':
                 Plataforma tuberiaGenerada = modo.crearTuberia(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE * 2 + 20
                 );
                 nivel.ingresarEntidad(tuberiaGenerada);
                 break;
 
+            case 't':
+                Plataforma partetuberiaGenerada = modo.crearPartetuberia(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE * 2 + 20
+                );
+                nivel.ingresarEntidad(partetuberiaGenerada);
+                break;
             //POWERUPS--------------------------
 
             case 'e':
@@ -156,7 +163,7 @@ public class GeneradorDeNiveles {
             case 'k':
                 KoopaTroopa koopaGenerado = modo.crearKoopaTroopa(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE + 20 * 3
                 );
                 nivel.ingresarEntidad(koopaGenerado);
                 break;

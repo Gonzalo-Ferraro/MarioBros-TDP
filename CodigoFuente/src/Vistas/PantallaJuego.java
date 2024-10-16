@@ -36,7 +36,7 @@ public class PantallaJuego extends JPanel {
         panelScrollJuego.setVerticalScrollBar(new InvisibleScrollBar());
         panelScrollJuego.setBounds(0, 0, ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO);
 
-        panelJuego.setBackground(new Color(173, 216, 230));
+        panelJuego.setBackground(new Color(79, 128, 248));
         
         imagenFondo = new JLabel();
         imagenFondo.setLayout(null);

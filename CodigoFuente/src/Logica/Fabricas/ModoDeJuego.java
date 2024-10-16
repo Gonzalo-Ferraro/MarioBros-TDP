@@ -42,6 +42,12 @@ public abstract class ModoDeJuego {
         return tuberia;
     }
 
+    public BloqueSolido crearPartetuberia(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/parte-tuberia.png");
+        BloqueSolido partetuberia = new BloqueSolido(x, y, sprite);
+        return partetuberia;
+    }
+
     public PiranhaPlant crearPiranhaPlant(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/piranha-plant.gif");
         PiranhaPlant piranha = new PiranhaPlant(x, y, sprite);
