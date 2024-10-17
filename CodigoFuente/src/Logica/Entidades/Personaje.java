@@ -69,13 +69,13 @@ public class Personaje extends Entidad implements EntidadJugador {
         
         if( direccion==-1 && d==1 || direccion==1 && d==-1){
             velocidad=0;
+            estado.setDireccion(0);
         }
-        else
+        else{
             velocidad=7;
-
-        direccion = d;
-        estado.setDireccion(d);
-       
+            direccion = d;
+            estado.setDireccion(d);
+        }
     }
 
     public void setSprite(Sprite s){

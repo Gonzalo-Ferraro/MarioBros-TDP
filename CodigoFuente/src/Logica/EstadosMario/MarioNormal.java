@@ -16,7 +16,6 @@ public class MarioNormal extends EstadoMario {
         if(d == -1)
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
         else 
-            if(d == 1)
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
         
         if(d==-1 && direccion==1)

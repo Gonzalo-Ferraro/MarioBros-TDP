@@ -26,6 +26,7 @@ public abstract class EstadoMario  {
     protected int direccion;
     public EstadoMario(Personaje p) {
         personaje = p;
+        
     }
 
     public abstract void setDerecha(boolean d, boolean i);
