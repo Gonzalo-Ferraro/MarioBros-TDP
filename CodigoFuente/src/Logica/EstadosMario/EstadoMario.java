@@ -22,14 +22,16 @@ public abstract class EstadoMario  {
     protected Personaje personaje;
     protected boolean derecha;
     protected boolean izquierda;
-        
+
+    protected int direccion;
     public EstadoMario(Personaje p) {
         personaje = p;
     }
 
     public abstract void setDerecha(boolean d, boolean i);
     public abstract void setIzquierda(boolean d, boolean i);
-        
+    public abstract void setDireccion(int d);
+
     public void serAfectadoPor(Goomba g){
         personaje.setVidas(-1);
         personaje.setPuntaje(-30);

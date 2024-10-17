@@ -78,6 +78,11 @@ public class Juego {
         ControladorJugador controladorJugador = new ControladorJugador();
         controladorJugador.setPersonaje(nivelActual.getPersonaje());
         controladorJugador.empezarJuego();
+
+        ControladorEntidades controladorEntidades = new ControladorEntidades();
+        controladorEntidades.setNivel(nivelActual);
+        controladorEntidades.iniciar();
+
     }
 
     protected void registrarObservers() {
@@ -110,23 +115,15 @@ public class Juego {
         return nivelActual.getPersonaje();
     }
 
-    public void iniciarMovimientoDerecha() {
-        nivelActual.getPersonaje().setDerecha(true);
-    }
 
-    public void detenerMovimientoDerecha() {
-        nivelActual.getPersonaje().setDerecha(false);
+    public void setDireccion(int n){
+        nivelActual.getPersonaje().setDireccion(n);
     }
-
-    public void iniciarMovimientoIzquierda() {
-        nivelActual.getPersonaje().setIzquierda(true);
-    }
-
-    public void detenerMovimientoIzquierda() {
-        nivelActual.getPersonaje().setIzquierda(false);
-    }
+    
 
     public void perdiste(){
         // TO DO
     }
+
+    
 }

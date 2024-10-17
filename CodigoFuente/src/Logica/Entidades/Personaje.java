@@ -23,11 +23,11 @@ public class Personaje extends Entidad implements EntidadJugador {
         velocidad = 7;
         derecha = false;
         izquierda = false;
-        puntaje=0;
+        puntaje = 0;
 
-        this.vidas=3;
+        this.vidas = 3;
 
-        estado= new MarioNormal(this);
+        estado = new MarioNormal(this);
     }
 
     public int getPuntaje(){
@@ -59,25 +59,35 @@ public class Personaje extends Entidad implements EntidadJugador {
     }
 
     public void mover() {
-        if (derecha) {
-            x += velocidad;
-        }
-        if (izquierda) {
-            x -= velocidad;
-        }
-
+        
+        x= x + (velocidad*direccion);
+       
         observador.actualizarPosicionTamano();
+    }
+
+    public void setDireccion(int d){
+        
+        if( direccion==-1 && d==1 || direccion==1 && d==-1){
+            velocidad=0;
+        }
+        else
+            velocidad=7;
+
+        direccion = d;
+        estado.setDireccion(d);
+       
     }
 
     public void setSprite(Sprite s){
         sprite = s;
+        observador.actualizarImagen();
     }
 
     public EntidadGrafica getEntidadGrafica(){
         return entidadGrafica;
     }
 
-    public void setDerecha(boolean b) {
+    /*public void setDerecha(boolean b) {
         derecha = b;
          estado.setDerecha(b, izquierda);
     }
@@ -86,7 +96,7 @@ public class Personaje extends Entidad implements EntidadJugador {
         izquierda = b;
         estado.setIzquierda(derecha, b);
     }
-
+    */
     public Observer getObserver() {
         return observador;
     }

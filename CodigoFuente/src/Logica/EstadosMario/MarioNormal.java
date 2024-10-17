@@ -9,6 +9,32 @@ public class MarioNormal extends EstadoMario {
         super(p);
     }
 
+    public void setDireccion(int d){
+
+        Sprite spriteAsignar = null;
+
+        if(d == -1)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+        else 
+            if(d == 1)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+        
+        if(d==-1 && direccion==1)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+        
+        if(d==1 && direccion==-1)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+
+        if(d==0)
+                if(direccion==-1)
+                        spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+                else
+                        spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+    
+        direccion = d;
+        personaje.setSprite(spriteAsignar);
+    }
+
     @Override
     public void setDerecha(boolean d, boolean i){
         derecha = d;
@@ -30,6 +56,7 @@ public class MarioNormal extends EstadoMario {
         personaje.getObserver().actualizarImagen();
     }
 
+    
     @Override
     public void setIzquierda(boolean d, boolean i){
         derecha = d;

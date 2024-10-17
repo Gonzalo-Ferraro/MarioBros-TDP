@@ -4,6 +4,7 @@ public class Spiny extends Enemigo {
 
     public Spiny(int x, int y, Sprite s){
         super(x, y, s);
+        
     }
 
     @Override
@@ -15,5 +16,7 @@ public class Spiny extends Enemigo {
     public void afectarAMario(Personaje p) {
         p.serAfectadoPor(this);
     }
+
+    
 
 }

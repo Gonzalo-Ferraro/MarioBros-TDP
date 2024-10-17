@@ -2,12 +2,15 @@ package Logica.Entidades;
 
 
 import Vistas.Observer;
+import java.awt.Rectangle;
 
 public abstract class Entidad implements EntidadLogica {
     protected int x;
     protected int y;
     protected Sprite sprite;
-    protected static int velocidad;
+    protected  int velocidad;
+    protected  int direccion;
+
     protected Observer observador;
     protected EntidadGrafica entidadGrafica;
    
@@ -40,4 +43,14 @@ public abstract class Entidad implements EntidadLogica {
     public void setEntidadGrafica(EntidadGrafica entidadGrafica){
         this.entidadGrafica = entidadGrafica;
     }
+
+    public void setDireccion(int direccion){
+        this.direccion = direccion;
+    }
+
+    public Rectangle getBounds(){
+        return observador.getBounds();
+    }
+    
+
 }

@@ -94,16 +94,17 @@ public class ControladorVistas extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_A:
-                juego.iniciarMovimientoIzquierda();
+                juego.setDireccion(-1);
                 break;
             case KeyEvent.VK_W:
                 System.out.println("Tecla W presionada");
                 break;
             case KeyEvent.VK_D:
-				juego.iniciarMovimientoDerecha();
+				juego.setDireccion(1);
                 break;
             case KeyEvent.VK_SPACE:
-                System.out.println("Tecla Espacio presionada"); 
+                System.out.println("Tecla Espacio presionada");
+                 
                  break;
         }
     }
@@ -113,14 +114,14 @@ public class ControladorVistas extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_A:
-                juego.detenerMovimientoIzquierda();
+                juego.setDireccion(0);
                 break;
             case KeyEvent.VK_W:
                 System.out.println("Tecla W soltada");
                 
                 break;
             case KeyEvent.VK_D:
-				juego.detenerMovimientoDerecha();
+				juego.setDireccion(0);
                 break;
             case KeyEvent.VK_SPACE:
                 System.out.println("Tecla Espacio soltada");

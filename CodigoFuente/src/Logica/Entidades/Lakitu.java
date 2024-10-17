@@ -4,6 +4,7 @@ public class Lakitu extends Enemigo {
 
     public Lakitu(int x, int y, Sprite s){
         super(x, y, s);
+    
     }
 
     @Override
@@ -16,4 +17,15 @@ public class Lakitu extends Enemigo {
         p.serAfectadoPor(this);
     }
 
+    public void mover(){
+        super.mover();
+        
+        if(direccion == -1)
+           sprite = entidadGrafica.getSprite("lakitu-izquierda");
+        else
+            sprite = entidadGrafica.getSprite("lakitu-derecha");
+        
+        observador.actualizarImagen();
+    
+    }
 }
