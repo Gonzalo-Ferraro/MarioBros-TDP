@@ -1,9 +1,8 @@
 package Vistas;
 
+import Logica.Entidades.EntidadLogica;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import Logica.Entidades.EntidadLogica;
 
 public abstract class ObserverGrafico extends JLabel implements Observer {
 	private EntidadLogica entidad_observada;

@@ -20,12 +20,15 @@ import Logica.Fabricas.ModoDeJuego;
 public abstract class EstadoMario  {
 
     protected Personaje personaje;
+    protected boolean derecha;
+    protected boolean izquierda;
         
     public EstadoMario(Personaje p) {
         personaje = p;
     }
 
-    public abstract String getString();
+    public abstract void setDerecha(boolean d, boolean i);
+    public abstract void setIzquierda(boolean d, boolean i);
         
     public void serAfectadoPor(Goomba g){
         personaje.setVidas(-1);

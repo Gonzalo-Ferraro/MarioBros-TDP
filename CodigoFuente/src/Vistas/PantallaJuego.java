@@ -1,19 +1,17 @@
 package Vistas;
 
+import Logica.Entidades.EntidadJugador;
+import Logica.Entidades.EntidadLogica;
+import Logica.Entidades.Fondo;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-
-import Logica.Entidades.EntidadJugador;
-import Logica.Entidades.EntidadLogica;
-import Logica.Entidades.Fondo;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 
 
 public class PantallaJuego extends JPanel {
@@ -85,7 +83,8 @@ public class PantallaJuego extends JPanel {
                 ConstantesVistas.TAMANO_BLOQUE / 2 - 
                 ConstantesVistas.PANEL_ANCHO / 2;
 
-            panelScrollJuego.getHorizontalScrollBar().setValue(x);
+            if(panelScrollJuego.getHorizontalScrollBar().getValue() < x)
+                panelScrollJuego.getHorizontalScrollBar().setValue(x);
         }
     }
 

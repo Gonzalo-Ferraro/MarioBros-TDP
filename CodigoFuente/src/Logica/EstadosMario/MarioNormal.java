@@ -9,8 +9,46 @@ public class MarioNormal extends EstadoMario {
         super(p);
     }
 
-    public String getString(){
-        return "normal";
+    @Override
+    public void setDerecha(boolean d, boolean i){
+        derecha = d;
+        izquierda = i;
+        Sprite spriteAsignar = null;
+
+        if (!derecha && !izquierda)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+        else if (derecha && izquierda)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+
+        // EX ACTUALIZARIMAGEN
+        if (derecha && !izquierda) 
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+        else if (izquierda && !derecha)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
+
+    @Override
+    public void setIzquierda(boolean d, boolean i){
+        derecha = d;
+        izquierda = i;
+        Sprite spriteAsignar = null;
+        
+        if (!izquierda && !derecha)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+        else if (izquierda && derecha)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+
+        if (derecha && !izquierda) 
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+        else if (izquierda && !derecha)
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+
+        
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
     }
 
     @Override

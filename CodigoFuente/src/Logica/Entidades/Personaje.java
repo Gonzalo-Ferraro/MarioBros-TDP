@@ -69,36 +69,22 @@ public class Personaje extends Entidad implements EntidadJugador {
         observador.actualizarPosicionTamano();
     }
 
+    public void setSprite(Sprite s){
+        sprite = s;
+    }
+
+    public EntidadGrafica getEntidadGrafica(){
+        return entidadGrafica;
+    }
+
     public void setDerecha(boolean b) {
         derecha = b;
-        
-        if (!b && !izquierda)
-        sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-derecha");
-        else if (b && izquierda)
-        sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-izquierda");
-        
-        actualizarSprite();
+         estado.setDerecha(b, izquierda);
     }
 
     public void setIzquierda(boolean b) {
         izquierda = b;
-        actualizarSprite();
-
-        if (!b && !derecha)
-            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-izquierda");
-        else if (b && derecha)
-            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-quieto-derecha");
-
-        actualizarSprite();
-    }
-
-    private void actualizarSprite() {
-        if (derecha && !izquierda) 
-            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-movimiento-derecha");
-        else if (izquierda && !derecha)
-            sprite = entidadGrafica.getSprite("mario" + estado.getString() + "-movimiento-izquierda");
-
-        observador.actualizarImagen();
+        estado.setIzquierda(derecha, b);
     }
 
     public Observer getObserver() {

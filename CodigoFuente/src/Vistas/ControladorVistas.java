@@ -1,15 +1,13 @@
 package Vistas;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.JFrame;
-
-import Logica.Fabricas.ModoDeJuego;
-import Logica.Juego.Juego;
 import Logica.Entidades.EntidadJugador;
 import Logica.Entidades.EntidadLogica;
 import Logica.Entidades.Fondo;
+import Logica.Fabricas.ModoDeJuego;
+import Logica.Juego.Juego;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
 
 
 public class ControladorVistas extends JFrame implements KeyListener {

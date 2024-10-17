@@ -20,9 +20,18 @@ public class SuperMario extends EstadoMario {
         super(p);
     }
 
-    public String getString(){
-		return "super";
-	}
+    @Override
+    public void setDerecha(boolean d, boolean i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDerecha'");
+    }
+
+    @Override
+    public void setIzquierda(boolean d, boolean i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
+    }
+
 
     @Override
     public void serAfectadoPor(Goomba g) {
@@ -114,6 +123,7 @@ public class SuperMario extends EstadoMario {
     public void cambiarSprite(ModoDeJuego modo) {
     }
 
+    
     
 
 }
