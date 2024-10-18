@@ -29,41 +29,39 @@ public abstract class EstadoMario  {
         
     }
 
-    public abstract void setDerecha(boolean d, boolean i);
-    public abstract void setIzquierda(boolean d, boolean i);
     public abstract void setDireccion(int d);
 
     public void serAfectadoPor(Goomba g){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-30);
     }
 
     public void serAfectadoPor(KoopaTroopa k){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-45);
     }
 
     public void serAfectadoPor(PiranhaPlant p){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-30);
     }
 
     public void serAfectadoPor(Lakitu l){
-        personaje.setVidas(-1);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(Spiny s){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-30);
     }
 
     public void serAfectadoPor(BuzzyBeetle b){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-15);
     }
 
     public  void serAfectadoPor(Vacio v){
-        personaje.setVidas(-1);
+        personaje.perderVida();
         personaje.setPuntaje(-15);
     }
 

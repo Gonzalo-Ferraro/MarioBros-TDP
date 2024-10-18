@@ -23,23 +23,17 @@ public class ControladorEntidades extends Thread {
         gameThread.start();
     }
 
-    public synchronized void detener(){
+    public synchronized void detener() {
         if (!running) return;
         running = false;
-        try {
-            gameThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        gameThread.interrupt();
     }
 
+    @Override
     public void run() {
-        
-            // Timing variables
             long ultimoTiempo = System.nanoTime();
             double delta = 0;
-    
-            //long timer = System.currentTimeMillis(); Utilizado para el conteo de fps
     
             while (running) {
                 long ahora = System.nanoTime();
@@ -48,38 +42,21 @@ public class ControladorEntidades extends Thread {
     
                 // Update the game state as many times as needed
                 while (delta >= 1) {
-                    System.out.println("moviendo entidad");
                     moverEntidades();
-                    //controlarColisiones();
                     delta--;
                 }
-    
-                // Render the game
-                /* 
-                frames++;
-    
-                // Print FPS and UPS every second
-                
-                if (System.currentTimeMillis() - timer >= 1000) {
-                    System.out.println("FPS: " + frames + ", UPS: " + actualizaciones);
-                    frames = 0;
-                    actualizaciones = 0;
-                    timer += 1000;
-                }
-                Comentado para tener mayor fluidez en el juego. 
-                */
             }
         }
         
-        private void moverEntidades(){
-            Random r=new Random();
-            for(Enemigo enemigo : nivel.getEnemigos()){
-                if(r.nextInt(100)<5){
+        private synchronized void moverEntidades(){
+            Random r = new Random();
+            for(Enemigo enemigo : nivel.getEnemigos()) {
+                if(r.nextInt(100) < 5) {
                     enemigo.cambiarDireccion();
-                    System.out.println("Cambiando direccion");
                 }
                 enemigo.mover();
             }
+            System.out.println("Running: " + running);
         }
 
         

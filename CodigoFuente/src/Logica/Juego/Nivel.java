@@ -18,6 +18,7 @@ public class Nivel {
     private Fondo fondo;
     private String rutaNivel;
     private Personaje personaje;
+    private int numeroNivel;
 
     public Nivel(int n) {
         rutaNivel = "/Datos/niveles/nivel-" + n + ".txt";
@@ -26,6 +27,8 @@ public class Nivel {
         powerUps = new LinkedList<>();
         plataformas = new LinkedList<>();
         bolasDeFuego = new LinkedList<>();
+
+        numeroNivel = n;
     }
 
     public Personaje getPersonaje() {
@@ -42,6 +45,10 @@ public class Nivel {
 
     public List<Enemigo> getEnemigos() {
         return enemigos;
+    }
+
+    public int getNumeroNivel() {
+        return numeroNivel;
     }
 
     public void ingresarEntidad(Enemigo e) {

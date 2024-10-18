@@ -3,6 +3,7 @@ package Logica.Entidades;
 import Logica.EstadosMario.EstadoMario;
 import Logica.EstadosMario.MarioNormal;
 import Logica.Juego.Juego;
+import Vistas.ConstantesVistas;
 import Vistas.Observer;
 
 
@@ -11,18 +12,19 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     protected int vidas;
     protected int puntaje;
+    private int velocidadY;
 
-    private boolean derecha;
-    private boolean izquierda;
+    private boolean estaEnElAire;
 
     private EstadoMario estado;
 
     public Personaje(int x, int y, Sprite sprite) {
         super(x, y, sprite);
 
-        velocidad = 7;
-        derecha = false;
-        izquierda = false;
+        velocidadX = 7;
+        velocidadY = 0;
+        direccion = 0;
+
         puntaje = 0;
 
         this.vidas = 3;
@@ -58,9 +60,27 @@ public class Personaje extends Entidad implements EntidadJugador {
         else vidas += vida;
     }
 
+    public void setVelocidadY(int v){
+        velocidadY = v;
+    }
+
+    public void setPosicionY(int y){
+        this.y = y;
+        observador.actualizarPosicionTamano();
+    }
+
+    public int getVelocidadY(){
+        return velocidadY;
+    }
+
     public void mover() {
         
-        x= x + (velocidad*direccion);
+        x = x + (velocidadX * direccion);
+
+        if (estaEnElAire) {
+            velocidadY += ConstantesVistas.GRAVEDAD;
+            y += velocidadY;
+        }
        
         observador.actualizarPosicionTamano();
     }
@@ -68,14 +88,24 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void setDireccion(int d){
         
         if( direccion==-1 && d==1 || direccion==1 && d==-1){
-            velocidad=0;
+            velocidadX=0;
             estado.setDireccion(0);
         }
         else{
-            velocidad=7;
+            velocidadX=7;
             direccion = d;
             estado.setDireccion(d);
         }
+    }
+
+    public void perderVida() {
+        vidas--;
+        juego.getEntidadSonora().reproducirSonido("muerte");
+        
+        if (vidas == 0) 
+            juego.perdiste();
+        else 
+            juego.reiniciarNivel();
     }
 
     public void setSprite(Sprite s){
@@ -83,46 +113,50 @@ public class Personaje extends Entidad implements EntidadJugador {
         observador.actualizarImagen();
     }
 
-    public EntidadGrafica getEntidadGrafica(){
+    public EntidadGrafica getEntidadGrafica() {
         return entidadGrafica;
     }
-
-    /*public void setDerecha(boolean b) {
-        derecha = b;
-         estado.setDerecha(b, izquierda);
-    }
-
-    public void setIzquierda(boolean b) {
-        izquierda = b;
-        estado.setIzquierda(derecha, b);
-    }
-    */
     public Observer getObserver() {
         return observador;
     }
-
-    public int getVelocidadActual() {
-        int velocidadActual;
-
-        if (derecha && !izquierda) {
-            velocidadActual = velocidad;
-        } else if (izquierda && !derecha) {
-            velocidadActual = -velocidad;
-        } else {
-            velocidadActual = 0;
-        }
-
-        return velocidadActual;
-    }
     
-    //falta implementar
+    public boolean estaCayendo() {
+        return estaEnElAire && velocidadY < 0;
+    }
 
-    public void saltar(){
-        juego.getEntidadSonora().reproducirSonido("salto");
+    public boolean estaEnElAire() {
+        return estaEnElAire;
+    }
+
+    public void setEstaEnElAire(boolean b) {
+        estaEnElAire = b;
+    }
+
+    public void saltar() {
+        if (!estaEnElAire) {
+            estaEnElAire = true;
+            juego.getEntidadSonora().reproducirSonido("salto");
+            estado.saltar();
+        }
     }
 
     public void espacio(){
         //ver como hacer lo del efecto de bola de fuego
+    }
+
+    public void reiniciar() {
+        estado = new MarioNormal(this);
+
+        velocidadX = 7;
+        velocidadY = 0;
+        direccion = 0;
+
+        x = juego.getNivelActual().getPersonaje().getX();
+        y = juego.getNivelActual().getPersonaje().getY();
+
+        observador.actualizarPosicionTamano();
+
+        System.out.println("Reiniciando personaje");
     }
 
     public void serAfectadoPor(ChampignonVerde champignonVerde) {
@@ -229,6 +263,8 @@ public class Personaje extends Entidad implements EntidadJugador {
         estado.serAfectadoPor(vacio);
     }
 
-
+    public Juego getJuego() {
+        return juego;
+    }
     
 }

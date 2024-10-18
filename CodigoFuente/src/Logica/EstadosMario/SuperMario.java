@@ -21,19 +21,6 @@ public class SuperMario extends EstadoMario {
     }
 
     @Override
-    public void setDerecha(boolean d, boolean i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDerecha'");
-    }
-
-    @Override
-    public void setIzquierda(boolean d, boolean i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
-    }
-
-
-    @Override
     public void serAfectadoPor(Goomba g) {
        
     }

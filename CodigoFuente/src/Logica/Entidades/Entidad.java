@@ -8,7 +8,7 @@ public abstract class Entidad implements EntidadLogica {
     protected int x;
     protected int y;
     protected Sprite sprite;
-    protected  int velocidad;
+    protected  int velocidadX;
     protected  int direccion;
 
     protected Observer observador;

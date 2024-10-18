@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.Timer;
+import javax.swing.JOptionPane;
 
 import Datos.EntidadSonora;
 import Datos.GeneradorDeNiveles;
@@ -20,6 +21,10 @@ public class Juego {
     private ModoDeJuego modo;
     private Nivel nivelActual;
     private EntidadSonora entidadSonora;
+    private Personaje personaje;
+
+    private ControladorEntidades controladorEntidades;
+    private ControladorJugador controladorJugador;
 
     private GeneradorDeNiveles generadorDeNiveles;
 
@@ -39,11 +44,24 @@ public class Juego {
         return modo;
     }
 
+    public Nivel getNivelActual() {
+        return nivelActual;
+    }
+
     public void iniciar(ModoDeJuego m) {
         modo = m;
         generadorDeNiveles = new GeneradorDeNiveles();
-        nivelActual = generadorDeNiveles.generarNivel(m, 1);
+        
+        
+        nivelActual = generadorDeNiveles.generarNivel(modo, 1);
+        personaje = nivelActual.getPersonaje();
+
+        inicializarNivel();
+    }
+
+    private void inicializarNivel() {
         registrarObservers();
+
         obtenerPersonaje().setJuego(this);
         PantallaStats pantallaStats = new PantallaStats(controladorVistas, obtenerPersonaje());
 
@@ -70,23 +88,20 @@ public class Juego {
         });
         temporizadorLoop.setRepeats(false); // Solo ejecutarlo una vez
         temporizadorLoop.start();
-        
-        
     }
 
     private void crearControladores() {
-        ControladorJugador controladorJugador = new ControladorJugador();
-        controladorJugador.setPersonaje(nivelActual.getPersonaje());
+        controladorJugador = new ControladorJugador();
+        controladorJugador.setPersonaje(personaje);
         controladorJugador.empezarJuego();
 
-        ControladorEntidades controladorEntidades = new ControladorEntidades();
+        controladorEntidades = new ControladorEntidades();
         controladorEntidades.setNivel(nivelActual);
         controladorEntidades.iniciar();
-
     }
 
     protected void registrarObservers() {
-        registrarObserverJugador(nivelActual.getPersonaje());
+        registrarObserverJugador(personaje);
         registrarObserverFondo(nivelActual.getFondo());
 
         registrarObserverEntidades(nivelActual.getEnemigos());
@@ -112,18 +127,43 @@ public class Juego {
     }
     
     public Personaje obtenerPersonaje() {
-        return nivelActual.getPersonaje();
+        return personaje;
     }
-
 
     public void setDireccion(int n){
-        nivelActual.getPersonaje().setDireccion(n);
+        personaje.setDireccion(n);
     }
     
-
-    public void perdiste(){
-        // TO DO
+    public void salto() {
+        personaje.saltar();
     }
 
-    
+    public void perdiste() {
+        controladorEntidades.detener();
+        controladorJugador.detener();
+
+        controladorVistas.dispose();
+
+        JOptionPane.showMessageDialog(null, "Perdiste");
+    }
+
+    public void reiniciarNivel() {
+        try {
+            Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Reiniciando nivel");
+
+        controladorEntidades.detener();
+        controladorJugador.detener();
+
+        controladorVistas.nuevaPantallaJuego();
+
+        nivelActual = generadorDeNiveles.generarNivel(modo, 1);
+        personaje.reiniciar();
+
+        inicializarNivel();
+    }    
 }

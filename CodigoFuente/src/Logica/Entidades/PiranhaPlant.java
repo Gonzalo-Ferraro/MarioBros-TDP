@@ -4,7 +4,7 @@ public class PiranhaPlant extends Enemigo {
 
     public PiranhaPlant(int x, int y, Sprite s){
         super(x, y, s);
-        velocidad = 0;
+        velocidadX = 0;
         
     }
 

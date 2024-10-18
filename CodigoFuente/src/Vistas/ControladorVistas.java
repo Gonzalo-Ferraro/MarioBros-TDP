@@ -37,6 +37,11 @@ public class ControladorVistas extends JFrame implements KeyListener {
 		setVisible(true);
 	}
 
+    public void nuevaPantallaJuego() {
+        pantallaJuego = new PantallaJuego();
+        mostrarPantallaJuego();
+    }
+
     public void mostrarMenu() {
     	setContentPane(pantallaMenu);
         actualizarPanel();
@@ -97,7 +102,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
                 juego.setDireccion(-1);
                 break;
             case KeyEvent.VK_W:
-                System.out.println("Tecla W presionada");
+                juego.salto();
                 break;
             case KeyEvent.VK_D:
 				juego.setDireccion(1);

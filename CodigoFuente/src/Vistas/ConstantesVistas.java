@@ -9,7 +9,10 @@ public class ConstantesVistas {
 	
 	public static final int TAMANO_BLOQUE = 80;
 
-	public static final int TIEMPO_STATS = 1;
+	public static final int TIEMPO_STATS = 2;
+	public static final int TIEMPO_ENTRE_NIVELES = 5;
+	
 	public static final int FPS = 60;
 
+	public static final int GRAVEDAD = -1;
 }
