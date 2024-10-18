@@ -78,6 +78,10 @@ public class ControladorVistas extends JFrame implements KeyListener {
         return observerFondo;
     }
 
+    public void removerEntidadLogica(EntidadLogica entidad_logica) {
+        pantallaJuego.removerEntidadLogica(entidad_logica);
+    }
+
 	public void setPantallaStats(PantallaStats pantallaStats) {
 		this.pantallaStats = pantallaStats;
 	}

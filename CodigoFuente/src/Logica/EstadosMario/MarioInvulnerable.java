@@ -108,9 +108,6 @@ public class MarioInvulnerable extends EstadoMario {
 		// Implementation here
 	}
 
-	@Override
-	public void cambiarSprite(ModoDeJuego modoDeJuego) {
-		// Implementation here
-	}
+	
 	
 }

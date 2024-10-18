@@ -1,8 +1,11 @@
 package Logica.Juego;
 
+import java.util.Iterator;
+
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Personaje;
 import Logica.Entidades.Plataforma;
+import Logica.Entidades.PowerUp;
 import Vistas.ConstantesVistas;
 
 public class ControladorJugador implements Runnable {
@@ -79,6 +82,21 @@ public class ControladorJugador implements Runnable {
                 // Manejar colisiones laterales si es necesario
             }
         }
+
+        Iterator<PowerUp> iter = nivelActual.getPowerUps().iterator();
+            while (iter.hasNext()) {
+            PowerUp p = iter.next();
+            if (personaje.getBounds().intersects(p.getBounds())) {
+                 p.afectarAMario(personaje);
+                 try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }  // Aplica el efecto al personaje
+                iter.remove();  // Elimina el PowerUp de la lista de forma segura
+    }
+}
     }
     
     private void corregirPosicionArriba(Plataforma p) {

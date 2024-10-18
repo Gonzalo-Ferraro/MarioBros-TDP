@@ -52,5 +52,8 @@ public abstract class Entidad implements EntidadLogica {
         return observador.getBounds();
     }
     
+    public Observer getObserver(){
+        return observador;
+    }
 
 }

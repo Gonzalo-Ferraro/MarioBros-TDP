@@ -57,6 +57,11 @@ public class PantallaJuego extends JPanel {
         return observer;
     }
 
+    public void removerEntidadLogica(EntidadLogica entidadLogica) {
+        imagenFondo.remove((JLabel) entidadLogica.getObserver());
+        actualizarPanel();
+    }
+
     public Observer incorporarEntidadJugador(EntidadJugador entidadJugador) {
         ObserverJugador observer = new ObserverJugador(this, entidadJugador);
         imagenFondo.add(observer);

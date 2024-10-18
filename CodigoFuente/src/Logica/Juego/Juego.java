@@ -48,6 +48,10 @@ public class Juego {
         return nivelActual;
     }
 
+    public void removerEntidadLogica(Entidad entidad) {
+        controladorVistas.removerEntidadLogica(entidad);
+    }
+    
     public void iniciar(ModoDeJuego m) {
         modo = m;
         generadorDeNiveles = new GeneradorDeNiveles();

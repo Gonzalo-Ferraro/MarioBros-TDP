@@ -56,7 +56,7 @@ public class ControladorEntidades extends Thread {
                 }
                 enemigo.mover();
             }
-            System.out.println("Running: " + running);
+          
         }
 
         

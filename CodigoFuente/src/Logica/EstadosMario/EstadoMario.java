@@ -73,6 +73,8 @@ public abstract class EstadoMario  {
 
     public  void serAfectadoPor(Moneda m){
         personaje.setPuntaje(5);
+        personaje.getJuego().getEntidadSonora().reproducirSonido("moneda");
+        personaje.getJuego().removerEntidadLogica(m);
     }
 
     public abstract void serAfectadoPor(FlorDeFuego f);
@@ -90,7 +92,7 @@ public abstract class EstadoMario  {
     public abstract void AfectarA(LadrilloSolido ladrillo);
 
     // cambiar parametro cuando agreguemos el arreglo de sprites
-    public abstract void cambiarSprite(ModoDeJuego modo );
+   
 
     public void saltar(){
         personaje.saltar();

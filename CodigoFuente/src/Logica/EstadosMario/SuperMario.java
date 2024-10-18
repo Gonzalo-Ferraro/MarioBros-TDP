@@ -11,6 +11,7 @@ import Logica.Entidades.Lakitu;
 import Logica.Entidades.Personaje;
 import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Spiny;
+import Logica.Entidades.Sprite;
 import Logica.Entidades.SuperChampignon;
 import Logica.Fabricas.ModoDeJuego;
 
@@ -25,6 +26,35 @@ public class SuperMario extends EstadoMario {
        
     }
 
+    public void setDerecha(boolean d, boolean i) {
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
+    }
+
+    @Override
+    public void setIzquierda(boolean d, boolean i) {
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
+    }
+
+    private void actualizarSprite() {
+        Sprite spriteAsignar = null;
+
+        if (!derecha && !izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
+        } else if (derecha && izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-izquierda");
+        } else if (derecha && !izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-derecha");
+        } else if (izquierda && !derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+        }
+
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
     @Override
     public void serAfectadoPor(SuperChampignon s) {
         personaje.setPuntaje(personaje.getPuntaje() + 50);
@@ -106,21 +136,7 @@ public class SuperMario extends EstadoMario {
         
     }
 
-    @Override
-    public void cambiarSprite(ModoDeJuego modo) {
-    }
-
-    @Override
-    public void setDerecha(boolean derecha, boolean izquierda) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDerecha'");
-    }
-
-    @Override
-    public void setIzquierda(boolean izquierda, boolean derecha) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
-    }
+    
 
     
     

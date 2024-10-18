@@ -7,4 +7,5 @@ public abstract class PowerUp extends Entidad implements AfectadorAMario {
         super(x, y, s);
     }
     
+    
 }

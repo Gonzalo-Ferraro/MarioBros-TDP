@@ -79,6 +79,14 @@ public class Nivel {
         bolasDeFuego.add(b);
     }
 
+    public synchronized void removerEntidad(Enemigo e) {
+        enemigos.remove(e);
+    }
+    public synchronized void removerEntidad(PowerUp p) {
+        powerUps.remove(p);
+    }
+    
+    
     public Fondo getFondo() {
         return fondo;
     }
