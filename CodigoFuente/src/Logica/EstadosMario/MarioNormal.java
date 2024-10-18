@@ -9,31 +9,36 @@ public class MarioNormal extends EstadoMario {
         super(p);
     }
 
-    public void setDireccion(int d){
-
-        Sprite spriteAsignar = null;
-
-        if(d == -1)
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
-        else 
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
-        
-        if(d==-1 && direccion==1)
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
-        
-        if(d==1 && direccion==-1)
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-
-        if(d==0)
-                if(direccion==-1)
-                        spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
-                else
-                        spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-    
-        direccion = d;
-        personaje.setSprite(spriteAsignar);
+    @Override
+    public void setDerecha(boolean d, boolean i) {
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
     }
 
+    @Override
+    public void setIzquierda(boolean d, boolean i) {
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
+    }
+
+    private void actualizarSprite() {
+        Sprite spriteAsignar = null;
+
+        if (!derecha && !izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+        } else if (derecha && izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+        } else if (derecha && !izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+        } else if (izquierda && !derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+        }
+
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
     public void saltar() {
         personaje.setVelocidadY(20);
     }

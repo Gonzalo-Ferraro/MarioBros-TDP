@@ -29,7 +29,8 @@ public abstract class EstadoMario  {
         
     }
 
-    public abstract void setDireccion(int d);
+    public abstract void setDerecha(boolean derecha,boolean izquierda);
+    public abstract void setIzquierda(boolean izquierda, boolean derecha);
 
     public void serAfectadoPor(Goomba g){
         personaje.perderVida();

@@ -130,10 +130,12 @@ public class Juego {
         return personaje;
     }
 
-    public void setDireccion(int n){
-        personaje.setDireccion(n);
+    public void setDerecha(boolean d){
+        personaje.setDerecha(d);
+    }    
+    public void setIzquierda(boolean i){
+        personaje.setIzquierda(i);
     }
-    
     public void salto() {
         personaje.saltar();
     }

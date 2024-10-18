@@ -110,6 +110,18 @@ public class SuperMario extends EstadoMario {
     public void cambiarSprite(ModoDeJuego modo) {
     }
 
+    @Override
+    public void setDerecha(boolean derecha, boolean izquierda) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDerecha'");
+    }
+
+    @Override
+    public void setIzquierda(boolean izquierda, boolean derecha) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
+    }
+
     
     
 

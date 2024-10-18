@@ -12,19 +12,22 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     protected int vidas;
     protected int puntaje;
-    private int velocidadY;
 
-    private boolean estaEnElAire;
+    private boolean derecha;
+    private boolean izquierda;
 
     private EstadoMario estado;
+    private int velocidadX;
+    private int velocidadY;
+    private boolean estaEnElAire;
 
     public Personaje(int x, int y, Sprite sprite) {
         super(x, y, sprite);
 
         velocidadX = 7;
         velocidadY = 0;
-        direccion = 0;
-
+        derecha = false;
+        izquierda = false;
         puntaje = 0;
 
         this.vidas = 3;
@@ -43,6 +46,7 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void setJuego(Juego j) {
         juego = j;
     }
+ 
 
     public void setEstado(EstadoMario estado){
         this.estado = estado;
@@ -59,7 +63,6 @@ public class Personaje extends Entidad implements EntidadJugador {
             juego.perdiste();
         else vidas += vida;
     }
-
     public void setVelocidadY(int v){
         velocidadY = v;
     }
@@ -75,29 +78,40 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     public void mover() {
         
-        x = x + (velocidadX * direccion);
-
+        if (derecha) {
+            x += velocidadX;
+        } 
+         if (izquierda) {
+            x -= velocidadX;
+        }
         if (estaEnElAire) {
             velocidadY += ConstantesVistas.GRAVEDAD;
             y += velocidadY;
         }
-       
+
         observador.actualizarPosicionTamano();
     }
 
-    public void setDireccion(int d){
-        
-        if( direccion==-1 && d==1 || direccion==1 && d==-1){
-            velocidadX=0;
-            estado.setDireccion(0);
-        }
-        else{
-            velocidadX=7;
-            direccion = d;
-            estado.setDireccion(d);
-        }
+    
+
+    public void setSprite(Sprite s){
+        sprite = s;
+        observador.actualizarImagen();
     }
 
+    public EntidadGrafica getEntidadGrafica(){
+        return entidadGrafica;
+    }
+
+    public void setDerecha(boolean b) {
+        derecha = b;
+         estado.setDerecha(b, izquierda);
+    }
+
+    public void setIzquierda(boolean b) {
+        izquierda = b;
+        estado.setIzquierda(derecha, b);
+    }
     public void perderVida() {
         vidas--;
         juego.getEntidadSonora().reproducirSonido("muerte");
@@ -107,19 +121,9 @@ public class Personaje extends Entidad implements EntidadJugador {
         else 
             juego.reiniciarNivel();
     }
-
-    public void setSprite(Sprite s){
-        sprite = s;
-        observador.actualizarImagen();
-    }
-
-    public EntidadGrafica getEntidadGrafica() {
-        return entidadGrafica;
-    }
     public Observer getObserver() {
         return observador;
     }
-    
     public boolean estaCayendo() {
         return estaEnElAire && velocidadY < 0;
     }
@@ -132,7 +136,23 @@ public class Personaje extends Entidad implements EntidadJugador {
         estaEnElAire = b;
     }
 
-    public void saltar() {
+    public int getVelocidadActual() {
+        int velocidadActual;
+
+        if (derecha && !izquierda) {
+            velocidadActual = velocidadX;
+        } else if (izquierda && !derecha) {
+            velocidadActual = -velocidadX;
+        } else {
+            velocidadActual = 0;
+        }
+
+        return velocidadActual;
+    }
+    
+    //falta implementar
+
+    public void saltar(){
         if (!estaEnElAire) {
             estaEnElAire = true;
             juego.getEntidadSonora().reproducirSonido("salto");
@@ -143,7 +163,6 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void espacio(){
         //ver como hacer lo del efecto de bola de fuego
     }
-
     public void reiniciar() {
         estado = new MarioNormal(this);
 
@@ -266,5 +285,7 @@ public class Personaje extends Entidad implements EntidadJugador {
     public Juego getJuego() {
         return juego;
     }
+
+
     
 }
