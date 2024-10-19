@@ -5,6 +5,7 @@ public class Moneda extends PowerUp {
     @Override
     public void afectarAMario(Personaje personaje) {
         personaje.serAfectadoPor(this);
+        desaparecer();
     }
     
     // CHECKEAR QUE SEA ASI

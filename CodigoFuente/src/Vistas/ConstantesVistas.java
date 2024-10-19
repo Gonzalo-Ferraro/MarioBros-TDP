@@ -14,5 +14,5 @@ public class ConstantesVistas {
 	
 	public static final int FPS = 60;
 
-	public static final int GRAVEDAD = -1;
+	public static final int GRAVEDAD = 1;
 }

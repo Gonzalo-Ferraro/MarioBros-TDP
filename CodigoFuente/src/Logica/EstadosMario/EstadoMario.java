@@ -26,7 +26,8 @@ public abstract class EstadoMario  {
     protected int direccion;
     public EstadoMario(Personaje p) {
         personaje = p;
-        
+        derecha = false;
+        izquierda = false;
     }
 
     public abstract void setDerecha(boolean derecha,boolean izquierda);
@@ -74,7 +75,6 @@ public abstract class EstadoMario  {
     public  void serAfectadoPor(Moneda m){
         personaje.setPuntaje(5);
         personaje.getJuego().getEntidadSonora().reproducirSonido("moneda");
-        personaje.getJuego().removerEntidadLogica(m);
     }
 
     public abstract void serAfectadoPor(FlorDeFuego f);

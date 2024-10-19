@@ -1,6 +1,8 @@
 package Logica.Juego;
 
+import java.awt.Rectangle;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Personaje;
@@ -54,11 +56,82 @@ public class ControladorJugador implements Runnable {
     }
 
     private void actualizarJuego() {
+        moverPersonaje();
+    }
+
+    private void moverPersonaje() {
         detectarColisiones();
-        personaje.mover();
+        moverX();
+        moverY();
+    }
+
+    private void moverY() {
+        if (personaje.estaEnElAire()) {
+            Plataforma plataformaColisionada = sePuedeMoverHacia(
+                personaje.getX(), 
+                personaje.getY() + personaje.getVelocidadY()
+            );
+
+            if (plataformaColisionada == null) {
+                personaje.moverY();
+            } else {
+                if (personaje.getVelocidadY() > 0) {
+                    corregirPosicionArriba(plataformaColisionada);
+                    personaje.setEstaEnElAire(false);
+                    personaje.actualizarAlCaer();
+                    personaje.setVelocidadY(0);
+                } else if (personaje.getVelocidadY() < 0) {
+                    corregirPosicionAbajo(plataformaColisionada);
+                    personaje.setVelocidadY(0);
+                }
+            }
+        } else {
+            if (!estaEnElPiso()) {
+                System.out.println("aplicando gravedad");
+                personaje.setEstaEnElAire(true);
+            }
+        }
+    }
+
+    private boolean estaEnElPiso() {
+        return sePuedeMoverHacia(
+            personaje.getX(), 
+            personaje.getY() + 1
+        ) != null;
+    }
+
+    private void moverX() {
+        boolean condicion = sePuedeMoverHacia(
+            personaje.getX() + personaje.getVelocidadX(), 
+            personaje.getY()
+        ) == null;
+
+        if (condicion) {
+            personaje.moverX();
+        }
+    }
+
+    private Plataforma sePuedeMoverHacia(int x, int y) {
+        Rectangle hitbox = new Rectangle(personaje.getBounds());
+        hitbox.setLocation(x, y);
+
+        Plataforma toRet = null;
+        for (Plataforma p : nivelActual.getPlataformas())
+            if (hitbox.intersects(p.getBounds())) {
+                toRet = p;
+            }
+
+        System.out.println("Se puede mover hacia " + x + ", " + y + ": " + toRet);
+        return toRet;
     }
 
     private void detectarColisiones() {
+        checkearColisionesConEnemigos();
+
+        checkearColisionesConPowerUps();
+    }
+
+    private void checkearColisionesConEnemigos() {
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
@@ -68,48 +141,22 @@ public class ControladorJugador implements Runnable {
                 }
             }
         }
+    }
 
-        for (Plataforma p : nivelActual.getPlataformas()) {
+    private void checkearColisionesConPowerUps() {
+        for (PowerUp p : nivelActual.getPowerUps()) {
             if (personaje.getBounds().intersects(p.getBounds())) {
-                if (personaje.getVelocidadY() < 0) {
-                    corregirPosicionArriba(p);
-                    personaje.setEstaEnElAire(false);
-                    personaje.actualizarAlCaer();
-                    personaje.setVelocidadY(0);
-                } else if (personaje.getVelocidadY() > 0) {
-                    corregirPosicionAbajo(p);
-                    personaje.setVelocidadY(0);
-                }
-                // Manejar colisiones laterales si es necesario
+                p.afectarAMario(personaje);
             }
         }
-
-        Iterator<PowerUp> iter = nivelActual.getPowerUps().iterator();
-            while (iter.hasNext()) {
-            PowerUp p = iter.next();
-            if (personaje.getBounds().intersects(p.getBounds())) {
-                 p.afectarAMario(personaje);
-                 try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }  // Aplica el efecto al personaje
-                iter.remove();  // Elimina el PowerUp de la lista de forma segura
-    }
-}
     }
     
     private void corregirPosicionArriba(Plataforma p) {
-        if (personaje.getY() + (int) personaje.getBounds().getHeight() >= p.getY()) {
-            personaje.setPosicionY(p.getY() + (int) personaje.getBounds().getHeight());
-        }
+        personaje.setPosicionY(p.getY() - (int) personaje.getBounds().getHeight());
     }
 
     private void corregirPosicionAbajo(Plataforma p) {
-        if (personaje.getY() - (int) personaje.getBounds().getHeight() <= p.getY()) {
-            personaje.setPosicionY(p.getY() - (int) personaje.getBounds().getHeight());
-        }
+        personaje.setPosicionY(p.getY() + (int) personaje.getBounds().getHeight());
     }
 
     public void setPersonaje(Personaje p) {

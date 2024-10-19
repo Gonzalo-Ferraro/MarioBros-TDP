@@ -56,4 +56,10 @@ public abstract class Entidad implements EntidadLogica {
         return observador;
     }
 
+    protected void desaparecer() {
+        x = -100;
+        y = -100;
+        observador.actualizarImagen();
+        observador.actualizarPosicionTamano();
+    }
 }

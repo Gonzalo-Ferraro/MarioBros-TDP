@@ -30,18 +30,23 @@ public class Personaje extends Entidad implements EntidadJugador {
         izquierda = false;
         puntaje = 0;
 
+        derecha = false;
+        izquierda = false;
+
         this.vidas = 3;
 
         estado = new MarioNormal(this);
     }
-    public EstadoMario getEstadoMario(){
+
+    public EstadoMario getEstadoMario() {
         return estado;
     }
-    public int getPuntaje(){
+
+    public int getPuntaje() {
         return puntaje;
     }
 
-    public int getVidas(){
+    public int getVidas() {
         return vidas;
     }
 
@@ -78,14 +83,7 @@ public class Personaje extends Entidad implements EntidadJugador {
         return velocidadY;
     }
 
-    public void mover() {
-        
-        if (derecha) {
-            x += velocidadX;
-        } 
-         if (izquierda) {
-            x -= velocidadX;
-        }
+    public void moverY() {
         if (estaEnElAire) {
             velocidadY += ConstantesVistas.GRAVEDAD;
             y += velocidadY;
@@ -94,7 +92,21 @@ public class Personaje extends Entidad implements EntidadJugador {
         observador.actualizarPosicionTamano();
     }
 
-    
+    public void moverX() {
+        if (derecha) {
+            x += velocidadX;
+        } 
+         if (izquierda) {
+            x -= velocidadX;
+        }
+        observador.actualizarPosicionTamano();
+
+    }
+
+    public void setPosicicionX(int x){
+        this.x = x;
+        observador.actualizarPosicionTamano();
+    }
 
     public void setSprite(Sprite s){
         sprite = s;
@@ -107,13 +119,14 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     public void setDerecha(boolean b) {
         derecha = b;
-         estado.setDerecha(b, izquierda);
+        estado.setDerecha(b, izquierda);
     }
 
     public void setIzquierda(boolean b) {
         izquierda = b;
         estado.setIzquierda(derecha, b);
     }
+
     public void perderVida() {
         vidas--;
         juego.getEntidadSonora().reproducirSonido("muerte");
@@ -123,9 +136,11 @@ public class Personaje extends Entidad implements EntidadJugador {
         else 
             juego.reiniciarNivel();
     }
+
     public Observer getObserver() {
         return observador;
     }
+
     public boolean estaCayendo() {
         return estaEnElAire && velocidadY < 0;
     }
@@ -138,7 +153,7 @@ public class Personaje extends Entidad implements EntidadJugador {
         estaEnElAire = b;
     }
 
-    public int getVelocidadActual() {
+    public int getVelocidadX() {
         int velocidadActual;
 
         if (derecha && !izquierda) {
@@ -161,11 +176,11 @@ public class Personaje extends Entidad implements EntidadJugador {
             estado.saltar(derecha,izquierda);
         }
     }
-    public void actualizarAlCaer(){
+    public void actualizarAlCaer() {
         estado.actualizarAlCaer(derecha,izquierda);
     }
 
-    public void espacio(){
+    public void espacio() {
         //ver como hacer lo del efecto de bola de fuego
     }
     public void reiniciar() {

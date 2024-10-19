@@ -38,12 +38,14 @@ public class MarioNormal extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+
     public void saltar(boolean derecha, boolean izquierda) {
         this.derecha = derecha;
         this.izquierda = izquierda;
-        personaje.setVelocidadY(20);
+        personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_NORMAL);
         actualizarSpriteSaltar();
     }
+
     private void actualizarSpriteSaltar() {
         Sprite spriteAsignar = null;
 
@@ -57,6 +59,7 @@ public class MarioNormal extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+
     public void actualizarAlCaer(boolean derecha,boolean izquierda){
         this.derecha = derecha;
         this.izquierda = izquierda;
@@ -133,9 +136,4 @@ public class MarioNormal extends EstadoMario {
     public void AfectarA(Goomba goomba) {
         
     }
-
-    
-    
-
-
 }

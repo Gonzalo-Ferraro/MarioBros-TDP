@@ -153,7 +153,11 @@ public abstract class ModoDeJuego {
         return flor;
     }
 
-
+    public Vacio crearVacio(int x, int y) {
+        Sprite sprite = new Sprite(ruta + "/ladrillo.png");
+        Vacio vacio = new Vacio(x, y, sprite);
+        return vacio;
+    }
 
     public Fondo crearFondo(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/fondo.png");

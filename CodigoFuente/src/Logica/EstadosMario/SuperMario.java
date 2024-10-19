@@ -13,12 +13,14 @@ import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Spiny;
 import Logica.Entidades.Sprite;
 import Logica.Entidades.SuperChampignon;
-import Logica.Fabricas.ModoDeJuego;
+import Vistas.ConstantesVistas;
 
 public class SuperMario extends EstadoMario {
     
     public SuperMario(Personaje p) {
         super(p);
+        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
+        actualizarSprite();
     }
 
     @Override
@@ -49,16 +51,52 @@ public class SuperMario extends EstadoMario {
         } else if (derecha && !izquierda) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-derecha");
         } else if (izquierda && !derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-izquierda");
         }
 
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+
+    public void actualizarAlCaer(boolean derecha,boolean izquierda){
+        this.derecha = derecha;
+        this.izquierda = izquierda;
+        Sprite spriteAsignar = null;
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-izquierda");
+        } else {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
+
+    public void saltar(boolean derecha, boolean izquierda) {
+        this.derecha = derecha;
+        this.izquierda = izquierda;
+        personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
+        actualizarSpriteSaltar();
+    }
+
+    private void actualizarSpriteSaltar() {
+        Sprite spriteAsignar = null;
+
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-izquierda");
+        }else{
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
+
     @Override
     public void serAfectadoPor(SuperChampignon s) {
         personaje.setPuntaje(personaje.getPuntaje() + 50);
-        
     }
 
     @Override
@@ -73,7 +111,9 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void serAfectadoPor(Lakitu l) {
-       
+        personaje.setEstado(new MarioNormal(personaje)); 
+        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
     }
 
     @Override
@@ -98,7 +138,6 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void AfectarA(Goomba g) {
-        
     }
 
     @Override
