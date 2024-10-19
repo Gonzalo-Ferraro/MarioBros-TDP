@@ -94,9 +94,8 @@ public abstract class EstadoMario  {
     // cambiar parametro cuando agreguemos el arreglo de sprites
    
 
-    public void saltar(){
-        personaje.saltar();
-    }
+    public abstract void saltar(boolean derecha, boolean izquierda);
+    public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
 
     public void espacio(){
         personaje.espacio();

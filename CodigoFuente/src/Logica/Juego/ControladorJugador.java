@@ -74,6 +74,7 @@ public class ControladorJugador implements Runnable {
                 if (personaje.getVelocidadY() < 0) {
                     corregirPosicionArriba(p);
                     personaje.setEstaEnElAire(false);
+                    personaje.actualizarAlCaer();
                     personaje.setVelocidadY(0);
                 } else if (personaje.getVelocidadY() > 0) {
                     corregirPosicionAbajo(p);

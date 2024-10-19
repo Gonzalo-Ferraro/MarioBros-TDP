@@ -26,21 +26,50 @@ public class MarioNormal extends EstadoMario {
     private void actualizarSprite() {
         Sprite spriteAsignar = null;
 
-        if (!derecha && !izquierda) {
+        if (!derecha && !izquierda && !personaje.estaEnElAire()) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-        } else if (derecha && izquierda) {
+        } else if (derecha && izquierda && !personaje.estaEnElAire()  ) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
-        } else if (derecha && !izquierda) {
+        } else if (derecha && !izquierda && !personaje.estaEnElAire() ) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
-        } else if (izquierda && !derecha) {
+        } else if (izquierda && !derecha&& !personaje.estaEnElAire() ) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
         }
-
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
-    public void saltar() {
+    public void saltar(boolean derecha, boolean izquierda) {
+        this.derecha = derecha;
+        this.izquierda = izquierda;
         personaje.setVelocidadY(20);
+        actualizarSpriteSaltar();
+    }
+    private void actualizarSpriteSaltar() {
+        Sprite spriteAsignar = null;
+
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+        }else{
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
+    public void actualizarAlCaer(boolean derecha,boolean izquierda){
+        this.derecha = derecha;
+        this.izquierda = izquierda;
+        Sprite spriteAsignar = null;
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+        }else{
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
     }
 
     @Override

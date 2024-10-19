@@ -34,7 +34,9 @@ public class Personaje extends Entidad implements EntidadJugador {
 
         estado = new MarioNormal(this);
     }
-
+    public EstadoMario getEstadoMario(){
+        return estado;
+    }
     public int getPuntaje(){
         return puntaje;
     }
@@ -156,8 +158,11 @@ public class Personaje extends Entidad implements EntidadJugador {
         if (!estaEnElAire) {
             estaEnElAire = true;
             juego.getEntidadSonora().reproducirSonido("salto");
-            estado.saltar();
+            estado.saltar(derecha,izquierda);
         }
+    }
+    public void actualizarAlCaer(){
+        estado.actualizarAlCaer(derecha,izquierda);
     }
 
     public void espacio(){
