@@ -9,9 +9,7 @@ public class MarioFlorDeFuego extends SuperMario{
             super(p);      
       }
 
-      public String getString(){
-		return "flordefuego";
-	}
+      
 
       @Override
       public void serAfectadoPor(FlorDeFuego f) {}

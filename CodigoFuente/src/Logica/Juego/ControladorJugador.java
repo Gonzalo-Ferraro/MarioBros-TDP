@@ -1,5 +1,6 @@
 package Logica.Juego;
 
+import java.awt.List;
 import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -104,7 +105,8 @@ public class ControladorJugador implements Runnable {
         boolean condicion = sePuedeMoverHacia(
             personaje.getX() + personaje.getVelocidadX(), 
             personaje.getY()
-        ) == null;
+        ) == null &&
+        personaje.getX() + personaje.getVelocidadX() > personaje.getJuego().getPosScroll();
 
         if (condicion) {
             personaje.moverX();
@@ -132,14 +134,19 @@ public class ControladorJugador implements Runnable {
     }
 
     private void checkearColisionesConEnemigos() {
+        LinkedList<Enemigo> enemigosAEliminar = new LinkedList<>();
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
                     e.serAfectadoPor(personaje);
+                    enemigosAEliminar.add(e);
                 } else {
                     e.afectarAMario(personaje);;
                 }
             }
+        }
+        for(Enemigo e : enemigosAEliminar) {
+            nivelActual.removerEntidad(e);
         }
     }
 

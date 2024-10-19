@@ -92,6 +92,10 @@ public class PantallaJuego extends JPanel {
                 panelScrollJuego.getHorizontalScrollBar().setValue(x);
         }
     }
+    
+    public int getPosScroll() {
+        return panelScrollJuego.getHorizontalScrollBar().getValue();
+    }
 
     private static class InvisibleScrollBar extends JScrollBar {
         @Override

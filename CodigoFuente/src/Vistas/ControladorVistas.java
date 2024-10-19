@@ -41,6 +41,10 @@ public class ControladorVistas extends JFrame implements KeyListener {
         pantallaJuego = new PantallaJuego();
     }
 
+    public int getPosScroll() {
+        return pantallaJuego.getPosScroll();
+    }
+    
     public void mostrarMenu() {
     	setContentPane(pantallaMenu);
         actualizarPanel();

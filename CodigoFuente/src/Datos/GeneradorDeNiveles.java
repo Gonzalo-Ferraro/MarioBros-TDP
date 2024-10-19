@@ -76,7 +76,7 @@ public class GeneradorDeNiveles {
             case 'T':
                 Plataforma tuberiaGenerada = modo.crearTuberia(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE - 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
                 );
                 nivel.ingresarEntidad(tuberiaGenerada);
                 break;
@@ -84,7 +84,7 @@ public class GeneradorDeNiveles {
             case 't':
                 Plataforma partetuberiaGenerada = modo.crearPartetuberia(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE + ConstantesVistas.TAMANO_BLOQUE - 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
                 );
                 nivel.ingresarEntidad(partetuberiaGenerada);
                 break;

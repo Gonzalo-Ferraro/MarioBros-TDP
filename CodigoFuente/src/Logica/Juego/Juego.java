@@ -52,6 +52,10 @@ public class Juego {
         controladorVistas.removerEntidadLogica(entidad);
     }
     
+    public int getPosScroll() {
+        return controladorVistas.getPosScroll();
+    }
+    
     public void iniciar(ModoDeJuego m) {
         modo = m;
         generadorDeNiveles = new GeneradorDeNiveles();
