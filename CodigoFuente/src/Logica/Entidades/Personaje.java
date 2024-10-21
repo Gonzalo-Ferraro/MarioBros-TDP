@@ -17,7 +17,6 @@ public class Personaje extends Entidad implements EntidadJugador {
     private boolean izquierda;
 
     private EstadoMario estado;
-    private int velocidadX;
     private int velocidadY;
     private boolean estaEnElAire;
 
@@ -28,24 +27,26 @@ public class Personaje extends Entidad implements EntidadJugador {
         velocidadY = 0;
         derecha = false;
         izquierda = false;
-        puntaje = 0;
 
         derecha = false;
         izquierda = false;
 
-        this.vidas = 3;
-
         estado = new MarioNormal(this);
+
+        vidas = 3;
+        puntaje = 0;
     }
 
     public EstadoMario getEstadoMario() {
         return estado;
     }
 
+    @Override
     public int getPuntaje() {
         return puntaje;
     }
 
+    @Override
     public int getVidas() {
         return vidas;
     }
@@ -59,17 +60,19 @@ public class Personaje extends Entidad implements EntidadJugador {
         this.estado = estado;
     }
 
-    public void setPuntaje(int punt){
+    public void setPuntaje(int punt){        
         if(puntaje + punt <= 0)
             puntaje = 0;
         else puntaje += punt;
+
+        juego.actualizarEtiquetaStatsPantallaJuego();
     }
 
-    public void setVidas(int vida){
-        if(vidas + vida == 0)
-            juego.perdiste();
-        else vidas += vida;
+    public void aumentarVidas(){
+        vidas++;
+        juego.actualizarEtiquetaStatsPantallaJuego();
     }
+
     public void setVelocidadY(int v){
         velocidadY = v;
     }
@@ -129,12 +132,12 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     public void perderVida() {
         vidas--;
-        juego.getEntidadSonora().reproducirSonido("muerte");
+        this.getJuego().getEntidadSonora().reproducirSonido("muerte");
         
         if (vidas == 0) 
-            juego.perdiste();
+            this.getJuego().perdiste();
         else 
-            juego.reiniciarNivel();
+            this.getJuego().reiniciarNivel();
     }
 
     public Observer getObserver() {

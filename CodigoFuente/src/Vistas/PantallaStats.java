@@ -1,11 +1,9 @@
 package Vistas;
 
 
-import javax.swing.*;
-
-import java.awt.*;
-
 import Logica.Entidades.EntidadJugador;
+import java.awt.*;
+import javax.swing.*;
 
 
 public class PantallaStats extends JPanel  {
@@ -48,7 +46,7 @@ public class PantallaStats extends JPanel  {
     private void  crearEtiquetas() {
         etiquetaVidas = new JLabel(String.valueOf(personaje.getVidas()), SwingConstants.CENTER);
         etiquetaPuntaje = new JLabel(String.valueOf(personaje.getPuntaje()), SwingConstants.CENTER);
-        etiquetaNivel=new JLabel(String.valueOf(nivel),SwingConstants.CENTER);
+        etiquetaNivel = new JLabel(String.valueOf(nivel),SwingConstants.CENTER);
     
         // Hacer que las etiquetas sean opacas para que el fondo se muestre
         etiquetaVidas.setOpaque(true);

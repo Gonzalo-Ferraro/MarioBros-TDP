@@ -1,15 +1,12 @@
 package Logica.Juego;
 
-import java.awt.List;
-import java.awt.Rectangle;
-import java.util.Iterator;
-import java.util.LinkedList;
-
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Personaje;
 import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
 import Vistas.ConstantesVistas;
+import java.awt.Rectangle;
+import java.util.LinkedList;
 
 public class ControladorJugador implements Runnable {
     // Game loop thread
@@ -88,7 +85,6 @@ public class ControladorJugador implements Runnable {
             }
         } else {
             if (!estaEnElPiso()) {
-                System.out.println("aplicando gravedad");
                 personaje.setEstaEnElAire(true);
             }
         }
@@ -123,7 +119,6 @@ public class ControladorJugador implements Runnable {
                 toRet = p;
             }
 
-        System.out.println("Se puede mover hacia " + x + ", " + y + ": " + toRet);
         return toRet;
     }
 
@@ -141,7 +136,7 @@ public class ControladorJugador implements Runnable {
                     e.serAfectadoPor(personaje);
                     enemigosAEliminar.add(e);
                 } else {
-                    e.afectarAMario(personaje);;
+                    e.afectarAMario(personaje);
                 }
             }
         }

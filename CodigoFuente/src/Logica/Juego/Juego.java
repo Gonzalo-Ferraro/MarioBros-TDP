@@ -1,20 +1,17 @@
 package Logica.Juego;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.Timer;
-import javax.swing.JOptionPane;
-
 import Datos.EntidadSonora;
 import Datos.GeneradorDeNiveles;
+import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
 import Vistas.ConstantesVistas;
 import Vistas.ControladorVistas;
-import  Logica.Entidades.*;
-
 import Vistas.Observer;
-import Vistas.PantallaStats;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import  javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class Juego {
     private ControladorVistas controladorVistas;
@@ -68,14 +65,14 @@ public class Juego {
     }
 
     private void inicializarNivel() {
-        registrarObservers();
+        controladorVistas.crearPantallaJuego(obtenerPersonaje());
+        controladorVistas.crearPantallaStats(obtenerPersonaje());
 
         obtenerPersonaje().setJuego(this);
-        PantallaStats pantallaStats = new PantallaStats(controladorVistas, obtenerPersonaje());
 
-        controladorVistas.setPantallaStats(pantallaStats);
+        registrarObservers();
+
         controladorVistas.mostrarPantallaStats();
-
 
         Timer temporizadorPantallaJuego = new Timer(ConstantesVistas.TIEMPO_STATS * 1000, new ActionListener() {
             @Override
@@ -169,11 +166,15 @@ public class Juego {
         controladorEntidades.detener();
         controladorJugador.detener();
 
-        controladorVistas.nuevaPantallaJuego();
+        controladorVistas.crearPantallaJuego(obtenerPersonaje());
 
         nivelActual = generadorDeNiveles.generarNivel(modo, 1);
         personaje.reiniciar();
 
         inicializarNivel();
     }    
+
+    public void actualizarEtiquetaStatsPantallaJuego() {
+        controladorVistas.actualizarEtiquetaStatsPantallaJuego();
+    }
 }

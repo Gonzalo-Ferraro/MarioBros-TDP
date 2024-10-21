@@ -15,7 +15,6 @@ import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Spiny;
 import Logica.Entidades.SuperChampignon;
 import Logica.Entidades.Vacio;
-import Logica.Fabricas.ModoDeJuego;
 
 public abstract class EstadoMario  {
 
@@ -68,12 +67,12 @@ public abstract class EstadoMario  {
     }
 
     public void serAfectadoPor(ChampignonVerde c){
-        personaje.setVidas(1);
+        personaje.aumentarVidas();
         personaje.setPuntaje(100);
     }
 
     public  void serAfectadoPor(Moneda m){
-        personaje.setPuntaje(5);
+        personaje.setPuntaje(50);
         personaje.getJuego().getEntidadSonora().reproducirSonido("moneda");
     }
 

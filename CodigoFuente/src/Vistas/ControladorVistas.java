@@ -23,7 +23,6 @@ public class ControladorVistas extends JFrame implements KeyListener {
 		this.juego = juego;
 
 		pantallaMenu = new PantallaMenu(this);
-		pantallaJuego = new PantallaJuego();
 
 		configurar_ventana();
 		registrarOyentes();
@@ -37,8 +36,12 @@ public class ControladorVistas extends JFrame implements KeyListener {
 		setVisible(true);
 	}
 
-    public void nuevaPantallaJuego() {
-        pantallaJuego = new PantallaJuego();
+    public void crearPantallaJuego(EntidadJugador personaje) {
+        pantallaJuego = new PantallaJuego(personaje);
+    }
+
+    public void crearPantallaStats(EntidadJugador personaje) {
+        pantallaStats = new PantallaStats(this, personaje);
     }
 
     public int getPosScroll() {
@@ -72,6 +75,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
 
     public Observer registrarEntidadJugador(EntidadJugador entidad_jugador) {
         Observer observerJugador = pantallaJuego.incorporarEntidadJugador(entidad_jugador);
+
         actualizarPanel();
         return observerJugador;
     }
@@ -125,22 +129,18 @@ public class ControladorVistas extends JFrame implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
-            case KeyEvent.VK_A:
-                juego.setIzquierda(false);
-                break;
-            case KeyEvent.VK_W:
-                System.out.println("Tecla W soltada");
-                
-                break;
-            case KeyEvent.VK_D:
-				juego.setDerecha(false);
-                break;
-            case KeyEvent.VK_SPACE:
-                System.out.println("Tecla Espacio soltada");
-                break;
+            case KeyEvent.VK_A -> juego.setIzquierda(false);
+            case KeyEvent.VK_W -> {
+            }
+            case KeyEvent.VK_D -> juego.setDerecha(false);
+            case KeyEvent.VK_SPACE -> System.out.println("Tecla Espacio soltada");
         }
     }
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
+
+    public void actualizarEtiquetaStatsPantallaJuego() {
+        pantallaJuego.actualizarEtiquetaStatsPantallaJuego();
+    }
 }
