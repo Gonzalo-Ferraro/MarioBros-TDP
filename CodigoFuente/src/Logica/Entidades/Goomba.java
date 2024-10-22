@@ -9,6 +9,7 @@ public class Goomba extends Enemigo {
     @Override
     public void serAfectadoPor(Personaje p) {
         p.AfectarA(this);
+        desaparecer();
     }
 
     @Override
