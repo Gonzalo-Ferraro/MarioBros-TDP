@@ -82,6 +82,11 @@ public class EntidadSonora {
                 break;
             }
             
+            case "powerup": {
+                clip.setFramePosition(22500);
+                clip.start();
+                break;
+            }
             default:{
             clip.setFramePosition(0); 
             clip.start(); 

@@ -10,6 +10,7 @@ public class Lakitu extends Enemigo {
     @Override
     public void serAfectadoPor(Personaje p) {
         p.AfectarA(this);
+        desaparecer();
     }
 
     @Override
@@ -20,7 +21,7 @@ public class Lakitu extends Enemigo {
     public void mover(){
         super.mover();
         
-        if(direccion == -1)
+        if (direccion == -1)
            sprite = entidadGrafica.getSprite("lakitu-izquierda");
         else
             sprite = entidadGrafica.getSprite("lakitu-derecha");

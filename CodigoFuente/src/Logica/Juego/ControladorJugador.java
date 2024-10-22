@@ -74,7 +74,6 @@ public class ControladorJugador implements Runnable {
                 personaje.moverY();
             } else {
                 if (personaje.getVelocidadY() > 0) {
-                    
                     corregirPosicionArriba(plataformaColisionada);
                     personaje.setEstaEnElAire(false);
                     personaje.actualizarAlCaer();
@@ -140,6 +139,7 @@ public class ControladorJugador implements Runnable {
                 }
             }
         }
+
         for(Enemigo e : enemigosAEliminar) {
             nivelActual.removerEntidad(e);
         }
