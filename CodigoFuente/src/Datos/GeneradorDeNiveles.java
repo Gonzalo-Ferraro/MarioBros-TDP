@@ -83,7 +83,7 @@ public class GeneradorDeNiveles {
 
             case 't':
                 Plataforma partetuberiaGenerada = modo.crearPartetuberia(
-                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE + 10,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - ConstantesVistas.TAMANO_BLOQUE - 20
                 );
                 nivel.ingresarEntidad(partetuberiaGenerada);
