@@ -18,9 +18,19 @@ public class MarioInvulnerable extends EstadoMario {
 	}
 
 	@Override
+	public void actualizarAlCaer(boolean derecha, boolean izquierda) {
+		estadoAnterior.actualizarAlCaer(derecha, izquierda);
+	}
+
+	@Override
 	public void setIzquierda(boolean d, boolean i) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
+	}
+
+	@Override
+	public void saltar(boolean derecha, boolean izquierda) {
+		estadoAnterior.saltar(derecha, izquierda);
 	}
 
 	@Override

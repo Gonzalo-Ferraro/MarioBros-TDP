@@ -125,7 +125,6 @@ public class ControladorJugador implements Runnable {
 
     private void detectarColisiones() {
         checkearColisionesConEnemigos();
-
         checkearColisionesConPowerUps();
     }
 

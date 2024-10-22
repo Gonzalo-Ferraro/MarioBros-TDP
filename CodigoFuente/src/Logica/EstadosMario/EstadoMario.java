@@ -33,18 +33,18 @@ public abstract class EstadoMario  {
     public abstract void setIzquierda(boolean izquierda, boolean derecha);
 
     public void serAfectadoPor(Goomba g){
-        personaje.perderVida();
         personaje.setPuntaje(-30);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(KoopaTroopa k){
-        personaje.perderVida();
         personaje.setPuntaje(-45);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(PiranhaPlant p){
-        personaje.perderVida();
         personaje.setPuntaje(-30);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(Lakitu l){
@@ -57,18 +57,18 @@ public abstract class EstadoMario  {
     }
 
     public void serAfectadoPor(BuzzyBeetle b){
-        personaje.perderVida();
         personaje.setPuntaje(-15);
+        personaje.perderVida();
     }
 
     public  void serAfectadoPor(Vacio v){
-        personaje.perderVida();
         personaje.setPuntaje(-15);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(ChampignonVerde c){
-        personaje.aumentarVidas();
         personaje.setPuntaje(100);
+        personaje.aumentarVidas();
     }
 
     public  void serAfectadoPor(Moneda m){

@@ -149,9 +149,8 @@ public class Juego {
         controladorEntidades.detener();
         controladorJugador.detener();
 
-        controladorVistas.dispose();
-
         JOptionPane.showMessageDialog(null, "Perdiste");
+        controladorVistas.dispose();
     }
 
     public void reiniciarNivel() {

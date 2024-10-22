@@ -145,7 +145,7 @@ public class Personaje extends Entidad implements EntidadJugador {
     }
 
     public boolean estaCayendo() {
-        return estaEnElAire && velocidadY < 0;
+        return estaEnElAire && velocidadY > 0;
     }
 
     public boolean estaEnElAire() {
