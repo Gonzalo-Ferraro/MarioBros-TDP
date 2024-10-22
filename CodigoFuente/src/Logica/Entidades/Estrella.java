@@ -7,7 +7,8 @@ public class Estrella extends PowerUp {
     }
 
     @Override
-    public void afectarAMario(Personaje mario) {
-        mario.serAfectadoPor(this);
+    public void afectarAMario(Personaje personaje) {
+        personaje.serAfectadoPor(this);
+        desaparecer();
     }
 }

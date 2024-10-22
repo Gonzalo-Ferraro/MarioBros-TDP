@@ -1,5 +1,6 @@
 package Logica.Fabricas;
 import Logica.Entidades.*;
+import java.util.Random;
 
 public abstract class ModoDeJuego {
     protected String ruta;
@@ -46,12 +47,43 @@ public abstract class ModoDeJuego {
     public BloqueDePregunta crearBloquePregunta(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/bloque-pregunta.gif");
         BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite);
+
+        Random r = new Random();
+
+        int resultado = r.nextInt(5);
+        PowerUp aSetear = null;
+
+
+        switch (resultado) {
+            case 0:
+                aSetear = new Moneda(x, y + 10, new Sprite(ruta + "/moneda.gif"));
+            break;
+
+            case 1:
+                aSetear = new ChampignonVerde(x, y + 10, new Sprite(ruta + "/champinonverde.png"));
+            break;
+
+            case 2:
+                aSetear = new SuperChampignon(x, y + 10, new Sprite(ruta + "/superchampinon.png"));
+            break;
+
+            case 3:
+                aSetear = new FlorDeFuego(x, y + 10, new Sprite(ruta + "/flordefuego.gif"));
+            break;
+
+            case 4:
+                aSetear = new Estrella(x, y + 10, new Sprite(ruta + "/estrella.gif"));
+            break;
+        }
+
+        bloque.setPowerUp(aSetear);
+
         return bloque;
     }
 
-    public BloqueSolido crearLadrillo(int x, int y) {
+    public LadrilloSolido crearLadrillo(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/ladrillo.png");
-        BloqueSolido bloque = new BloqueSolido(x, y, sprite);
+        LadrilloSolido bloque = new LadrilloSolido(x, y, sprite);
         return bloque;
     }
 
@@ -154,7 +186,7 @@ public abstract class ModoDeJuego {
     }
 
     public Vacio crearVacio(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/ladrillo.png");
+        Sprite sprite = new Sprite(ruta + "/vacio.png");
         Vacio vacio = new Vacio(x, y, sprite);
         return vacio;
     }

@@ -11,12 +11,7 @@ public class SuperMario extends EstadoMario {
         actualizarSprite();
         personaje.getObserver().actualizarImagen();
     }
-
-    private void resetearMario(){
-        personaje.setEstado(new MarioNormal(personaje)); 
-        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
-    }
+    
     @Override
     public void serAfectadoPor(Goomba g) {
         personaje.setEstado(new MarioNormal(personaje)); 
@@ -188,7 +183,8 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void AfectarA(LadrilloSolido ladrillo) {
-        
+        System.out.println("Estoy en superMario");
+        ladrillo.desaparecer();
     }
 
     

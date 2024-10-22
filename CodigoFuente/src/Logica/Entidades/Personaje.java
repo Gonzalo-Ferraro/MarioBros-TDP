@@ -90,6 +90,11 @@ public class Personaje extends Entidad implements EntidadJugador {
         if (estaEnElAire) {
             velocidadY += ConstantesVistas.GRAVEDAD;
             y += velocidadY;
+
+            if(y > ConstantesVistas.VENTANA_ALTO){
+                perderVida();
+                this.setEstaEnElAire(false);
+            }
         }
 
         observador.actualizarPosicionTamano();

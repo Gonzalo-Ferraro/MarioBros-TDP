@@ -17,4 +17,9 @@ public class Tuberia extends Plataforma {
             mPiranha = p;
         }
     }
+
+    @Override
+    public void serAfectadoPor(Personaje p) {
+        // no hace nada
+    }
 }

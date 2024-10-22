@@ -72,6 +72,7 @@ public class MarioNormal extends EstadoMario {
         personaje.getObserver().actualizarImagen();
     }
 
+    @Override
     public void actualizarAlCaer(boolean derecha,boolean izquierda){
         this.derecha = derecha;
         this.izquierda = izquierda;

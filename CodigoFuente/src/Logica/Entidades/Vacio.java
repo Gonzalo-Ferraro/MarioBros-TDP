@@ -13,4 +13,13 @@ public class Vacio extends Plataforma implements AfectadorAMario {
         super(x, y, s);
     }
 
+    @Override
+    public void serAfectadoPor(Personaje p) {
+        // HARD CODE
+        System.out.println("estoy en vacio");
+        p.serAfectadoPor(this);
+    }
+
+    
+
 }

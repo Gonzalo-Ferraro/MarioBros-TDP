@@ -2,12 +2,15 @@ package Logica.Entidades;
 
 public class BloqueDePregunta extends BloqueSolido {
 
-    // TIENE UN POWER UP
+    protected PowerUp miPowerUp;
 
     public BloqueDePregunta(int x, int y, Sprite s){
         super(x, y, s);
-
-        // SE LE SETEA EL POWER UP
     }
+
     //falta ser afectado por
+
+    public void setPowerUp(PowerUp p){
+        miPowerUp = p;
+    }
 }

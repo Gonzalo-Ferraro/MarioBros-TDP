@@ -6,4 +6,9 @@ public class LadrilloSolido extends BloqueSolido {
         super(x, y, s);
     }
 
+    @Override
+    public void serAfectadoPor(Personaje p) {
+        p.AfectarA(this);
+    }
+
 }

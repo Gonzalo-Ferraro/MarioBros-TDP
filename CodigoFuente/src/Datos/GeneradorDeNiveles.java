@@ -1,14 +1,12 @@
 package Datos;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
-
 import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
 import Logica.Juego.Nivel;
 import Vistas.ConstantesVistas;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GeneradorDeNiveles {
     private ModoDeJuego modo;
@@ -88,6 +86,14 @@ public class GeneradorDeNiveles {
                 );
                 nivel.ingresarEntidad(partetuberiaGenerada);
                 break;
+            case 'V':
+                Vacio vacioGenerado = modo.crearVacio(
+                    indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
+                );
+                nivel.ingresarEntidad(vacioGenerado);
+                break;
+
             //POWERUPS--------------------------
 
             case 'e':

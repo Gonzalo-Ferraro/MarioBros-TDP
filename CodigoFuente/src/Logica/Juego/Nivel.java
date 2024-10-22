@@ -1,14 +1,13 @@
 package Logica.Juego;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import Logica.Entidades.BolaDeFuego;
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Fondo;
+import Logica.Entidades.Personaje;
 import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
-import Logica.Entidades.Personaje;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Nivel {
     private List<Enemigo> enemigos;
@@ -82,10 +81,14 @@ public class Nivel {
     public synchronized void removerEntidad(Enemigo e) {
         enemigos.remove(e);
     }
+
     public synchronized void removerEntidad(PowerUp p) {
         powerUps.remove(p);
     }
     
+    public synchronized void removerEntidad(Plataforma p) {
+        plataformas.remove(p);
+    }
     
     public Fondo getFondo() {
         return fondo;

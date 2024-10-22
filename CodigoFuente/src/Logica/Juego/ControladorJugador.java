@@ -37,7 +37,7 @@ public class ControladorJugador implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         long ultimoTiempo = System.nanoTime();
         double delta = 0;
 
@@ -53,7 +53,7 @@ public class ControladorJugador implements Runnable {
         }
     }
 
-    private void actualizarJuego() {
+    private synchronized void actualizarJuego() {
         moverPersonaje();
     }
 
@@ -63,7 +63,7 @@ public class ControladorJugador implements Runnable {
         moverY();
     }
 
-    private void moverY() {
+    private synchronized void moverY() {
         if (personaje.estaEnElAire()) {
             Plataforma plataformaColisionada = sePuedeMoverHacia(
                 personaje.getX(), 
@@ -97,7 +97,7 @@ public class ControladorJugador implements Runnable {
         ) != null;
     }
 
-    private void moverX() {
+    private synchronized void moverX() {
         boolean condicion = sePuedeMoverHacia(
             personaje.getX() + personaje.getVelocidadX(), 
             personaje.getY()
@@ -122,12 +122,12 @@ public class ControladorJugador implements Runnable {
         return toRet;
     }
 
-    private void detectarColisiones() {
+    private synchronized void detectarColisiones() {
         checkearColisionesConEnemigos();
         checkearColisionesConPowerUps();
     }
 
-    private void checkearColisionesConEnemigos() {
+    private synchronized  void checkearColisionesConEnemigos() {
         LinkedList<Enemigo> enemigosAEliminar = new LinkedList<>();
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
@@ -159,6 +159,7 @@ public class ControladorJugador implements Runnable {
 
     private void corregirPosicionAbajo(Plataforma p) {
         personaje.setPosicionY(p.getY() + (int) personaje.getBounds().getHeight());
+        p.serAfectadoPor(personaje);
     }
 
     public void setPersonaje(Personaje p) {

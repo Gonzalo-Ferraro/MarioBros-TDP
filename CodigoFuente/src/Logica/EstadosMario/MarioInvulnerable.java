@@ -1,7 +1,6 @@
 package Logica.EstadosMario;
 
 import Logica.Entidades.*;
-import Logica.Fabricas.ModoDeJuego;
 
 public class MarioInvulnerable extends EstadoMario {
     private EstadoMario estadoAnterior;
@@ -13,20 +12,53 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void setDerecha(boolean d, boolean i) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setDerecha'");
-	}
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
+    }
+
+	@Override
+	public void setIzquierda(boolean d, boolean i) {
+        derecha = d;
+        izquierda = i;
+        actualizarSprite();
+    }
+
+	private void actualizarSprite() {
+        Sprite spriteAsignar = null;
+
+        if (!personaje.estaEnElAire()) {
+            if (!derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+            } else if (derecha && izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+            } else if (derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+            } else if (izquierda && !derecha) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+            }
+        } else {
+            if (!derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+            } else if (derecha && izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+            } else if (derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+            } else if (izquierda && !derecha) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+            }
+        }
+        
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
 
 	@Override
 	public void actualizarAlCaer(boolean derecha, boolean izquierda) {
 		estadoAnterior.actualizarAlCaer(derecha, izquierda);
 	}
 
-	@Override
-	public void setIzquierda(boolean d, boolean i) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setIzquierda'");
-	}
+	
 
 	@Override
 	public void saltar(boolean derecha, boolean izquierda) {
@@ -45,27 +77,32 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void serAfectadoPor(BuzzyBeetle buzzyBeetle) {
-		// Implementation here
+		this.AfectarA(buzzyBeetle);
+        buzzyBeetle.desaparecer();
 	}
 
 	@Override
 	public void serAfectadoPor(Spiny spiny) {
-		// Implementation here
+		this.AfectarA(spiny);
+        spiny.desaparecer();
 	}
 
 	@Override
 	public void serAfectadoPor(Lakitu lakitu) {
-		// Implementation here
+		this.AfectarA(lakitu);
+        lakitu.desaparecer();
 	}
 
 	@Override
 	public void serAfectadoPor(PiranhaPlant piranhaPlant) {
-		// Implementation here
+		this.AfectarA(piranhaPlant);
+        piranhaPlant.desaparecer();
 	}
 
 	@Override
 	public void serAfectadoPor(KoopaTroopa koopaTroopa) {
-		// Implementation here
+		this.AfectarA(koopaTroopa);
+        koopaTroopa.desaparecer();
 	}
 
 	@Override
@@ -75,7 +112,8 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void serAfectadoPor(Goomba goomba) {
-		// Implementation here
+		this.AfectarA(goomba);
+        goomba.desaparecer();
 	}
 
 	@Override
