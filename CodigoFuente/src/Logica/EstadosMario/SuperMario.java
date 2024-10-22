@@ -1,18 +1,6 @@
 package Logica.EstadosMario;
 
-import Logica.Entidades.BloqueDePregunta;
-import Logica.Entidades.BuzzyBeetle;
-import Logica.Entidades.Estrella;
-import Logica.Entidades.FlorDeFuego;
-import Logica.Entidades.Goomba;
-import Logica.Entidades.KoopaTroopa;
-import Logica.Entidades.LadrilloSolido;
-import Logica.Entidades.Lakitu;
-import Logica.Entidades.Personaje;
-import Logica.Entidades.PiranhaPlant;
-import Logica.Entidades.Spiny;
-import Logica.Entidades.Sprite;
-import Logica.Entidades.SuperChampignon;
+import Logica.Entidades.*;
 import Vistas.ConstantesVistas;
 
 public class SuperMario extends EstadoMario {
@@ -44,14 +32,26 @@ public class SuperMario extends EstadoMario {
     private void actualizarSprite() {
         Sprite spriteAsignar = null;
 
-        if (!derecha && !izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
-        } else if (derecha && izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-izquierda");
-        } else if (derecha && !izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-derecha");
-        } else if (izquierda && !derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-izquierda");
+        if (!personaje.estaEnElAire()) {
+            if (!derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
+            } else if (derecha && izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-izquierda");
+            } else if (derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-derecha");
+            } else if (izquierda && !derecha) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-izquierda");
+            }
+        } else {
+            if (!derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
+            } else if (derecha && izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-izquierda");
+            } else if (derecha && !izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
+            } else if (izquierda && !derecha) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-izquierda");
+            }
         }
 
         personaje.setSprite(spriteAsignar);
@@ -63,9 +63,9 @@ public class SuperMario extends EstadoMario {
         this.izquierda = izquierda;
         Sprite spriteAsignar = null;
         if (derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-derecha");
         } else if (izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-izquierda");
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-movimiento-izquierda");
         } else {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
         }
