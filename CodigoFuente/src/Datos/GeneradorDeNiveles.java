@@ -60,6 +60,11 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
                 );
+
+                if(bloqueGenerado.getPowerUp()!=null){
+                    nivel.ingresarEntidad(bloqueGenerado.getPowerUp());
+                }
+                
                 nivel.ingresarEntidad(bloqueGenerado);
                 break;
 

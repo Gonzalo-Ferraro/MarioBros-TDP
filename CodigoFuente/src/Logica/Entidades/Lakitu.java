@@ -18,8 +18,8 @@ public class Lakitu extends Enemigo {
         p.serAfectadoPor(this);
     }
 
-    public void mover(){
-        super.mover();
+    public void moverX(){
+        super.moverX();
         
         if (direccion == -1)
            sprite = entidadGrafica.getSprite("lakitu-izquierda");
@@ -28,5 +28,8 @@ public class Lakitu extends Enemigo {
         
         observador.actualizarImagen();
     
+    }
+    public void moverY(){
+        
     }
 }

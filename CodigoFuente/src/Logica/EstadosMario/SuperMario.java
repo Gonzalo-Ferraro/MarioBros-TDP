@@ -99,7 +99,7 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void serAfectadoPor(SuperChampignon s) {
-        personaje.setPuntaje(personaje.getPuntaje() + 50);
+        personaje.setPuntaje( 50);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void serAfectadoPor(Estrella e) {
-        personaje.setPuntaje(personaje.getPuntaje() + 20);
+        personaje.setPuntaje(30);
         personaje.getJuego().getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
@@ -180,12 +180,11 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void AfectarA(BloqueDePregunta bloq) {
-        
+        bloq.serAfectadoPor(personaje);
     }
 
     @Override
     public void AfectarA(LadrilloSolido ladrillo) {
-        System.out.println("Estoy en superMario");
         ladrillo.desaparecer();
     }
 

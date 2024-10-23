@@ -17,6 +17,8 @@ public class MarioInvulnerable extends EstadoMario {
 			}
 			personaje.setEstado(this.estadoAnterior);
 			personaje.getJuego().getEntidadSonora().iniciarLoopMario();
+			personaje.setPosicionY(personaje.getY()-40);
+			
 		}).start();
 
 	}
@@ -102,7 +104,7 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void serAfectadoPor(Estrella estrella) {
-		// Implementation here
+		personaje.setPuntaje(35);
 	}
 
 	@Override

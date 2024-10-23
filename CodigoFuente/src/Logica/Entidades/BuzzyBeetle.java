@@ -17,8 +17,8 @@ public class BuzzyBeetle extends Enemigo {
         p.AfectarA(this);
     }
     
-    public void mover(){
-        super.mover();
+    public void moverX(){
+        super.moverX();
         if(direccion==-1)
             sprite = entidadGrafica.getSprite("buzzy-beetle-izquierda");
         else

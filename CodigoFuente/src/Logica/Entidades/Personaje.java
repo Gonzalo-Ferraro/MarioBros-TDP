@@ -58,7 +58,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     public void setEstado(EstadoMario estado){
         this.estado = estado;
-        observador.actualizarImagen();
+        observador.actualizarPosicionTamano();
     }
 
     public void setPuntaje(int punt){        
@@ -93,6 +93,8 @@ public class Personaje extends Entidad implements EntidadJugador {
             y += velocidadY;
 
             if(y > ConstantesVistas.VENTANA_ALTO){
+                //me cai al vacio
+                this.setPuntaje(-15);
                 perderVida();
                 this.setEstaEnElAire(false);
             }

@@ -19,15 +19,17 @@ public class KoopaTroopa extends Enemigo {
    
     //VA EN LOS ESTADOS
 
-    public void mover(){
-        super.mover();
+    public void moverX(){
+        super.moverX();
+
         if(direccion == -1)
             sprite=entidadGrafica.getSprite("koopa-troopa-izquierda");
         else
             sprite=entidadGrafica.getSprite("koopa-troopa-derecha");
 
     observador.actualizarImagen();
-    observador.actualizarPosicionTamano();
+    
     }
+
 
 }

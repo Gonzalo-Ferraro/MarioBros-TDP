@@ -1,5 +1,7 @@
 package Logica.Fabricas;
 import Logica.Entidades.*;
+import Vistas.ConstantesVistas;
+
 import java.util.Random;
 
 public abstract class ModoDeJuego {
@@ -45,42 +47,38 @@ public abstract class ModoDeJuego {
     }
 
     public BloqueDePregunta crearBloquePregunta(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/bloque-pregunta.gif");
-        BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite);
-        EntidadGrafica entidadGrafica = new EntidadGrafica();
-
-        entidadGrafica.setSprite("bloque-pregunta-vacio", new Sprite(ruta+ "/bloque-pregunta-after-hit.png"));  
-        bloque.setEntidadGrafica(entidadGrafica);       
+        
            
         Random r = new Random();
 
-        int resultado = r.nextInt(5);
+        int resultado = r.nextInt(7);
         PowerUp aSetear = null;
 
 
         switch (resultado) {
             case 0:
-                aSetear = new Moneda(x, y + 10, new Sprite(ruta + "/moneda.gif"));
+                aSetear = new Moneda(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/moneda.gif"));
             break;
 
             case 1:
-                aSetear = new ChampignonVerde(x, y + 10, new Sprite(ruta + "/champinonverde.png"));
-            break;
-
-            case 2:
-                aSetear = new SuperChampignon(x, y + 10, new Sprite(ruta + "/superchampinon.png"));
+                aSetear = new ChampignonVerde(x, y - ConstantesVistas.TAMANO_BLOQUE + 20 , new Sprite(ruta + "/champinonverde.png"));
             break;
 
             case 3:
-                aSetear = new FlorDeFuego(x, y + 10, new Sprite(ruta + "/flordefuego.gif"));
+                aSetear = new FlorDeFuego(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/flordefuego.gif"));
             break;
 
             case 4:
-                aSetear = new Estrella(x, y + 10, new Sprite(ruta + "/estrella.gif"));
+                aSetear = new Estrella(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/estrella.gif"));
             break;
         }
 
-        bloque.setPowerUp(aSetear);
+        Sprite sprite = new Sprite(ruta + "/bloque-pregunta.gif");
+        BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite,aSetear);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
+
+        entidadGrafica.setSprite("bloque-pregunta-vacio", new Sprite(ruta+ "/bloque-pregunta-after-hit.png"));  
+        bloque.setEntidadGrafica(entidadGrafica);       
 
         return bloque;
     }

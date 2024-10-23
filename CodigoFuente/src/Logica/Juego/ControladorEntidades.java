@@ -1,7 +1,10 @@
 package Logica.Juego;
 
 import Logica.Entidades.Enemigo;
+import Logica.Entidades.Plataforma;
 import Vistas.ConstantesVistas;
+
+import java.awt.Rectangle;
 import java.util.Random;
 
 public class ControladorEntidades extends Thread {
@@ -55,11 +58,34 @@ public class ControladorEntidades extends Thread {
                 if(r.nextInt(600) < 5) {
                     e.cambiarDireccion();
                 }
-                e.mover();
-            
 
+                if(sePuedeMoverHacia(e, e.getVelocidadX(), e.getY()) == null)
+                 e.moverX();
+
+                if(sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null){ //enemigo en el aire
+                    e.setEstaEnElAire(true);
+                    
+                }
+                else{
+                    e.setEstaEnElAire(false);
+                    
+                }
+                e.moverY();
         }
 
+
+    }
+    private Plataforma sePuedeMoverHacia(Enemigo e,int x, int y) {
+        Rectangle hitbox = new Rectangle(e.getBounds());
+        hitbox.setLocation(x, y);
+
+        Plataforma toRet = null;
+        for (Plataforma p : nivel.getPlataformas())
+            if (hitbox.intersects(p.getBounds())) {
+                toRet = p;
+            }
+
+        return toRet;
     }
 }  
 
