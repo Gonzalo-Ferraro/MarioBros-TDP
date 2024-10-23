@@ -47,7 +47,11 @@ public abstract class ModoDeJuego {
     public BloqueDePregunta crearBloquePregunta(int x, int y) {
         Sprite sprite = new Sprite(ruta + "/bloque-pregunta.gif");
         BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite);
+        EntidadGrafica entidadGrafica = new EntidadGrafica();
 
+        entidadGrafica.setSprite("bloque-pregunta-vacio", new Sprite(ruta+ "/bloque-pregunta-after-hit.png"));  
+        bloque.setEntidadGrafica(entidadGrafica);       
+           
         Random r = new Random();
 
         int resultado = r.nextInt(5);

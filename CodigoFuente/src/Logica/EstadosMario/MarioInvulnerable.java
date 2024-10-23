@@ -8,7 +8,19 @@ public class MarioInvulnerable extends EstadoMario {
 	public MarioInvulnerable(Personaje p, EstadoMario e) {
 		super(p);
         this.estadoAnterior = e;
+		
+		new Thread(() -> {
+			try {
+				Thread.sleep(ConstantesEstados.TIEMPO_INVULNERABLE * 1000); 
+			} catch (InterruptedException ex) {
+				ex.printStackTrace();
+			}
+			personaje.setEstado(this.estadoAnterior);
+			personaje.getJuego().getEntidadSonora().iniciarLoopMario();
+		}).start();
+
 	}
+	
 
 	@Override
 	public void setDerecha(boolean d, boolean i) {

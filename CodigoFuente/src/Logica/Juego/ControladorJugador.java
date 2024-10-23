@@ -6,7 +6,7 @@ import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
 import Vistas.ConstantesVistas;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+
 
 public class ControladorJugador implements Runnable {
     // Game loop thread
@@ -128,21 +128,16 @@ public class ControladorJugador implements Runnable {
     }
 
     private synchronized  void checkearColisionesConEnemigos() {
-        LinkedList<Enemigo> enemigosAEliminar = new LinkedList<>();
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
-                    e.serAfectadoPor(personaje);
-                    enemigosAEliminar.add(e);
+                    e.serAfectadoPor(personaje);   
                 } else {
                     e.afectarAMario(personaje);
                 }
             }
         }
 
-        for(Enemigo e : enemigosAEliminar) {
-            nivelActual.removerEntidad(e);
-        }
     }
 
     private void checkearColisionesConPowerUps() {

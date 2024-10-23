@@ -2,7 +2,6 @@ package Logica.Juego;
 
 import Logica.Entidades.Enemigo;
 import Vistas.ConstantesVistas;
-import java.util.Iterator;
 import java.util.Random;
 
 public class ControladorEntidades extends Thread {
@@ -50,21 +49,17 @@ public class ControladorEntidades extends Thread {
         
         private synchronized void moverEntidades(){
             
-            Iterator<Enemigo> it = nivel.getEnemigos().iterator();
             Random r = new Random();
-            
-            while(it.hasNext()){
-                Enemigo enemigoIt = it.next();
 
-                if(r.nextInt(500) < 5) {
-                    enemigoIt.cambiarDireccion();
+            for(Enemigo e : nivel.getEnemigos()){
+                if(r.nextInt(600) < 5) {
+                    e.cambiarDireccion();
                 }
-
-                enemigoIt.mover();
-                
-            }
+                e.mover();
+            
 
         }
 
-        
-}
+    }
+}  
+

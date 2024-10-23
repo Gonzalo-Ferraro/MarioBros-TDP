@@ -144,7 +144,9 @@ public class SuperMario extends EstadoMario {
 
     @Override
     public void serAfectadoPor(Estrella e) {
-       
+        personaje.setPuntaje(personaje.getPuntaje() + 20);
+        personaje.getJuego().getEntidadSonora().reproducirSonido("estrella");
+        personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
 
     @Override

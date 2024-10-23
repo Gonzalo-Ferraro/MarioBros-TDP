@@ -58,6 +58,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 
     public void setEstado(EstadoMario estado){
         this.estado = estado;
+        observador.actualizarImagen();
     }
 
     public void setPuntaje(int punt){        
@@ -199,9 +200,10 @@ public class Personaje extends Entidad implements EntidadJugador {
         direccion = 0;
 
         x = juego.getNivelActual().getPersonaje().getX();
-        y = juego.getNivelActual().getPersonaje().getY();
+        y = juego.getNivelActual().getPersonaje().getY() -30;
 
         observador.actualizarPosicionTamano();
+        observador.actualizarImagen();
 
         System.out.println("Reiniciando personaje");
     }

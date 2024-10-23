@@ -9,6 +9,15 @@ public class BloqueDePregunta extends BloqueSolido {
     }
 
     //falta ser afectado por
+    public void serAfectadoPor(Personaje p){
+        
+        if(miPowerUp != null){
+            this.sprite= entidadGrafica.getSprite("bloque-pregunta-vacio");
+            miPowerUp.afectarAMario(p);
+            miPowerUp = null;
+            this.observador.actualizarImagen();
+        }
+    }
 
     public void setPowerUp(PowerUp p){
         miPowerUp = p;
