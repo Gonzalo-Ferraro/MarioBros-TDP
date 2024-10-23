@@ -64,18 +64,41 @@ public class MarioInvulnerable extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+	public void actualizarAlCaer(boolean derecha,boolean izquierda){
+        this.derecha = derecha;
+        this.izquierda = izquierda;
+        Sprite spriteAsignar = null;
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+        } else {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
 
-	@Override
-	public void actualizarAlCaer(boolean derecha, boolean izquierda) {
-		estadoAnterior.actualizarAlCaer(derecha, izquierda);
-	}
-
-	
-
-	@Override
 	public void saltar(boolean derecha, boolean izquierda) {
-		estadoAnterior.saltar(derecha, izquierda);
-	}
+        this.derecha = derecha;
+        this.izquierda = izquierda;
+        personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
+        actualizarSpriteSaltar();
+    }
+
+    private void actualizarSpriteSaltar() {
+        Sprite spriteAsignar = null;
+
+        if (derecha) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+        } else if (izquierda) {
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+        }else{
+            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+        }
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
+    }
 
 	@Override
 	public void serAfectadoPor(Estrella estrella) {
