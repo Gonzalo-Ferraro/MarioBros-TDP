@@ -147,6 +147,6 @@ public class MarioNormal extends EstadoMario {
 
     @Override
     public void AfectarA(Goomba goomba) {
-        personaje.setPuntaje(personaje.getPuntaje()+60);
+        personaje.setPuntaje(60);
     }
 }

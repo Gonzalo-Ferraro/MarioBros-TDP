@@ -131,7 +131,8 @@ public class ControladorJugador implements Runnable {
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
-                    e.serAfectadoPor(personaje);   
+                    e.serAfectadoPor(personaje); 
+                    personaje.saltarLuegoDeColision();  
                 } else {
                     e.afectarAMario(personaje);
                 }

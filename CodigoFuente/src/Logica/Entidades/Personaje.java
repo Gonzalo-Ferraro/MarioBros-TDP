@@ -176,6 +176,10 @@ public class Personaje extends Entidad implements EntidadJugador {
         }
     }
     
+    public void saltarLuegoDeColision(){
+        estaEnElAire=false;
+        saltar();
+        }
 
     // COMPORTAMIENTO --------------------------------------------------------
     
