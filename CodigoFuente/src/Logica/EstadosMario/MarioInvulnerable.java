@@ -26,80 +26,21 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void setDerecha(boolean d, boolean i) {
-        derecha = d;
-        izquierda = i;
-        actualizarSprite();
+        estadoAnterior.setDerecha(d, i);
     }
 
 	@Override
 	public void setIzquierda(boolean d, boolean i) {
-        derecha = d;
-        izquierda = i;
-        actualizarSprite();
+       estadoAnterior.setIzquierda(d, i);
     }
 
-	private void actualizarSprite() {
-        Sprite spriteAsignar = null;
-
-        if (!personaje.estaEnElAire()) {
-            if (!derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-            } else if (derecha && izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
-            } else if (derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
-            } else if (izquierda && !derecha) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
-            }
-        } else {
-            if (!derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-            } else if (derecha && izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-            } else if (derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-            } else if (izquierda && !derecha) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-            }
-        }
-        
-        personaje.setSprite(spriteAsignar);
-        personaje.getObserver().actualizarImagen();
-    }
+	@Override
 	public void actualizarAlCaer(boolean derecha,boolean izquierda){
-        this.derecha = derecha;
-        this.izquierda = izquierda;
-        Sprite spriteAsignar = null;
-        if (derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
-        } else if (izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
-        } else {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-        }
-        personaje.setSprite(spriteAsignar);
-        personaje.getObserver().actualizarImagen();
+      estadoAnterior.actualizarAlCaer(derecha, izquierda);
     }
 
 	public void saltar(boolean derecha, boolean izquierda) {
-        this.derecha = derecha;
-        this.izquierda = izquierda;
-        personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
-        actualizarSpriteSaltar();
-    }
-
-    private void actualizarSpriteSaltar() {
-        Sprite spriteAsignar = null;
-
-        if (derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-        } else if (izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-        }else{
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-        }
-        personaje.setSprite(spriteAsignar);
-        personaje.getObserver().actualizarImagen();
+      estadoAnterior.saltar(derecha, izquierda);
     }
 
 	@Override
