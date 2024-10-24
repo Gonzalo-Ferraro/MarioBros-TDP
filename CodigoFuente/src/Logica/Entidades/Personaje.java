@@ -1,5 +1,6 @@
 package Logica.Entidades;
 
+import Datos.EntidadSonora;
 import Logica.EstadosMario.EstadoMario;
 import Logica.EstadosMario.MarioNormal;
 import Logica.Juego.Juego;
@@ -37,30 +38,17 @@ public class Personaje extends Entidad implements EntidadJugador {
         puntaje = 0;
     }
 
-    public EstadoMario getEstadoMario() {
-        return estado;
-    }
-
-    @Override
-    public int getPuntaje() {
-        return puntaje;
-    }
-
-    @Override
-    public int getVidas() {
-        return vidas;
-    }
-
+    // SETTERS ---------------------------------------------------------------
+    
     public void setJuego(Juego j) {
         juego = j;
     }
- 
-
+    
     public void setEstado(EstadoMario estado){
         this.estado = estado;
         observador.actualizarPosicionTamano();
     }
-
+    
     public void setPuntaje(int punt){        
         if(puntaje + punt <= 0)
             puntaje = 0;
@@ -68,30 +56,82 @@ public class Personaje extends Entidad implements EntidadJugador {
 
         juego.actualizarEtiquetaStatsPantallaJuego();
     }
-
-    public void aumentarVidas(){
-        vidas++;
-        juego.actualizarEtiquetaStatsPantallaJuego();
-    }
-
+    
     public void setVelocidadY(int v){
         velocidadY = v;
     }
-
+    
     public void setPosicionY(int y){
         this.y = y;
         observador.actualizarPosicionTamano();
     }
-
+    
+    
+    public void retroceder(){
+        this.x = x - ConstantesVistas.TAMANO_BLOQUE;
+        observador.actualizarPosicionTamano();
+    }
+        
+        
+    public void setSprite(Sprite s){
+        sprite = s;
+        observador.actualizarImagen();
+    }
+        
+    // GETTERS ---------------------------------------------------------------
+    
+    public EstadoMario getEstadoMario() {
+        return estado;
+    }
+    
+    @Override
+    public int getPuntaje() {
+        return puntaje;
+    }
+    
+    @Override
+    public int getVidas() {
+        return vidas;
+    }
+    
     public int getVelocidadY(){
         return velocidadY;
+    }
+    
+    public EntidadGrafica getEntidadGrafica(){
+        return entidadGrafica;
+    }
+    
+    @Override
+    public Observer getObserver() {
+        return observador;
+    }
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public EntidadSonora getEntidadSonora(){
+        return juego.getEntidadSonora();
+    }
+
+    // MOVIMIENTOS -----------------------------------------------------------
+    
+    public void setDerecha(boolean b) {
+        derecha = b;
+        estado.setDerecha(b, izquierda);
+    }
+
+    public void setIzquierda(boolean b) {
+        izquierda = b;
+        estado.setIzquierda(derecha, b);
     }
 
     public void moverY() {
         if (estaEnElAire) {
             velocidadY += ConstantesVistas.GRAVEDAD;
             y += velocidadY;
-
+            
             if(y > ConstantesVistas.VENTANA_ALTO){
                 //me cai al vacio
                 this.setPuntaje(-15);
@@ -113,57 +153,7 @@ public class Personaje extends Entidad implements EntidadJugador {
         observador.actualizarPosicionTamano();
 
     }
-
-    public void setPosicicionX(int x){
-        this.x = x;
-        observador.actualizarPosicionTamano();
-    }
-
-    public void setSprite(Sprite s){
-        sprite = s;
-        observador.actualizarImagen();
-    }
-
-    public EntidadGrafica getEntidadGrafica(){
-        return entidadGrafica;
-    }
-
-    public void setDerecha(boolean b) {
-        derecha = b;
-        estado.setDerecha(b, izquierda);
-    }
-
-    public void setIzquierda(boolean b) {
-        izquierda = b;
-        estado.setIzquierda(derecha, b);
-    }
-
-    public void perderVida() {
-        vidas--;
-        this.getJuego().getEntidadSonora().reproducirSonido("muerte");
-        
-        if (vidas == 0) 
-            this.getJuego().perdiste();
-        else 
-            this.getJuego().reiniciarNivel();
-    }
-
-    public Observer getObserver() {
-        return observador;
-    }
-
-    public boolean estaCayendo() {
-        return estaEnElAire && velocidadY > 0;
-    }
-
-    public boolean estaEnElAire() {
-        return estaEnElAire;
-    }
-
-    public void setEstaEnElAire(boolean b) {
-        estaEnElAire = b;
-    }
-
+    
     public int getVelocidadX() {
         int velocidadActual;
 
@@ -178,8 +168,6 @@ public class Personaje extends Entidad implements EntidadJugador {
         return velocidadActual;
     }
     
-    //falta implementar
-
     public void saltar(){
         if (!estaEnElAire) {
             estaEnElAire = true;
@@ -187,13 +175,46 @@ public class Personaje extends Entidad implements EntidadJugador {
             estado.saltar(derecha,izquierda);
         }
     }
+    
+
+    // COMPORTAMIENTO --------------------------------------------------------
+    
+    public void aumentarVidas(){
+        vidas++;
+        juego.actualizarEtiquetaStatsPantallaJuego();
+    }
+    
+    public void perderVida() {
+        vidas--;
+        getEntidadSonora().reproducirSonido("muerte");
+        
+        if (vidas == 0) 
+            this.getJuego().perdiste();
+        else 
+            this.getJuego().reiniciarNivel();
+    }
+
+    public boolean estaCayendo() {
+        return estaEnElAire && velocidadY > 0;
+    }
+
+    public boolean estaEnElAire() {
+        return estaEnElAire;
+    }
+
+    public void setEstaEnElAire(boolean b) {
+        estaEnElAire = b;
+    }
+
     public void actualizarAlCaer() {
         estado.actualizarAlCaer(derecha,izquierda);
     }
 
     public void espacio() {
-        //ver como hacer lo del efecto de bola de fuego
+        estado.espacio();
     }
+
+
     public void reiniciar() {
         estado = new MarioNormal(this);
 
@@ -210,21 +231,24 @@ public class Personaje extends Entidad implements EntidadJugador {
         System.out.println("Reiniciando personaje");
     }
 
+
+    // AFECTACIONES DE ENTIDADES A PERSONAJE --------------------------------------------
+
     public void serAfectadoPor(ChampignonVerde champignonVerde) {
-        juego.getEntidadSonora().reproducirSonido("vida");
+        getEntidadSonora().reproducirSonido("vida");
         estado.serAfectadoPor(champignonVerde);
     }
 
 
 	public void serAfectadoPor(Estrella estrella) {
-        juego.getEntidadSonora().reproducirSonido("estrella");
+        getEntidadSonora().reproducirSonido("estrella");
 		estado.serAfectadoPor(estrella);
         //LUEGO DEL TIMER juego.getEntidadSonora.detenerLoopEstrella();
 	}
 
 
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
-        juego.getEntidadSonora().reproducirSonido("powerup");
+        getEntidadSonora().reproducirSonido("powerup");
         estado.serAfectadoPor(florDeFuego);
 	 
 	}
@@ -256,7 +280,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 
 
 	public void serAfectadoPor(SuperChampignon superChampignon) {
-     juego.getEntidadSonora().reproducirSonido("powerup");
+        getEntidadSonora().reproducirSonido("powerup");
 	    estado.serAfectadoPor(superChampignon);
 	}
 
@@ -265,6 +289,8 @@ public class Personaje extends Entidad implements EntidadJugador {
 	    estado.serAfectadoPor(goomba);
 	}
 
+
+    // AFECTACIONES DE PERSONAJE A ENTIDADES ----------------------------------
 
 	public void AfectarA(LadrilloSolido ladrilloSolido) {
 	    estado.AfectarA(ladrilloSolido);
@@ -306,7 +332,7 @@ public class Personaje extends Entidad implements EntidadJugador {
 	}
 
     public void serAfectadoPor(Moneda moneda) {
-        juego.getEntidadSonora().reproducirSonido("moneda");
+        getEntidadSonora().reproducirSonido("moneda");
         estado.serAfectadoPor(moneda);
     }
 
@@ -314,10 +340,4 @@ public class Personaje extends Entidad implements EntidadJugador {
         estado.serAfectadoPor(vacio);
     }
 
-    public Juego getJuego() {
-        return juego;
-    }
-
-
-    
 }

@@ -91,7 +91,7 @@ public class MarioNormal extends EstadoMario {
     @Override
     public void serAfectadoPor(Estrella estrella) {
         personaje.setPuntaje(personaje.getPuntaje() + 20);
-        personaje.getJuego().getEntidadSonora().reproducirSonido("estrella");
+        personaje.getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
 
@@ -104,7 +104,7 @@ public class MarioNormal extends EstadoMario {
     @Override
     public void serAfectadoPor(SuperChampignon superChampignon) {
         personaje.setPuntaje(personaje.getPuntaje() + 10);
-        personaje.getJuego().getEntidadSonora().reproducirSonido("powerup");
+        personaje.getEntidadSonora().reproducirSonido("powerup");
         personaje.setEstado(new SuperMario(personaje));
     }
 

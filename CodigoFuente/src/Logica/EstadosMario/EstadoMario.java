@@ -73,7 +73,7 @@ public abstract class EstadoMario  {
 
     public  void serAfectadoPor(Moneda m){
         personaje.setPuntaje(5);
-        personaje.getJuego().getEntidadSonora().reproducirSonido("moneda");
+        personaje.getEntidadSonora().reproducirSonido("moneda");
     }
 
     public abstract void serAfectadoPor(FlorDeFuego f);

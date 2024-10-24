@@ -1,7 +1,5 @@
 package Logica.Fabricas;
 import Logica.Entidades.*;
-import Vistas.ConstantesVistas;
-
 import java.util.Random;
 
 public abstract class ModoDeJuego {
@@ -56,25 +54,21 @@ public abstract class ModoDeJuego {
 
 
         switch (resultado) {
-            case 0:
-                aSetear = new Moneda(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/moneda.gif"));
-            break;
+            case 0 -> aSetear = new Moneda(-100 , -100, new Sprite(ruta + "/moneda.gif"));
 
-            case 1:
-                aSetear = new ChampignonVerde(x, y - ConstantesVistas.TAMANO_BLOQUE + 20 , new Sprite(ruta + "/champinonverde.png"));
-            break;
+            case 1 -> aSetear = new ChampignonVerde(-100, -100, new Sprite(ruta + "/champinonverde.png"));
 
-            case 3:
-                aSetear = new FlorDeFuego(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/flordefuego.gif"));
-            break;
+            case 2 -> aSetear = new SuperChampignon(-100, -100, new Sprite(ruta + "/superchampinon.png"));
 
-            case 4:
-                aSetear = new Estrella(x, y - ConstantesVistas.TAMANO_BLOQUE + 20, new Sprite(ruta + "/estrella.gif"));
-            break;
+            case 3 -> aSetear = new FlorDeFuego(-100, -100, new Sprite(ruta + "/flordefuego.gif"));
+
+            case 4 -> aSetear = new Estrella(-100, -100, new Sprite(ruta + "/estrella.gif"));
         }
 
         Sprite sprite = new Sprite(ruta + "/bloque-pregunta.gif");
-        BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite,aSetear);
+        BloqueDePregunta bloque = new BloqueDePregunta(x, y, sprite);
+        bloque.setPowerUp(aSetear);
+
         EntidadGrafica entidadGrafica = new EntidadGrafica();
 
         entidadGrafica.setSprite("bloque-pregunta-vacio", new Sprite(ruta+ "/bloque-pregunta-after-hit.png"));  

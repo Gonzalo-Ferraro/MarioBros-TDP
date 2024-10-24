@@ -16,7 +16,7 @@ public class MarioInvulnerable extends EstadoMario {
 				ex.printStackTrace();
 			}
 			personaje.setEstado(this.estadoAnterior);
-			personaje.getJuego().getEntidadSonora().iniciarLoopMario();
+			personaje.getEntidadSonora().iniciarLoopMario();
 			personaje.setPosicionY(personaje.getY()-40);
 			
 		}).start();

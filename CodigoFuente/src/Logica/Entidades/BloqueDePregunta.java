@@ -1,27 +1,25 @@
 package Logica.Entidades;
 
+import Vistas.ConstantesVistas;
+
 public class BloqueDePregunta extends BloqueSolido {
 
     protected PowerUp miPowerUp;
-    private int powerUpx;
-    private int powerUpy;
 
-    public BloqueDePregunta(int x, int y, Sprite s,PowerUp pw){
-        super(x, y, s);
-        miPowerUp = pw;
-            
+    public BloqueDePregunta(int x, int y, Sprite s){
+        super(x, y, s);            
     }
 
-    //falta ser afectado por
+    @Override
     public void serAfectadoPor(Personaje p){
         
         if(miPowerUp != null){
-            miPowerUp.afectarAMario(p);
-            miPowerUp.desaparecer();
+            
+            miPowerUp.aparecer(this.x + 5, this.y - ConstantesVistas.TAMANO_BLOQUE + 20);
             miPowerUp = null;    
         }
         if(sprite != entidadGrafica.getSprite("bloque-pregunta-vacio")){
-            this.sprite= entidadGrafica.getSprite("bloque-pregunta-vacio");
+            this.sprite = entidadGrafica.getSprite("bloque-pregunta-vacio");
             this.observador.actualizarImagen();
         }
 
@@ -31,5 +29,9 @@ public class BloqueDePregunta extends BloqueSolido {
         return miPowerUp;
     }
 
+    public void setPowerUp(PowerUp p){
+        miPowerUp = p;
+    }
+    
     
 }

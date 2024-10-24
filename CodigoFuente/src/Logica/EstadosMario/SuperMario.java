@@ -16,7 +16,7 @@ public class SuperMario extends EstadoMario {
     public void serAfectadoPor(Goomba g) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     public void setDerecha(boolean d, boolean i) {
@@ -106,35 +106,35 @@ public class SuperMario extends EstadoMario {
     public void serAfectadoPor(KoopaTroopa k) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     @Override
     public void serAfectadoPor(PiranhaPlant p) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     @Override
     public void serAfectadoPor(Lakitu l) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     @Override
     public void serAfectadoPor(Spiny s) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     @Override
     public void serAfectadoPor(BuzzyBeetle b) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.setPosicicionX(personaje.getX() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
     }
 
     @Override
@@ -145,7 +145,7 @@ public class SuperMario extends EstadoMario {
     @Override
     public void serAfectadoPor(Estrella e) {
         personaje.setPuntaje(30);
-        personaje.getJuego().getEntidadSonora().reproducirSonido("estrella");
+        personaje.getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
 
