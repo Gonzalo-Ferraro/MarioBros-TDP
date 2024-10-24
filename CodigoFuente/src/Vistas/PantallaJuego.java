@@ -7,8 +7,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +27,8 @@ public class PantallaJuego extends JPanel {
 
     protected JLabel etiquetaVidas;
     protected JLabel etiquetaPuntaje;
+    protected JLabel etiquetaVidasContorno;
+    protected JLabel etiquetaPuntajeContorno;
 
     protected EntidadJugador personaje;
 
@@ -84,18 +89,34 @@ public class PantallaJuego extends JPanel {
     }
 
     private void crearEtiquetas() {
+        etiquetaVidasContorno = new JLabel(String.valueOf("Vidas: " + personaje.getVidas()), SwingConstants.CENTER);
+        etiquetaPuntajeContorno  = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
         etiquetaVidas = new JLabel(String.valueOf("Vidas: " + personaje.getVidas()), SwingConstants.CENTER);
         etiquetaPuntaje = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
+        Font fuenteContorno;
+        Font fuente;
     
         // Establecer el color de texto blanco
+        etiquetaVidasContorno.setForeground(Color.BLACK); 
+        etiquetaPuntajeContorno.setForeground(Color.BLACK); 
         etiquetaVidas.setForeground(Color.WHITE); 
         etiquetaPuntaje.setForeground(Color.WHITE); 
     
         // Establecer la fuente
-        Font font = new Font("Arial", Font.PLAIN, 45);
-        etiquetaPuntaje.setFont(font);
-        etiquetaVidas.setFont(font);
-    
+        try {
+            fuenteContorno = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
+            fuente = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
+            etiquetaPuntajeContorno.setFont(fuenteContorno);
+            etiquetaVidasContorno.setFont(fuenteContorno);
+            etiquetaPuntaje.setFont(fuente);
+            etiquetaVidas.setFont(fuente);
+        } catch (FontFormatException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        etiquetaPuntajeContorno.setBounds(130, 15,300, 60);
+        etiquetaVidasContorno.setBounds(955,15,250,60);
         etiquetaPuntaje.setBounds(125, 15,300, 60);
         etiquetaVidas.setBounds(950,15,250,60);
     }
@@ -103,6 +124,8 @@ public class PantallaJuego extends JPanel {
     private void agregarEtiquetasPanel() {
         imagenFondo.add(etiquetaPuntaje);
         imagenFondo.add(etiquetaVidas);
+        imagenFondo.add(etiquetaPuntajeContorno);
+        imagenFondo.add(etiquetaVidasContorno);
     }
 
     public Observer incorporarFondo(Fondo fondo) {
@@ -128,6 +151,8 @@ public class PantallaJuego extends JPanel {
                 
 
                 int scrollValue = panelScrollJuego.getHorizontalScrollBar().getValue();
+                etiquetaPuntajeContorno.setLocation(new Point(scrollValue + 130, etiquetaPuntaje.getY()));
+                etiquetaVidasContorno.setLocation(new Point(scrollValue + 955, etiquetaVidas.getY()));
                 etiquetaPuntaje.setLocation(new Point(scrollValue + 125, etiquetaPuntaje.getY()));
                 etiquetaVidas.setLocation(new Point(scrollValue + 950, etiquetaVidas.getY()));
             }
@@ -151,6 +176,8 @@ public class PantallaJuego extends JPanel {
     }
 
     public void actualizarEtiquetaStatsPantallaJuego() {
+        etiquetaPuntajeContorno.setText("Puntaje: " + personaje.getPuntaje());
+        etiquetaVidasContorno.setText("Vidas: " + personaje.getVidas());
         etiquetaPuntaje.setText("Puntaje: " + personaje.getPuntaje());
         etiquetaVidas.setText("Vidas: " + personaje.getVidas());
     }
