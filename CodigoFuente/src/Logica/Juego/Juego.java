@@ -166,8 +166,9 @@ public class Juego {
         controladorJugador.detener();
 
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
+        controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel());
 
-        nivelActual = generadorDeNiveles.generarNivel(modo, 1);
+        nivelActual = generadorDeNiveles.generarNivel(modo, nivelActual.getNumeroNivel());
         personaje.reiniciar();
 
         inicializarNivel();
@@ -175,5 +176,29 @@ public class Juego {
 
     public void actualizarEtiquetaStatsPantallaJuego() {
         controladorVistas.actualizarEtiquetaStatsPantallaJuego();
+    }
+
+    public void pasarNivel(){
+        try {
+            Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Pasando de nivel");
+
+        controladorEntidades.detener();
+        controladorJugador.detener();
+
+        controladorVistas.crearPantallaJuego(obtenerPersonaje());
+        controladorVistas.getPantallaStats().actualizarValores(2);
+
+        nivelActual = generadorDeNiveles.generarNivel(modo,nivelActual.getNumeroNivel() + 1);
+        nivelActual.setPersonaje(personaje);
+
+        personaje.reiniciar();
+
+        inicializarNivel();
+
     }
 }

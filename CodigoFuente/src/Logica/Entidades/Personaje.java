@@ -150,6 +150,11 @@ public class Personaje extends Entidad implements EntidadJugador {
          if (izquierda) {
             x -= velocidadX;
         }
+
+        if (getX() >= 12592) {
+            juego.pasarNivel();
+        }
+
         observador.actualizarPosicionTamano();
 
     }
@@ -226,8 +231,8 @@ public class Personaje extends Entidad implements EntidadJugador {
         velocidadY = 0;
         direccion = 0;
 
-        x = juego.getNivelActual().getPersonaje().getX();
-        y = juego.getNivelActual().getPersonaje().getY() -30;
+        x = ConstantesVistas.POSICION_INICIAL_X;
+        y = ConstantesVistas.POSICION_INICIAL_Y;
 
         observador.actualizarPosicionTamano();
         observador.actualizarImagen();

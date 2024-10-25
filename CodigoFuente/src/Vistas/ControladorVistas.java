@@ -143,4 +143,8 @@ public class ControladorVistas extends JFrame implements KeyListener {
     public void actualizarEtiquetaStatsPantallaJuego() {
         pantallaJuego.actualizarEtiquetaStatsPantallaJuego();
     }
+
+    public PantallaStats getPantallaStats(){
+        return pantallaStats;
+    }
 }

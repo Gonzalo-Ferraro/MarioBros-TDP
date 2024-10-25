@@ -4,7 +4,6 @@ package Vistas;
 import Logica.Entidades.EntidadJugador;
 import java.awt.*;
 import java.io.IOException;
-
 import javax.swing.*;
 
 
@@ -80,9 +79,20 @@ public class PantallaStats extends JPanel  {
         
     }
     
-    public void actualizarValores(int nivel) {
-        etiquetaVidas.setText(String.valueOf(personaje.getVidas())); 
-        etiquetaPuntaje.setText(String.valueOf(personaje.getPuntaje()));
-        etiquetaNivel.setText(String.valueOf(this.nivel));
+    public void actualizarValores(int nuevoNivel) {
+        System.out.println("Estoy actualizando los valores");
+        
+        System.out.println(nivel);
+        System.out.println(nuevoNivel);
+
+        // Actualizar el texto de las etiquetas
+        etiquetaVidas.setText("x   " + personaje.getVidas());
+        etiquetaPuntaje.setText("Puntaje: " + personaje.getPuntaje());
+        etiquetaNivel.setText("Nivel: " + nuevoNivel);
+
+        // Forzar la actualización de la interfaz
+        revalidate();
+        repaint();
     }
+    
 }
