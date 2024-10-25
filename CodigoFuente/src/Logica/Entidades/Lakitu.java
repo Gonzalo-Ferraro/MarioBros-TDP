@@ -20,7 +20,6 @@ public class Lakitu extends Enemigo {
 
     public void moverX(){
         super.moverX();
-        
         if (direccion == -1)
            sprite = entidadGrafica.getSprite("lakitu-izquierda");
         else

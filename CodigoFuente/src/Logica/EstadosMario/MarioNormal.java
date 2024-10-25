@@ -90,20 +90,20 @@ public class MarioNormal extends EstadoMario {
 
     @Override
     public void serAfectadoPor(Estrella estrella) {
-        personaje.setPuntaje(personaje.getPuntaje() + 20);
+        personaje.setPuntaje( 20);
         personaje.getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
 
     @Override
     public void serAfectadoPor(FlorDeFuego florDeFuego) {
-        personaje.setPuntaje(personaje.getPuntaje() + 5);
+        personaje.setPuntaje( 5);
         personaje.setEstado(new MarioFlorDeFuego(personaje));
     }
 
     @Override
     public void serAfectadoPor(SuperChampignon superChampignon) {
-        personaje.setPuntaje(personaje.getPuntaje() + 10);
+        personaje.setPuntaje( 10);
         personaje.getEntidadSonora().reproducirSonido("powerup");
         personaje.setEstado(new SuperMario(personaje));
     }

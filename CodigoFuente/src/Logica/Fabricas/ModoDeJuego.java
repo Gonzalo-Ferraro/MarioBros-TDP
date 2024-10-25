@@ -124,7 +124,7 @@ public abstract class ModoDeJuego {
         EntidadGrafica entidadGrafica = new EntidadGrafica();
         entidadGrafica.setSprite("koopa-troopa-izquierda", new Sprite(ruta + "/koopa-troopa-izquierda.gif"));
         entidadGrafica.setSprite("koopa-troopa-derecha", new Sprite(ruta + "/koopa-troopa-derecha.gif"));
-        entidadGrafica.setSprite("koopa-troopa-caparazon", new Sprite(ruta + "/koopa-troopa-caparazon.gif"));
+        entidadGrafica.setSprite("koopa-troopa-caparazon", new Sprite(ruta + "/koopa-troopa-caparazon.png"));
         KoopaTroopa koopa = new KoopaTroopa(x, y, entidadGrafica.getSprite("koopa-troopa-izquierda"));
         koopa.setEntidadGrafica(entidadGrafica);
         return koopa;

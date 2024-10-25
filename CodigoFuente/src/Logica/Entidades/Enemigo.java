@@ -43,9 +43,6 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
     }
 
     public void cambiarDireccion(){
-        if (direccion == -1)
-            direccion = 1;
-        else
-            direccion = -1;
+        direccion= direccion * -1;
     }
 }

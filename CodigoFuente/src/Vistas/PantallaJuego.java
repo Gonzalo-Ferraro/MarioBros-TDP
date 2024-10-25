@@ -111,7 +111,6 @@ public class PantallaJuego extends JPanel {
             etiquetaPuntaje.setFont(fuente);
             etiquetaVidas.setFont(fuente);
         } catch (FontFormatException | IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         

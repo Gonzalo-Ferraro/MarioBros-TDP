@@ -58,9 +58,9 @@ public class ControladorEntidades extends Thread {
                 if(r.nextInt(600) < 5) {
                     e.cambiarDireccion();
                 }
-
                 if(sePuedeMoverHacia(e, e.getVelocidadX(), e.getY()) == null)
                  e.moverX();
+                
 
                 if(sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null){ //enemigo en el aire
                     e.setEstaEnElAire(true);

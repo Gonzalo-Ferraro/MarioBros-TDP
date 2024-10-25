@@ -170,7 +170,7 @@ public class GeneradorDeNiveles {
             case 'k':
                 KoopaTroopa koopaGenerado = modo.crearKoopaTroopa(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20 * 3
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 61
                 );
                 nivel.ingresarEntidad(koopaGenerado);
                 break;
@@ -186,7 +186,7 @@ public class GeneradorDeNiveles {
             case 's':
                 Spiny spinyGenerado = modo.crearSpiny(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
-                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
+                    indiceLinea * ConstantesVistas.TAMANO_BLOQUE -20* 3 
                 );
                 nivel.ingresarEntidad(spinyGenerado);
                 break;
