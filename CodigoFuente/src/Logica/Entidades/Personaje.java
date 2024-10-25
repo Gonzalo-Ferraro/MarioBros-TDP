@@ -151,7 +151,7 @@ public class Personaje extends Entidad implements EntidadJugador {
             x -= velocidadX;
         }
 
-        if (getX() >= 12592) {
+        if (getX() >= 2000) {
             juego.pasarNivel();
         }
 
@@ -196,9 +196,11 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void perderVida() {
         vidas--;
         getEntidadSonora().reproducirSonido("muerte");
-        
-        if (vidas == 0) 
+        estado.eliminar();
+
+        if (vidas == 0) { 
             this.getJuego().perdiste();
+        }
         else 
             this.getJuego().reiniciarNivel();
     }
@@ -232,12 +234,22 @@ public class Personaje extends Entidad implements EntidadJugador {
         direccion = 0;
 
         x = ConstantesVistas.POSICION_INICIAL_X;
-        y = ConstantesVistas.POSICION_INICIAL_Y;
+        y = ConstantesVistas.POSICION_INICIAL_Y - 30;
 
-        observador.actualizarPosicionTamano();
         observador.actualizarImagen();
+        observador.actualizarPosicionTamano();
+    }
 
-        System.out.println("Reiniciando personaje");
+    public void pasarNivelPersonaje() {
+        velocidadX = 7;
+        velocidadY = 0;
+        direccion = 0;
+
+        x = ConstantesVistas.POSICION_INICIAL_X;
+        y = ConstantesVistas.POSICION_INICIAL_Y - 30;
+
+        observador.actualizarImagen();
+        observador.actualizarPosicionTamano();
     }
 
 

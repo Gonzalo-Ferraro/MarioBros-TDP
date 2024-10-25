@@ -3,9 +3,18 @@ package Logica.EstadosMario;
 import Logica.Entidades.*;
 
 public class MarioNormal extends EstadoMario {
+    private boolean muerto;
 
     public MarioNormal(Personaje p) {
         super(p);
+        muerto = false;
+    }
+
+    public void eliminar() {
+        muerto = true;
+        Sprite spriteAsignar = personaje.getEntidadGrafica().getSprite("mario-eliminado");
+        personaje.setSprite(spriteAsignar);
+        personaje.getObserver().actualizarImagen();
     }
 
     @Override
@@ -23,27 +32,29 @@ public class MarioNormal extends EstadoMario {
     }
 
     private void actualizarSprite() {
-        Sprite spriteAsignar = null;
+        Sprite spriteAsignar = personaje.getEntidadGrafica().getSprite("mario-eliminado");
 
-        if (!personaje.estaEnElAire()) {
-            if (!derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
-            } else if (derecha && izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
-            } else if (derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
-            } else if (izquierda && !derecha) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
-            }
-        } else {
-            if (!derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-            } else if (derecha && izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-            } else if (derecha && !izquierda) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-            } else if (izquierda && !derecha) {
-                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+        if(!muerto) {
+            if (!personaje.estaEnElAire()) {
+                if (!derecha && !izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-derecha");
+                } else if (derecha && izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-quieto-izquierda");
+                } else if (derecha && !izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-derecha");
+                } else if (izquierda && !derecha) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-movimiento-izquierda");
+                }
+            } else {
+                if (!derecha && !izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+                } else if (derecha && izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+                } else if (derecha && !izquierda) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+                } else if (izquierda && !derecha) {
+                    spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+                }
             }
         }
         
@@ -59,15 +70,18 @@ public class MarioNormal extends EstadoMario {
     }
 
     private void actualizarSpriteSaltar() {
-        Sprite spriteAsignar = null;
-
-        if (derecha) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
-        } else if (izquierda) {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-        } else {
-            spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+        Sprite spriteAsignar = personaje.getEntidadGrafica().getSprite("mario-eliminado");
+        
+        if(!muerto) {
+            if (derecha) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+            } else if (izquierda) {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
+            } else {
+                spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
+            }
         }
+
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }

@@ -24,7 +24,7 @@ public class PantallaStats extends JPanel  {
         controladorVistas = c;
         personaje = p;
 
-        nivel = 1;
+        nivel = personaje.getJuego().obtenerNivel().getNumeroNivel();;
         this.setLayout(null);
 
         insertarFondo();
@@ -44,7 +44,7 @@ public class PantallaStats extends JPanel  {
         g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
     }
 
-    private void  crearEtiquetas() {
+    private void crearEtiquetas() {
         etiquetaVidas = new JLabel(String.valueOf("x   " + personaje.getVidas()), SwingConstants.CENTER);
         etiquetaPuntaje = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
         etiquetaNivel = new JLabel(String.valueOf("Nivel: " + nivel),SwingConstants.CENTER);
@@ -76,14 +76,9 @@ public class PantallaStats extends JPanel  {
         this.add(etiquetaNivel);
         this.add(etiquetaVidas);
         this.add(etiquetaPuntaje);
-        
     }
     
     public void actualizarValores(int nuevoNivel) {
-        System.out.println("Estoy actualizando los valores");
-        
-        System.out.println(nivel);
-        System.out.println(nuevoNivel);
 
         // Actualizar el texto de las etiquetas
         etiquetaVidas.setText("x   " + personaje.getVidas());

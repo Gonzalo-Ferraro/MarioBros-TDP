@@ -34,6 +34,11 @@ public abstract class EstadoMario  {
     public abstract void saltar(boolean derecha, boolean izquierda);
     public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
 
+    //Revisar si es necesario, sino borrarlo
+    public void eliminar(){
+
+    }
+
     //Ser afectado por ENEMIGOS
     public void serAfectadoPor(Goomba g){
         personaje.setPuntaje(-30);

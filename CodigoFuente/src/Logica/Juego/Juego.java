@@ -65,10 +65,10 @@ public class Juego {
     }
 
     private void inicializarNivel() {
+        obtenerPersonaje().setJuego(this);
+
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
         controladorVistas.crearPantallaStats(obtenerPersonaje());
-
-        obtenerPersonaje().setJuego(this);
 
         registrarObservers();
 
@@ -135,6 +135,10 @@ public class Juego {
         return personaje;
     }
 
+    public Nivel obtenerNivel() {
+        return nivelActual;
+    }
+
     public void setDerecha(boolean d){
         personaje.setDerecha(d);
     }    
@@ -154,13 +158,13 @@ public class Juego {
     }
 
     public void reiniciarNivel() {
+        
+
         try {
             Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Reiniciando nivel");
 
         controladorEntidades.detener();
         controladorJugador.detener();
@@ -169,8 +173,9 @@ public class Juego {
         controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel());
 
         nivelActual = generadorDeNiveles.generarNivel(modo, nivelActual.getNumeroNivel());
-        personaje.reiniciar();
 
+        personaje.reiniciar();
+        
         inicializarNivel();
     }    
 
@@ -179,13 +184,13 @@ public class Juego {
     }
 
     public void pasarNivel(){
+        personaje.pasarNivelPersonaje();
+
         try {
             Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Pasando de nivel");
 
         controladorEntidades.detener();
         controladorJugador.detener();
@@ -195,8 +200,6 @@ public class Juego {
 
         nivelActual = generadorDeNiveles.generarNivel(modo,nivelActual.getNumeroNivel() + 1);
         nivelActual.setPersonaje(personaje);
-
-        personaje.reiniciar();
 
         inicializarNivel();
 
