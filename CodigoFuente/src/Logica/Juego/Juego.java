@@ -65,10 +65,10 @@ public class Juego {
     }
 
     private void inicializarNivel() {
+        obtenerPersonaje().setJuego(this);
+
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
         controladorVistas.crearPantallaStats(obtenerPersonaje());
-
-        obtenerPersonaje().setJuego(this);
 
         registrarObservers();
 
@@ -133,6 +133,10 @@ public class Juego {
     
     public Personaje obtenerPersonaje() {
         return personaje;
+    }
+
+    public Nivel obtenerNivel() {
+        return nivelActual;
     }
 
     public void setDerecha(boolean d){
