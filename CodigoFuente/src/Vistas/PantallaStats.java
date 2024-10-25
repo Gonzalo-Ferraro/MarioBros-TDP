@@ -24,7 +24,7 @@ public class PantallaStats extends JPanel  {
         controladorVistas = c;
         personaje = p;
 
-        nivel = 1;
+        nivel = personaje.getJuego().obtenerNivel().getNumeroNivel();
         this.setLayout(null);
 
         insertarFondo();
