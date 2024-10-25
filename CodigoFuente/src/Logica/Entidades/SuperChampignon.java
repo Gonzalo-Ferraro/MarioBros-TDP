@@ -10,7 +10,7 @@ public class SuperChampignon extends PowerUp {
     @Override
     public void afectarAMario(Personaje personaje) {
         personaje.serAfectadoPor(this);
-        if(this.observador!=null)
+        if(this.observador != null)
             desaparecer();
     }
 }

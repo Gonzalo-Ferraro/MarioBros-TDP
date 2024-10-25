@@ -87,11 +87,10 @@ public class MarioFlorDeFuego extends SuperMario{
     }
 
 
-      @Override
-      public void serAfectadoPor(FlorDeFuego f) {}
-      public void AfectarA(PiranhaPlant P){}
-
-
+    @Override
+    public void serAfectadoPor(FlorDeFuego f) {
+        personaje.setPuntaje(50);
+    }
 
 }
 

@@ -5,11 +5,11 @@ public class KoopaTroopaCaparazon  implements EstadoKoopaTroopa {
     private EntidadGrafica entidadGrafica;
 
     public KoopaTroopaCaparazon(KoopaTroopa k){
-        koopa= k;
+        koopa = k;
     }
 
     public void setEntidadGrafica(EntidadGrafica e){
-        entidadGrafica=e;
+        entidadGrafica = e;
     }
 
     public void serAfectadoPor(Personaje p){
@@ -23,5 +23,4 @@ public class KoopaTroopaCaparazon  implements EstadoKoopaTroopa {
     public Sprite moverX(){
         return entidadGrafica.getSprite("koopa-troopa-caparazon");
     }
-
 }

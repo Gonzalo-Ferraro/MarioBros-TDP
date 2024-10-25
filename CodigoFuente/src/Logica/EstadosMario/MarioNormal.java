@@ -65,7 +65,7 @@ public class MarioNormal extends EstadoMario {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
         } else if (izquierda) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-izquierda");
-        }else{
+        } else {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("marionormal-saltando-derecha");
         }
         personaje.setSprite(spriteAsignar);
@@ -88,65 +88,37 @@ public class MarioNormal extends EstadoMario {
         personaje.getObserver().actualizarImagen();
     }
 
+
+    //POWER-UPS
     @Override
     public void serAfectadoPor(Estrella estrella) {
-        personaje.setPuntaje( 20);
+        personaje.setPuntaje(20);
         personaje.getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
 
     @Override
     public void serAfectadoPor(FlorDeFuego florDeFuego) {
-        personaje.setPuntaje( 5);
+        personaje.setPuntaje(5);
         personaje.setEstado(new MarioFlorDeFuego(personaje));
     }
 
     @Override
     public void serAfectadoPor(SuperChampignon superChampignon) {
-        personaje.setPuntaje( 10);
+        personaje.setPuntaje(10);
         personaje.getEntidadSonora().reproducirSonido("powerup");
         personaje.setEstado(new SuperMario(personaje));
     }
 
-    // LOS serAfectadoPor concretos en la clase EstadoMario fueron eliminados ( agregar en caso de querer usarlo para sprites )
+    // Los serAfectadoPor concretos en la clase EstadoMario fueron eliminados ( agregar en caso de querer usarlo para sprites )
 
     @Override
     public void AfectarA(LadrilloSolido ladrilloSolido) {
-        
+        //Mario en estado normal no puede romper bloques de ladrillo
     }
 
     @Override
     public void AfectarA(BloqueDePregunta bloqueDePregunta) {
-        
-    }
-
-    @Override
-    public void AfectarA(BuzzyBeetle buzzyBeetle) {
-        
-    }
-
-    @Override
-    public void AfectarA(Spiny spiny) {
-        
-    }
-
-    @Override
-    public void AfectarA(Lakitu lakitu) {
-        
-    }
-
-    @Override
-    public void AfectarA(PiranhaPlant piranhaPlant) {
-        
-    }
-
-    @Override
-    public void AfectarA(KoopaTroopa koopaTroopa) {
-        
-    }
-
-    @Override
-    public void AfectarA(Goomba goomba) {
-        personaje.setPuntaje(60);
+        // ??
     }
 }

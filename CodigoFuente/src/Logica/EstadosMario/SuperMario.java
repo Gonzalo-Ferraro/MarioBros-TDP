@@ -98,11 +98,6 @@ public class SuperMario extends EstadoMario {
     }
 
     @Override
-    public void serAfectadoPor(SuperChampignon s) {
-        personaje.setPuntaje( 50);
-    }
-
-    @Override
     public void serAfectadoPor(KoopaTroopa k) {
         personaje.setEstado(new MarioNormal(personaje)); 
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
@@ -138,8 +133,14 @@ public class SuperMario extends EstadoMario {
     }
 
     @Override
+    public void serAfectadoPor(SuperChampignon s) {
+        personaje.setPuntaje(50);
+    }
+
+    @Override
     public void serAfectadoPor(FlorDeFuego f) {
-       
+        personaje.setPuntaje(30);
+        personaje.setEstado(new MarioFlorDeFuego(personaje));
     }
 
     @Override
@@ -150,47 +151,7 @@ public class SuperMario extends EstadoMario {
     }
 
     @Override
-    public void AfectarA(Goomba g) {
-    }
-
-    @Override
-    public void AfectarA(KoopaTroopa k) {
-        
-    }
-
-    @Override
-    public void AfectarA(PiranhaPlant p) {
-        
-    }
-
-    @Override
-    public void AfectarA(Lakitu l) {
-        
-    }
-
-    @Override
-    public void AfectarA(Spiny s) {
-        
-    }
-
-    @Override
-    public void AfectarA(BuzzyBeetle b) {
-        
-    }
-
-    @Override
-    public void AfectarA(BloqueDePregunta bloq) {
-        bloq.serAfectadoPor(personaje);
-    }
-
-    @Override
     public void AfectarA(LadrilloSolido ladrillo) {
         ladrillo.desaparecer();
     }
-
-    
-
-    
-    
-
 }

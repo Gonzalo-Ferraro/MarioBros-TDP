@@ -172,14 +172,14 @@ public class Personaje extends Entidad implements EntidadJugador {
         if (!estaEnElAire) {
             estaEnElAire = true;
             juego.getEntidadSonora().reproducirSonido("salto");
-            estado.saltar(derecha,izquierda);
+            estado.saltar(derecha, izquierda);
         }
     }
     
     public void saltarLuegoDeColision(){
-        estaEnElAire=false;
+        estaEnElAire = false;
         saltar();
-        }
+    }
 
     // COMPORTAMIENTO --------------------------------------------------------
     
@@ -243,13 +243,11 @@ public class Personaje extends Entidad implements EntidadJugador {
         estado.serAfectadoPor(champignonVerde);
     }
 
-
 	public void serAfectadoPor(Estrella estrella) {
         getEntidadSonora().reproducirSonido("estrella");
 		estado.serAfectadoPor(estrella);
         //LUEGO DEL TIMER juego.getEntidadSonora.detenerLoopEstrella();
 	}
-
 
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
         getEntidadSonora().reproducirSonido("powerup");
@@ -257,42 +255,43 @@ public class Personaje extends Entidad implements EntidadJugador {
 	 
 	}
 
+    public void serAfectadoPor(SuperChampignon superChampignon) {
+        getEntidadSonora().reproducirSonido("powerup");
+	    estado.serAfectadoPor(superChampignon);
+	}
+
+    public void serAfectadoPor(Moneda moneda) {
+        getEntidadSonora().reproducirSonido("moneda");
+        estado.serAfectadoPor(moneda);
+    }
 
 	public void serAfectadoPor(BuzzyBeetle buzzyBeetle) {
 	    estado.serAfectadoPor(buzzyBeetle);
 	}
 
-
 	public void serAfectadoPor(Spiny spiny) {
 	    estado.serAfectadoPor(spiny);
 	}
-
 
 	public void serAfectadoPor(Lakitu lakitu) {
 	    estado.serAfectadoPor(lakitu);
 	}
 
-
 	public void serAfectadoPor(PiranhaPlant piranhaPlant) {
 	    estado.serAfectadoPor(piranhaPlant);
 	}
-
 
 	public void serAfectadoPor(KoopaTroopa koopaTroopa) {
 	    estado.serAfectadoPor(koopaTroopa);
 	}
 
-
-	public void serAfectadoPor(SuperChampignon superChampignon) {
-        getEntidadSonora().reproducirSonido("powerup");
-	    estado.serAfectadoPor(superChampignon);
-	}
-
-
-	public void serAfectadoPor(Goomba goomba) {
+    public void serAfectadoPor(Goomba goomba) {
 	    estado.serAfectadoPor(goomba);
 	}
 
+    public void serAfectadoPor(Vacio vacio) {
+        estado.serAfectadoPor(vacio);
+    }
 
     // AFECTACIONES DE PERSONAJE A ENTIDADES ----------------------------------
 
@@ -334,14 +333,5 @@ public class Personaje extends Entidad implements EntidadJugador {
 	public void AfectarA(Goomba goomba) {
 	    estado.AfectarA(goomba);
 	}
-
-    public void serAfectadoPor(Moneda moneda) {
-        getEntidadSonora().reproducirSonido("moneda");
-        estado.serAfectadoPor(moneda);
-    }
-
-    public void serAfectadoPor(Vacio vacio) {
-        estado.serAfectadoPor(vacio);
-    }
 
 }

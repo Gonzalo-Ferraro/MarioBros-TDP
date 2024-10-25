@@ -127,7 +127,7 @@ public class ControladorJugador implements Runnable {
         checkearColisionesConPowerUps();
     }
 
-    private synchronized  void checkearColisionesConEnemigos() {
+    private synchronized void checkearColisionesConEnemigos() {
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
@@ -138,7 +138,6 @@ public class ControladorJugador implements Runnable {
                 }
             }
         }
-
     }
 
     private void checkearColisionesConPowerUps() {

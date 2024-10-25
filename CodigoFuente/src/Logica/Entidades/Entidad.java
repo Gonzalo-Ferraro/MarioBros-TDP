@@ -57,8 +57,6 @@ public abstract class Entidad implements EntidadLogica {
         return observador;
     }
 
-    
-
     public void desaparecer() {
         x = -100;
         y = -100;

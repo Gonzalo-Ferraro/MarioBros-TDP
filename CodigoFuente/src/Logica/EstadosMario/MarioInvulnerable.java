@@ -22,7 +22,6 @@ public class MarioInvulnerable extends EstadoMario {
 		}).start();
 
 	}
-	
 
 	@Override
 	public void setDerecha(boolean d, boolean i) {
@@ -50,6 +49,11 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
+		// Implementation here
+	}
+
+	@Override
+	public void serAfectadoPor(SuperChampignon superChampignon) {
 		// Implementation here
 	}
 
@@ -84,56 +88,13 @@ public class MarioInvulnerable extends EstadoMario {
 	}
 
 	@Override
-	public void serAfectadoPor(SuperChampignon superChampignon) {
-		// Implementation here
-	}
-
-	@Override
 	public void serAfectadoPor(Goomba goomba) {
 		this.AfectarA(goomba);
         goomba.desaparecer();
 	}
 
 	@Override
-	public void AfectarA(LadrilloSolido ladrilloSolido) {
-		// Implementation here
+	public void AfectarA(LadrilloSolido ladrillo) {
+		ladrillo.desaparecer();
 	}
-
-	@Override
-	public void AfectarA(BloqueDePregunta bloqueDePregunta) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(BuzzyBeetle buzzyBeetle) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(Spiny spiny) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(Lakitu lakitu) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(PiranhaPlant piranhaPlant) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(KoopaTroopa koopaTroopa) {
-		// Implementation here
-	}
-
-	@Override
-	public void AfectarA(Goomba goomba) {
-		// Implementation here
-	}
-
-	
-	
 }

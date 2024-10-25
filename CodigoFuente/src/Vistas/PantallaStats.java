@@ -3,6 +3,8 @@ package Vistas;
 
 import Logica.Entidades.EntidadJugador;
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 
@@ -32,8 +34,8 @@ public class PantallaStats extends JPanel  {
     }
 
     private void insertarFondo(){
-            ImageIcon iconoImagen = new ImageIcon(getClass().getResource(rutaImagen));
-            imagenFondo = iconoImagen.getImage();
+        ImageIcon iconoImagen = new ImageIcon(getClass().getResource(rutaImagen));
+        imagenFondo = iconoImagen.getImage();
     }
 
     @Override
@@ -44,19 +46,9 @@ public class PantallaStats extends JPanel  {
     }
 
     private void  crearEtiquetas() {
-        etiquetaVidas = new JLabel(String.valueOf(personaje.getVidas()), SwingConstants.CENTER);
-        etiquetaPuntaje = new JLabel(String.valueOf(personaje.getPuntaje()), SwingConstants.CENTER);
-        etiquetaNivel = new JLabel(String.valueOf(nivel),SwingConstants.CENTER);
-    
-        // Hacer que las etiquetas sean opacas para que el fondo se muestre
-        etiquetaVidas.setOpaque(true);
-        etiquetaPuntaje.setOpaque(true);
-        etiquetaNivel.setOpaque(true);
-
-        // Establecer el fondo negro
-        etiquetaVidas.setBackground(Color.BLACK);
-        etiquetaPuntaje.setBackground(Color.BLACK);
-        etiquetaNivel.setBackground(Color.BLACK);
+        etiquetaVidas = new JLabel(String.valueOf("x   " + personaje.getVidas()), SwingConstants.CENTER);
+        etiquetaPuntaje = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
+        etiquetaNivel = new JLabel(String.valueOf("Nivel: " + nivel),SwingConstants.CENTER);
     
         // Establecer el color de texto blanco
         etiquetaVidas.setForeground(Color.WHITE); 
@@ -64,14 +56,21 @@ public class PantallaStats extends JPanel  {
         etiquetaNivel.setForeground(Color.WHITE);
     
         // Establecer la fuente
-        Font font = new Font("Arial", Font.PLAIN, 45);
-        etiquetaPuntaje.setFont(font);
-        etiquetaVidas.setFont(font);
-        etiquetaNivel.setFont(font);
+        Font fuente;
+        Font fuenteVidas;
+        try {
+            fuente = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
+            fuenteVidas = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 30f);
+            etiquetaPuntaje.setFont(fuente);
+            etiquetaVidas.setFont(fuenteVidas);
+            etiquetaNivel.setFont(fuente);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
     
-        etiquetaPuntaje.setBounds(125, 55,150, 60);
-        etiquetaVidas.setBounds(650,295,150,60);
-        etiquetaNivel.setBounds(725,55,150,60);
+        etiquetaPuntaje.setBounds(125, 15,300, 60);
+        etiquetaVidas.setBounds(575,312,200,60);
+        etiquetaNivel.setBounds(900,15,250,60);
     }
 
     private void agregarEtiquetasPanel() {

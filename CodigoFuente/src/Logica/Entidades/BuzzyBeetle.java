@@ -19,7 +19,7 @@ public class BuzzyBeetle extends Enemigo {
     
     public void moverX(){
         super.moverX();
-        if(direccion==-1)
+        if(direccion == -1)
             sprite = entidadGrafica.getSprite("buzzy-beetle-izquierda");
         else
             sprite = entidadGrafica.getSprite("buzzy-beetle-derecha");

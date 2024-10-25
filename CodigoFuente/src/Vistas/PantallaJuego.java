@@ -115,9 +115,9 @@ public class PantallaJuego extends JPanel {
         }
         
         etiquetaPuntajeContorno.setBounds(130, 15,300, 60);
-        etiquetaVidasContorno.setBounds(955,15,250,60);
+        etiquetaVidasContorno.setBounds(905,15,250,60);
         etiquetaPuntaje.setBounds(125, 15,300, 60);
-        etiquetaVidas.setBounds(950,15,250,60);
+        etiquetaVidas.setBounds(900,15,250,60);
     }
 
     private void agregarEtiquetasPanel() {
@@ -151,9 +151,9 @@ public class PantallaJuego extends JPanel {
 
                 int scrollValue = panelScrollJuego.getHorizontalScrollBar().getValue();
                 etiquetaPuntajeContorno.setLocation(new Point(scrollValue + 130, etiquetaPuntaje.getY()));
-                etiquetaVidasContorno.setLocation(new Point(scrollValue + 955, etiquetaVidas.getY()));
+                etiquetaVidasContorno.setLocation(new Point(scrollValue + 905, etiquetaVidas.getY()));
                 etiquetaPuntaje.setLocation(new Point(scrollValue + 125, etiquetaPuntaje.getY()));
-                etiquetaVidas.setLocation(new Point(scrollValue + 950, etiquetaVidas.getY()));
+                etiquetaVidas.setLocation(new Point(scrollValue + 900, etiquetaVidas.getY()));
             }
         }
     }

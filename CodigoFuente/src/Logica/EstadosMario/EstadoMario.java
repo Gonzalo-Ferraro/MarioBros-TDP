@@ -31,7 +31,10 @@ public abstract class EstadoMario  {
 
     public abstract void setDerecha(boolean derecha,boolean izquierda);
     public abstract void setIzquierda(boolean izquierda, boolean derecha);
+    public abstract void saltar(boolean derecha, boolean izquierda);
+    public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
 
+    //Ser afectado por ENEMIGOS
     public void serAfectadoPor(Goomba g){
         personaje.setPuntaje(-30);
         personaje.perderVida();
@@ -52,8 +55,8 @@ public abstract class EstadoMario  {
     }
 
     public void serAfectadoPor(Spiny s){
-        personaje.perderVida();
         personaje.setPuntaje(-30);
+        personaje.perderVida();
     }
 
     public void serAfectadoPor(BuzzyBeetle b){
@@ -61,17 +64,19 @@ public abstract class EstadoMario  {
         personaje.perderVida();
     }
 
-    public  void serAfectadoPor(Vacio v){
+    //Borrar?
+    public void serAfectadoPor(Vacio v){
         personaje.setPuntaje(-15);
         personaje.perderVida();
     }
 
+    //POWER-UPS
     public void serAfectadoPor(ChampignonVerde c){
         personaje.setPuntaje(100);
         personaje.aumentarVidas();
     }
 
-    public  void serAfectadoPor(Moneda m){
+    public void serAfectadoPor(Moneda m){
         personaje.setPuntaje(5);
         personaje.getEntidadSonora().reproducirSonido("moneda");
     }
@@ -80,20 +85,32 @@ public abstract class EstadoMario  {
     public abstract void serAfectadoPor(Estrella e);
     public abstract void serAfectadoPor(SuperChampignon s);
     
-    public abstract void AfectarA(Goomba g);
-    public abstract void AfectarA(KoopaTroopa k);
-    public abstract void AfectarA(PiranhaPlant p);
-    public abstract void AfectarA(Lakitu l);
-    public abstract void AfectarA(Spiny s);
-    public abstract void AfectarA(BuzzyBeetle b);
+    //Afectar a ENEMIGOS
+    public void AfectarA(Goomba g){
+        personaje.setPuntaje(60);
+    }
+    public void AfectarA(KoopaTroopa k){
+        personaje.setPuntaje(90);
+    }
+    public void AfectarA(PiranhaPlant p){
+        personaje.setPuntaje(30);
+    }
+    public void AfectarA(Lakitu l){
+        personaje.setPuntaje(60);
+    }
+    public void AfectarA(Spiny s){
+        personaje.setPuntaje(60);
+    }
+    public void AfectarA(BuzzyBeetle b){
+        personaje.setPuntaje(30);
+    }
 
-    public abstract void AfectarA(BloqueDePregunta bloq);
+    //??
+    public void AfectarA(BloqueDePregunta bloq){
+        bloq.serAfectadoPor(personaje);
+    }
+
     public abstract void AfectarA(LadrilloSolido ladrillo);
-
-   
-
-    public abstract void saltar(boolean derecha, boolean izquierda);
-    public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
 
     public void espacio(){
         personaje.espacio();
