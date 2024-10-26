@@ -9,8 +9,9 @@ public class KoopaTroopa extends Enemigo {
         estado = new KoopaTroopaNormal(this);
     }
 
+    @Override
     public void setEntidadGrafica(EntidadGrafica e){
-        super.setEntidadGrafica(e);;
+        super.setEntidadGrafica(e);
         estado.setEntidadGrafica(e);
     }
 
@@ -31,6 +32,7 @@ public class KoopaTroopa extends Enemigo {
         observador.actualizarImagen();
     }
 
+    @Override
     public void moverX(){
         super.moverX();
         sprite = estado.moverX(); 
@@ -39,6 +41,7 @@ public class KoopaTroopa extends Enemigo {
         
     }
 
+    @Override
     public void cambiarDireccion(){
         super.cambiarDireccion();
         estado.cambiarDireccion();

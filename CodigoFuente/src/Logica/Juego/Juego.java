@@ -20,6 +20,7 @@ public class Juego {
     private EntidadSonora entidadSonora;
     private Personaje personaje;
 
+    private ControladorTimer controladorTimer;
     private ControladorEntidades controladorEntidades;
     private ControladorJugador controladorJugador;
 
@@ -159,6 +160,7 @@ public class Juego {
 
     public void reiniciarNivel() {
         
+        System.out.println("Reiniciando nivel");
 
         try {
             Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
@@ -185,11 +187,7 @@ public class Juego {
 
     public void pasarNivel(){
         if(nivelActual.getNumeroNivel() + 1 > 3){
-            JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
-            controladorEntidades.detener();
-            controladorJugador.detener();
-            controladorVistas.dispose();
-            
+            ganaste();            
         }else{
         personaje.pasarNivelPersonaje();
 
@@ -211,4 +209,20 @@ public class Juego {
         inicializarNivel();
         }
     }
+
+    private void ganaste(){
+        JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
+        controladorEntidades.detener();
+        controladorJugador.detener();
+        controladorVistas.dispose();
+    }
+
+    public void finTimer() {
+        personaje.perderVida();
+    }
+
+    public void setControladorTimer(ControladorTimer c) {
+        controladorTimer = c;
+    }
+
 }

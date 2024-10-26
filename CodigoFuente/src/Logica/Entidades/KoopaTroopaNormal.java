@@ -10,20 +10,24 @@ public class KoopaTroopaNormal implements EstadoKoopaTroopa{
         direccion = -1;
     }
 
+    @Override
     public void setEntidadGrafica(EntidadGrafica e){
-        entidadGrafica=e;
+        entidadGrafica = e;
     }
 
+    @Override
     public void serAfectadoPor(Personaje p){
         KoopaTroopaCaparazon caparazon = new KoopaTroopaCaparazon(koopa);
         caparazon.setEntidadGrafica(entidadGrafica);
         koopa.setEstado(caparazon);
     }
 
+    @Override
     public void cambiarDireccion(){
         direccion *= -1;
     }
     
+    @Override
     public Sprite moverX(){
         if(direccion == -1){
             return entidadGrafica.getSprite("koopa-troopa-izquierda");

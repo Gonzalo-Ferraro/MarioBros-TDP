@@ -29,6 +29,7 @@ public class ControladorJugador implements Runnable {
     }
 
     public synchronized void detener() {
+        System.out.println("Deteniendo controlador de jugador");
         if (!corriendo) return;
 
         corriendo = false;

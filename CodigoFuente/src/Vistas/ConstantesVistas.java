@@ -19,4 +19,6 @@ public class ConstantesVistas {
 	public static final int POSICION_INICIAL_X = 200;
 	public static final int POSICION_INICIAL_Y = 460;
 	public static final int POSICION_FINAL_NIVEL = 12592;
+
+	public static final int TIEMPO_NIVEL = 20;
 }

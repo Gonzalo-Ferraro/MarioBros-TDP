@@ -3,7 +3,6 @@ package Logica.Juego;
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Plataforma;
 import Vistas.ConstantesVistas;
-
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -26,6 +25,7 @@ public class ControladorEntidades extends Thread {
     }
 
     public synchronized void detener() {
+        System.out.println("Deteniendo controlador de entidades");
         if (!running) return;
         running = false;
 
