@@ -3,6 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "/Users/manuelducos/Downloads/gson-2.11.0.jar"
+        "/Users/manuelducos/Downloads/gson-2.11.0.jar",
+        "c:\\Users\\Usuario\\Downloads\\gson-2.11.0.jar"
     ]
 }
