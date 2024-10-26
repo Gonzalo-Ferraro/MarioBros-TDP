@@ -2,7 +2,10 @@ package Vistas;
 
 public class ConstantesVistas {
     public static final int VENTANA_ALTO = 720;
-	public static final int VENTANA_ANCHO = 1280;	
+	public static final int VENTANA_ANCHO = 1280;
+	
+	public static final int VENTANA_RANKING_ALTO = 600;
+	public static final int VENTANA_RANKING_ANCHO = 500;
 	
 	public static final int PANEL_ALTO = 720;
 	public static final int PANEL_ANCHO = 1280;
@@ -20,5 +23,7 @@ public class ConstantesVistas {
 	public static final int POSICION_INICIAL_Y = 460;
 	public static final int POSICION_FINAL_NIVEL = 12592;
 
-	public static final int TIEMPO_NIVEL = 20;
+	public static final int TIEMPO_NIVEL = 320;
+
+	public static final String RUTA_FUENTE = "/Datos/font/PressStart2P-Regular.ttf";
 }

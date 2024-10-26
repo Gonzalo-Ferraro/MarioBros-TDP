@@ -1,0 +1,24 @@
+{
+  "jugadores": [
+    {
+      "nombre": "Manuel",
+      "puntaje": 3760
+    },
+    {
+      "nombre": "Jugador 1",
+      "puntaje": 0
+    },
+    {
+      "nombre": "Jugador 2",
+      "puntaje": 0
+    },
+    {
+      "nombre": "Jugador 3",
+      "puntaje": 0
+    },
+    {
+      "nombre": "Jugador 4",
+      "puntaje": 0
+    }
+  ]
+}

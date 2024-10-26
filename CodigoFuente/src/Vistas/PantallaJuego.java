@@ -3,7 +3,6 @@ package Vistas;
 import Logica.Entidades.EntidadJugador;
 import Logica.Entidades.EntidadLogica;
 import Logica.Entidades.Fondo;
-import Logica.Juego.ControladorTimer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,19 +31,15 @@ public class PantallaJuego extends JPanel {
     protected JLabel etiquetaPuntajeContorno;
 
     protected JLabel etiquetaTiempo;
-    protected JLabel etiquetaTiempoContorno;
-
-    
+    protected JLabel etiquetaTiempoContorno;    
 
     protected EntidadJugador personaje;
-    protected ControladorTimer controladorTimer;
 
-    public PantallaJuego(EntidadJugador jugador, ControladorTimer c) {
+    public PantallaJuego(EntidadJugador jugador) {
 		setPreferredSize(new Dimension(ConstantesVistas.PANEL_ANCHO, ConstantesVistas.PANEL_ALTO));
         setLayout(new BorderLayout());
         inicializarComponentes();
 
-        controladorTimer = c;
         personaje = jugador;
 
         crearEtiquetas();
@@ -103,8 +98,8 @@ public class PantallaJuego extends JPanel {
         etiquetaPuntajeContorno  = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
         etiquetaPuntaje = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
 
-        etiquetaTiempoContorno = new JLabel(String.valueOf("Tiempo: " + controladorTimer.getTiempo() ), SwingConstants.CENTER);
-        etiquetaTiempo = new JLabel(String.valueOf("Tiempo: " + controladorTimer.getTiempo() ), SwingConstants.CENTER);
+        etiquetaTiempoContorno = new JLabel(String.valueOf("Tiempo: " + personaje.getJuego().getTiempo() ), SwingConstants.CENTER);
+        etiquetaTiempo = new JLabel(String.valueOf("Tiempo: " + personaje.getJuego().getTiempo()), SwingConstants.CENTER);
 
         Font fuenteContorno;
         Font fuente;
@@ -121,8 +116,8 @@ public class PantallaJuego extends JPanel {
     
         // Establecer la fuente
         try {
-            fuenteContorno = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
-            fuente = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
+            fuenteContorno = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(ConstantesVistas.RUTA_FUENTE)).deriveFont(Font.BOLD, 22f);
+            fuente = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(ConstantesVistas.RUTA_FUENTE)).deriveFont(Font.BOLD, 22f);
 
             etiquetaPuntajeContorno.setFont(fuenteContorno);
             etiquetaPuntaje.setFont(fuente);
@@ -218,13 +213,8 @@ public class PantallaJuego extends JPanel {
     }
 
 
-    public void actualizarLabelTiempo(int tiempo) {
-        etiquetaTiempoContorno.setText("Tiempo: " + controladorTimer.getTiempo());
-        etiquetaTiempo.setText("Tiempo: " + controladorTimer.getTiempo());
+    public void actualizarLabelTiempo() {
+        etiquetaTiempoContorno.setText("Tiempo: " + personaje.getJuego().getTiempo());
+        etiquetaTiempo.setText("Tiempo: " + personaje.getJuego().getTiempo());
     }
-
-    public ControladorTimer getControladorTimer(){
-        return controladorTimer;
-    }
-
 }

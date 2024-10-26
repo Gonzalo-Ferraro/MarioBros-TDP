@@ -7,9 +7,9 @@ import Vistas.ControladorVistas;
 public class Launcher {
     public static void main(String[] args) {
         Juego juego = new Juego();
-        ControladorVistas controlador_vistas = new ControladorVistas(juego);
-        juego.setControladorVistas(controlador_vistas);
+        ControladorVistas controladorVistas = new ControladorVistas(juego);
+        juego.setControladorVistas(controladorVistas);
         juego.setEntidadSonora(new EntidadSonora());
-        controlador_vistas.mostrarMenu();
+        controladorVistas.mostrarMenu();
     }
 }

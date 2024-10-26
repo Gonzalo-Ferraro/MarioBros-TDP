@@ -1,12 +1,10 @@
-package Datos;
+package Datos.Ranking;
 
-import java.io.Serializable;
-
-public class Ranking implements Serializable {
+public class Jugador {
     private String nombre;
     private int puntaje;
 
-    public Ranking(String nombre, int puntaje) {
+    public Jugador(String nombre, int puntaje) {
         this.nombre = nombre;
         this.puntaje = puntaje;
     }
@@ -15,12 +13,12 @@ public class Ranking implements Serializable {
         return nombre;
     }
 
-    public int getPuntaje() {
-        return puntaje;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
     }
 
     public void setPuntaje(int puntaje) {
@@ -29,10 +27,9 @@ public class Ranking implements Serializable {
 
     @Override
     public String toString() {
-        return "Ranking{" +
+        return "Jugador{" +
                 "nombre='" + nombre + '\'' +
                 ", puntaje=" + puntaje +
                 '}';
     }
-
 }

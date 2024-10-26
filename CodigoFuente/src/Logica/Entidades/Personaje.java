@@ -198,9 +198,8 @@ public class Personaje extends Entidad implements EntidadJugador {
         getEntidadSonora().reproducirSonido("muerte");
         estado.eliminar();
 
-        if (vidas == 0) { 
+        if (vidas == 0)
             this.getJuego().perdiste();
-        }
         else 
             this.getJuego().reiniciarNivel();
     }

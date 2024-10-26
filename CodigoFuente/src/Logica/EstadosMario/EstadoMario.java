@@ -35,7 +35,7 @@ public abstract class EstadoMario  {
     public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
 
     //Revisar si es necesario, sino borrarlo
-    public void eliminar(){
+    public void eliminar() {
 
     }
 

@@ -58,8 +58,8 @@ public abstract class Entidad implements EntidadLogica {
     }
 
     public void desaparecer() {
-        x = -100;
-        y = -100;
+        x = -100000;
+        y = 100000;
         observador.actualizarImagen();
         observador.actualizarPosicionTamano();
     }

@@ -2,6 +2,8 @@ package Logica.Juego;
 
 import Datos.EntidadSonora;
 import Datos.GeneradorDeNiveles;
+import Datos.Ranking.Ranking;
+import Datos.Ranking.RankingManager;
 import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
 import Vistas.ConstantesVistas;
@@ -19,12 +21,18 @@ public class Juego {
     private Nivel nivelActual;
     private EntidadSonora entidadSonora;
     private Personaje personaje;
+    private RankingManager rankingManager;
 
-    private ControladorTimer controladorTimer;
     private ControladorEntidades controladorEntidades;
     private ControladorJugador controladorJugador;
 
     private GeneradorDeNiveles generadorDeNiveles;
+
+    private int tiempo;
+
+    public Juego() {
+        rankingManager = new RankingManager();
+    }
 
     public void setControladorVistas(ControladorVistas c) {
         controladorVistas = c;
@@ -53,6 +61,19 @@ public class Juego {
     public int getPosScroll() {
         return controladorVistas.getPosScroll();
     }
+
+    public int getTiempo() {
+        return tiempo / 60;
+    }
+
+    public void decrementarTiempo() {
+        tiempo--;
+        controladorVistas.actualizarTimerJuego();
+
+        if (tiempo == 0) {
+            finTimer();
+        }
+    }
     
     public void iniciar(ModoDeJuego m) {
         modo = m;
@@ -67,6 +88,8 @@ public class Juego {
 
     private void inicializarNivel() {
         obtenerPersonaje().setJuego(this);
+
+        tiempo = (ConstantesVistas.TIEMPO_NIVEL + ConstantesVistas.TIEMPO_STATS + 1) * 60;
 
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
         controladorVistas.crearPantallaStats(obtenerPersonaje());
@@ -131,6 +154,14 @@ public class Juego {
             entidad.registrarObserver(observerEntidad);
         }
     }
+
+    private String obtenerNombreJugador() {
+        String nombre = JOptionPane.showInputDialog("Ingrese su nombre");
+        if (nombre == null || nombre.isEmpty()) {
+            nombre = "Anónimo";
+        }
+        return nombre;
+    }
     
     public Personaje obtenerPersonaje() {
         return personaje;
@@ -140,21 +171,31 @@ public class Juego {
         return nivelActual;
     }
 
+    public Ranking obtenerRanking() {
+        return rankingManager.getRanking();
+    }
+
     public void setDerecha(boolean d){
         personaje.setDerecha(d);
     }    
+
     public void setIzquierda(boolean i){
         personaje.setIzquierda(i);
     }
+
     public void salto() {
         personaje.saltar();
     }
 
     public void perdiste() {
-        controladorEntidades.detener();
         controladorJugador.detener();
+        controladorEntidades.detener();
 
         JOptionPane.showMessageDialog(null, "Perdiste, puntaje final: " + personaje.getPuntaje());
+
+        actualizarRanking();
+
+        controladorVistas.mostrarRanking();
         controladorVistas.dispose();
     }
 
@@ -186,43 +227,47 @@ public class Juego {
     }
 
     public void pasarNivel(){
-        if(nivelActual.getNumeroNivel() + 1 > 3){
+        if (nivelActual.getNumeroNivel() + 1 > 3) {
             ganaste();            
-        }else{
-        personaje.pasarNivelPersonaje();
+        } else {
+            personaje.pasarNivelPersonaje();
+            
+            controladorEntidades.detener();
+            controladorJugador.detener();
 
-        try {
-            Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            try {
+                Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        controladorEntidades.detener();
-        controladorJugador.detener();
+            controladorVistas.crearPantallaJuego(obtenerPersonaje());
+            controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel() + 1);
 
-        controladorVistas.crearPantallaJuego(obtenerPersonaje());
-        controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel() + 1);
+            nivelActual = generadorDeNiveles.generarNivel(modo,nivelActual.getNumeroNivel() + 1);
+            nivelActual.setPersonaje(personaje);
 
-        nivelActual = generadorDeNiveles.generarNivel(modo,nivelActual.getNumeroNivel() + 1);
-        nivelActual.setPersonaje(personaje);
-
-        inicializarNivel();
+            inicializarNivel();
         }
     }
 
     private void ganaste(){
         JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
+
+        actualizarRanking();
+
         controladorEntidades.detener();
         controladorJugador.detener();
         controladorVistas.dispose();
     }
 
+    private void actualizarRanking() {
+        String nombre = obtenerNombreJugador();
+        rankingManager.agregarJugador(nombre, personaje.getPuntaje());
+        rankingManager.guardarRanking();
+    }
+
     public void finTimer() {
         personaje.perderVida();
     }
-
-    public void setControladorTimer(ControladorTimer c) {
-        controladorTimer = c;
-    }
-
 }

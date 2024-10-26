@@ -4,7 +4,6 @@ import Logica.Entidades.EntidadJugador;
 import Logica.Entidades.EntidadLogica;
 import Logica.Entidades.Fondo;
 import Logica.Fabricas.ModoDeJuego;
-import Logica.Juego.ControladorTimer;
 import Logica.Juego.Juego;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -38,10 +37,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
 	}
 
     public void crearPantallaJuego(EntidadJugador personaje) {
-        ControladorTimer controladorTimer = new ControladorTimer(juego);
-        pantallaJuego = new PantallaJuego(personaje, controladorTimer);
-        controladorTimer.setPantallaJuego(pantallaJuego);
-        System.out.println("Hola ule");
+        pantallaJuego = new PantallaJuego(personaje);
     }
 
     public void crearPantallaStats(EntidadJugador personaje) {
@@ -70,6 +66,10 @@ public class ControladorVistas extends JFrame implements KeyListener {
 		revalidate();
         repaint();
 	}
+
+    public void actualizarTimerJuego() {
+        pantallaJuego.actualizarLabelTiempo();
+    }
 
 	public Observer registrarEntidadLogica(EntidadLogica entidad_logica) {
         Observer observerEntidad = pantallaJuego.incorporarEntidadLogica(entidad_logica);
@@ -100,9 +100,12 @@ public class ControladorVistas extends JFrame implements KeyListener {
 
 	public void mostrarPantallaJuego() {
 		setContentPane(pantallaJuego);
-        pantallaJuego.getControladorTimer().iniciar();
 		actualizarPanel();
 	}
+
+    public void mostrarRanking() {
+        new VentanaRanking(juego.obtenerRanking());
+    }
 
 	protected void registrarOyentes() {
         addKeyListener(this);

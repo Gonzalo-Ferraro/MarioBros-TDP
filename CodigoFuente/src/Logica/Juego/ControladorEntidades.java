@@ -9,8 +9,8 @@ import java.util.Random;
 public class ControladorEntidades extends Thread {
     private Nivel nivel;
 
-    private Thread gameThread;
-    private boolean running;
+    private Thread hiloEntidades;
+    private boolean corriendo;
     private final double TIME_PER_FRAME = 1_000_000_000.0 / ConstantesVistas.FPS;
 
     public void setNivel(Nivel n){
@@ -18,18 +18,19 @@ public class ControladorEntidades extends Thread {
     }
 
     public synchronized void iniciar(){
-        if (running) return; // Prevent starting multiple threads
-        running = true;
-        gameThread = new Thread(this);
-        gameThread.start();
+        if (corriendo) return;
+        corriendo = true;
+        hiloEntidades = new Thread(this);
+        hiloEntidades.start();
     }
 
     public synchronized void detener() {
-        System.out.println("Deteniendo controlador de entidades");
-        if (!running) return;
-        running = false;
-
-        gameThread.interrupt();
+        if (!corriendo) return;
+    
+        corriendo = false;
+        if (hiloEntidades != null) {
+            hiloEntidades.interrupt();
+        }
     }
 
     @Override
@@ -37,12 +38,11 @@ public class ControladorEntidades extends Thread {
             long ultimoTiempo = System.nanoTime();
             double delta = 0;
     
-            while (running) {
+            while (corriendo) {
                 long ahora = System.nanoTime();
                 delta += (ahora - ultimoTiempo) / TIME_PER_FRAME;
                 ultimoTiempo = ahora;
     
-                // Update the game state as many times as needed
                 while (delta >= 1) {
                     moverEntidades();
                     delta--;
@@ -62,19 +62,18 @@ public class ControladorEntidades extends Thread {
                  e.moverX();
                 
 
-                if(sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null){ //enemigo en el aire
+                if (sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null) {
                     e.setEstaEnElAire(true);
-                    
                 }
-                else{
+                else {
                     e.setEstaEnElAire(false);
-                    
                 }
                 e.moverY();
         }
 
 
     }
+
     private Plataforma sePuedeMoverHacia(Enemigo e,int x, int y) {
         Rectangle hitbox = new Rectangle(e.getBounds());
         hitbox.setLocation(x, y);

@@ -9,7 +9,6 @@ import java.awt.Rectangle;
 
 
 public class ControladorJugador implements Runnable {
-    // Game loop thread
     private Thread hiloJugador;
     private boolean corriendo = false;
     private Personaje personaje;
@@ -29,12 +28,12 @@ public class ControladorJugador implements Runnable {
     }
 
     public synchronized void detener() {
-        System.out.println("Deteniendo controlador de jugador");
         if (!corriendo) return;
-
+    
         corriendo = false;
-
-        hiloJugador.interrupt();
+        if (hiloJugador != null) {
+            hiloJugador.interrupt();
+        }
     }
 
     @Override
@@ -43,6 +42,7 @@ public class ControladorJugador implements Runnable {
         double delta = 0;
 
         while (corriendo) {
+            if (Thread.currentThread().isInterrupted()) break; // Verificar interrupción
             long ahora = System.nanoTime();
             delta += (ahora - ultimoTiempo) / TIME_PER_FRAME;
             ultimoTiempo = ahora;
@@ -50,12 +50,18 @@ public class ControladorJugador implements Runnable {
             while (delta >= 1) {
                 actualizarJuego();
                 delta--;
+                if (!corriendo) break; // Salida rápida en la segunda condición
             }
         }
     }
 
     private synchronized void actualizarJuego() {
         moverPersonaje();
+        decrementarTiempo();
+    }
+
+    private void decrementarTiempo() {
+        personaje.getJuego().decrementarTiempo();
     }
 
     private void moverPersonaje() {
