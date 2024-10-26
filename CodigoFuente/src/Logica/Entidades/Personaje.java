@@ -151,7 +151,7 @@ public class Personaje extends Entidad implements EntidadJugador {
             x -= velocidadX;
         }
 
-        if (getX() >= 2000) {
+        if (getX() >= ConstantesVistas.POSICION_FINAL_NIVEL) {
             juego.pasarNivel();
         }
 

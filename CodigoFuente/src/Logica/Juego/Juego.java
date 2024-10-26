@@ -153,7 +153,7 @@ public class Juego {
         controladorEntidades.detener();
         controladorJugador.detener();
 
-        JOptionPane.showMessageDialog(null, "Perdiste");
+        JOptionPane.showMessageDialog(null, "Perdiste, puntaje final: " + personaje.getPuntaje());
         controladorVistas.dispose();
     }
 
@@ -184,6 +184,13 @@ public class Juego {
     }
 
     public void pasarNivel(){
+        if(nivelActual.getNumeroNivel() + 1 > 3){
+            JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
+            controladorEntidades.detener();
+            controladorJugador.detener();
+            controladorVistas.dispose();
+            
+        }else{
         personaje.pasarNivelPersonaje();
 
         try {
@@ -196,12 +203,12 @@ public class Juego {
         controladorJugador.detener();
 
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
-        controladorVistas.getPantallaStats().actualizarValores(2);
+        controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel() + 1);
 
         nivelActual = generadorDeNiveles.generarNivel(modo,nivelActual.getNumeroNivel() + 1);
         nivelActual.setPersonaje(personaje);
 
         inicializarNivel();
-
+        }
     }
 }

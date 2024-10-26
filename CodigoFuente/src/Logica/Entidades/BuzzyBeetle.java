@@ -9,12 +9,13 @@ public class BuzzyBeetle extends Enemigo {
 
     @Override
     public void serAfectadoPor(Personaje p) {
-        p.serAfectadoPor(this);
+        p.AfectarA(this);
+        desaparecer();
     }
 
     @Override
     public void afectarAMario(Personaje p) {
-        p.AfectarA(this);
+        p.serAfectadoPor(this);
     }
     
     public void moverX(){

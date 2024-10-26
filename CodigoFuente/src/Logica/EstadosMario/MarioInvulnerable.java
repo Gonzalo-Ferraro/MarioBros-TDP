@@ -95,6 +95,5 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void AfectarA(LadrilloSolido ladrillo) {
-		ladrillo.desaparecer();
 	}
 }
