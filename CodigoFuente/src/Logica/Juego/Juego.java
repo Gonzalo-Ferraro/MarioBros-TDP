@@ -27,21 +27,34 @@ public class Juego {
     private ControladorJugador controladorJugador;
 
     private GeneradorDeNiveles generadorDeNiveles;
-
+    
     private int tiempo;
-
+    
     public Juego() {
         rankingManager = new RankingManager();
     }
+    //Setters-------------------------------------------------------------------
+    
+    public Ranking obtenerRanking() {
+        return rankingManager.getRanking();
+    }
 
+    public void setDerecha(boolean d){
+        personaje.setDerecha(d);
+    }    
+
+    public void setIzquierda(boolean i){
+        personaje.setIzquierda(i);
+    }
     public void setControladorVistas(ControladorVistas c) {
         controladorVistas = c;
     }
-
+    
     public void setEntidadSonora(EntidadSonora e) {
         entidadSonora = e;
     }
-    
+
+    //Getters-------------------------------------------------------------------
     public EntidadSonora getEntidadSonora(){
         return entidadSonora;
     }
@@ -54,17 +67,23 @@ public class Juego {
         return nivelActual;
     }
 
-    public void removerEntidadLogica(Entidad entidad) {
-        controladorVistas.removerEntidadLogica(entidad);
-    }
-    
     public int getPosScroll() {
         return controladorVistas.getPosScroll();
+    }
+
+    public Personaje obtenerPersonaje() {
+        return personaje;
+    }
+
+    public Nivel obtenerNivel() {
+        return nivelActual;
     }
 
     public int getTiempo() {
         return tiempo / 60;
     }
+    
+    //COMPORTAMIENTO------------------------------------------------------------
 
     public void decrementarTiempo() {
         tiempo--;
@@ -163,26 +182,6 @@ public class Juego {
         return nombre;
     }
     
-    public Personaje obtenerPersonaje() {
-        return personaje;
-    }
-
-    public Nivel obtenerNivel() {
-        return nivelActual;
-    }
-
-    public Ranking obtenerRanking() {
-        return rankingManager.getRanking();
-    }
-
-    public void setDerecha(boolean d){
-        personaje.setDerecha(d);
-    }    
-
-    public void setIzquierda(boolean i){
-        personaje.setIzquierda(i);
-    }
-
     public void salto() {
         personaje.saltar();
     }

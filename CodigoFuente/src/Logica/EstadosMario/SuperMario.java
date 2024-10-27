@@ -12,29 +12,23 @@ public class SuperMario extends EstadoMario {
         personaje.getObserver().actualizarImagen();
     }
     
-    @Override
-    public void serAfectadoPor(Goomba g) {
-        personaje.setEstado(new MarioNormal(personaje)); 
-        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
-        personaje.retroceder();
-    }
-
+    
     public void setDerecha(boolean d, boolean i) {
         derecha = d;
         izquierda = i;
         actualizarSprite();
     }
-
+    
     @Override
     public void setIzquierda(boolean d, boolean i) {
         derecha = d;
         izquierda = i;
         actualizarSprite();
     }
-
+    
     private void actualizarSprite() {
         Sprite spriteAsignar = null;
-
+        
         if (!personaje.estaEnElAire()) {
             if (!derecha && !izquierda) {
                 spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-quieto-derecha");
@@ -60,7 +54,7 @@ public class SuperMario extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
-
+    
     public void actualizarAlCaer(boolean derecha,boolean izquierda){
         this.derecha = derecha;
         this.izquierda = izquierda;
@@ -75,17 +69,17 @@ public class SuperMario extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
-
+    
     public void saltar(boolean derecha, boolean izquierda) {
         this.derecha = derecha;
         this.izquierda = izquierda;
         personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
         actualizarSpriteSaltar();
     }
-
+    
     private void actualizarSpriteSaltar() {
         Sprite spriteAsignar = null;
-
+        
         if (derecha) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
         } else if (izquierda) {
@@ -96,6 +90,14 @@ public class SuperMario extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+    
+    //Afecciones de entidades a mario
+    @Override
+    public void serAfectadoPor(Goomba g) {
+        personaje.setEstado(new MarioNormal(personaje)); 
+        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.retroceder();
+    }
 
     @Override
     public void serAfectadoPor(KoopaTroopa k) {
@@ -103,7 +105,7 @@ public class SuperMario extends EstadoMario {
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
         personaje.retroceder();
     }
-
+    
     @Override
     public void serAfectadoPor(PiranhaPlant p) {
         personaje.setEstado(new MarioNormal(personaje)); 
@@ -132,6 +134,7 @@ public class SuperMario extends EstadoMario {
         personaje.retroceder();
     }
 
+    //Afecciones de powerUps a mario
     @Override
     public void serAfectadoPor(SuperChampignon s) {
         personaje.setPuntaje(50);
@@ -149,7 +152,8 @@ public class SuperMario extends EstadoMario {
         personaje.getEntidadSonora().reproducirSonido("estrella");
         personaje.setEstado(new MarioInvulnerable(personaje, this));
     }
-
+    
+    //Afecciones de mario a plataformas
     @Override
     public void AfectarA(LadrilloSolido ladrillo) {
         ladrillo.desaparecer();

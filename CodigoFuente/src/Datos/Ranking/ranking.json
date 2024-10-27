@@ -5,6 +5,10 @@
       "puntaje": 3760
     },
     {
+      "nombre": "Anónimo",
+      "puntaje": 95
+    },
+    {
       "nombre": "Jugador 1",
       "puntaje": 0
     },
@@ -14,10 +18,6 @@
     },
     {
       "nombre": "Jugador 3",
-      "puntaje": 0
-    },
-    {
-      "nombre": "Jugador 4",
       "puntaje": 0
     }
   ]

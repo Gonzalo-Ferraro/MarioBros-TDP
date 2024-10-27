@@ -33,8 +33,11 @@ public abstract class EstadoMario  {
     public abstract void setIzquierda(boolean izquierda, boolean derecha);
     public abstract void saltar(boolean derecha, boolean izquierda);
     public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
-
-    //Revisar si es necesario, sino borrarlo
+    
+    public void espacio(){
+        personaje.espacio();
+    }
+    
     public void eliminar() {
 
     }
@@ -69,7 +72,7 @@ public abstract class EstadoMario  {
         personaje.perderVida();
     }
 
-    //Borrar?
+    
     public void serAfectadoPor(Vacio v){
         personaje.setPuntaje(-15);
         personaje.perderVida();
@@ -110,14 +113,11 @@ public abstract class EstadoMario  {
         personaje.setPuntaje(30);
     }
 
-    //??
+    
     public void AfectarA(BloqueDePregunta bloq){
         bloq.serAfectadoPor(personaje);
     }
 
     public abstract void AfectarA(LadrilloSolido ladrillo);
 
-    public void espacio(){
-        personaje.espacio();
-    }
 }

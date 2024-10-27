@@ -18,39 +18,55 @@ public class Nivel {
     private String rutaNivel;
     private Personaje personaje;
     private int numeroNivel;
-
+    
     public Nivel(int n) {
         rutaNivel = "/Datos/niveles/nivel-" + n + ".txt";
-
+        
         enemigos = new LinkedList<>();
         powerUps = new LinkedList<>();
         plataformas = new LinkedList<>();
         bolasDeFuego = new LinkedList<>();
-
+        
         numeroNivel = n;
     }
-
+    
     public Personaje getPersonaje() {
         return personaje;
     }
     
-
-    public void setPersonaje(Personaje personaje) {
-        this.personaje = personaje;
-    }
-
     public String getRutaNivel() {
         return rutaNivel;
     }
+    
+    public Fondo getFondo() {
+        return fondo;
+    }
 
+    public List<Plataforma> getPlataformas() {
+        return plataformas;
+    }
+
+    public List<BolaDeFuego> getBolasDeFuego() {
+        return bolasDeFuego;
+    }
+    
     public List<Enemigo> getEnemigos() {
         return enemigos;
     }
-
+    
     public int getNumeroNivel() {
         return numeroNivel;
     }
 
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
+    }
+    
+    public void setFondo(Fondo f) {
+        fondo = f;
+    }
+    
     public void ingresarEntidad(Enemigo e) {
         enemigos.add(e);
     }
@@ -67,13 +83,6 @@ public class Nivel {
         plataformas.add(p);
     }
 
-    public List<Plataforma> getPlataformas() {
-        return plataformas;
-    }
-
-    public List<BolaDeFuego> getBolasDeFuego() {
-        return bolasDeFuego;
-    }
 
     public void ingresarEntidad(BolaDeFuego b) {
         bolasDeFuego.add(b);
@@ -91,11 +100,5 @@ public class Nivel {
         plataformas.remove(p);
     }
     
-    public Fondo getFondo() {
-        return fondo;
-    }
 
-    public void setFondo(Fondo f) {
-        fondo = f;
-    }
 }

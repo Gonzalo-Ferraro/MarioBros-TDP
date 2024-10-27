@@ -124,7 +124,7 @@ public class MarioNormal extends EstadoMario {
         personaje.setEstado(new SuperMario(personaje));
     }
 
-    // Los serAfectadoPor concretos en la clase EstadoMario fueron eliminados ( agregar en caso de querer usarlo para sprites )
+    
 
     @Override
     public void AfectarA(LadrilloSolido ladrilloSolido) {
@@ -133,6 +133,6 @@ public class MarioNormal extends EstadoMario {
 
     @Override
     public void AfectarA(BloqueDePregunta bloqueDePregunta) {
-        // ??
+
     }
 }

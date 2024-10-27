@@ -49,12 +49,12 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void serAfectadoPor(FlorDeFuego florDeFuego) {
-		// Implementation here
+		
 	}
 
 	@Override
 	public void serAfectadoPor(SuperChampignon superChampignon) {
-		// Implementation here
+		
 	}
 
 	@Override
@@ -95,5 +95,6 @@ public class MarioInvulnerable extends EstadoMario {
 
 	@Override
 	public void AfectarA(LadrilloSolido ladrillo) {
+		
 	}
 }

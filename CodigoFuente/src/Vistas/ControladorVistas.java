@@ -8,7 +8,7 @@ import Logica.Juego.Juego;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
-
+import javax.swing.ImageIcon;
 
 public class ControladorVistas extends JFrame implements KeyListener {
     private Juego juego;
@@ -16,23 +16,29 @@ public class ControladorVistas extends JFrame implements KeyListener {
     private PantallaJuego pantallaJuego;
     private PantallaMenu pantallaMenu;
 	private PantallaStats pantallaStats;
-
+    
     public ControladorVistas(Juego juego) {
         super("Super Mario Bros - Comision 06 TDP");
-
+        
 		this.juego = juego;
-
+        
 		pantallaMenu = new PantallaMenu(this);
-
+        
 		configurar_ventana();
 		registrarOyentes();
 	}
 	
+    public int getPosScroll() {
+        return pantallaJuego.getPosScroll();
+    }
+    
 	protected void configurar_ventana() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(ConstantesVistas.VENTANA_ANCHO, ConstantesVistas.VENTANA_ALTO);
 		setLocationRelativeTo(null);
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Datos/sprites/modo-original/mario-quieto-derecha.png"));
+        setIconImage(icono.getImage());
 		setVisible(true);
 	}
 
@@ -44,9 +50,6 @@ public class ControladorVistas extends JFrame implements KeyListener {
         pantallaStats = new PantallaStats(this, personaje);
     }
 
-    public int getPosScroll() {
-        return pantallaJuego.getPosScroll();
-    }
     
     public void mostrarMenu() {
     	setContentPane(pantallaMenu);
@@ -90,10 +93,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
         return observerFondo;
     }
 
-    public void removerEntidadLogica(EntidadLogica entidad_logica) {
-        pantallaJuego.removerEntidadLogica(entidad_logica);
-    }
-
+    
 	public void setPantallaStats(PantallaStats pantallaStats) {
 		this.pantallaStats = pantallaStats;
 	}
@@ -107,6 +107,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
         new VentanaRanking(juego.obtenerRanking());
     }
 
+    //Oyentes teclas----------------------------------------------
 	protected void registrarOyentes() {
         addKeyListener(this);
         setFocusable(true);
