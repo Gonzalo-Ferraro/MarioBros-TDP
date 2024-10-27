@@ -2,3 +2,5 @@
 
 # Ignorar directorios de compilación
 /CodigoFuente/bin/
+
+CodigoFuente/.vscode/settings.json
