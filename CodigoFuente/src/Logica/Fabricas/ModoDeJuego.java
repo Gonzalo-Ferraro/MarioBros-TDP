@@ -34,7 +34,13 @@ public abstract class ModoDeJuego {
         entidadGrafica.setSprite("marioflordefuego-saltando-izquierda", new Sprite(ruta + "/marioflordefuego-saltando-izquierda.png"));
         entidadGrafica.setSprite("marioflordefuego-lanzando-derecha", new Sprite(ruta + "/marioflordefuego-lanzando-derecha.png"));
         entidadGrafica.setSprite("marioflordefuego-lanzando-izquierda", new Sprite(ruta + "/marioflordefuego-lanzando-izquierda.png"));
-        entidadGrafica.setSprite("mario-eliminado", new Sprite(ruta + "/mario-eliminado.png")); //revisar
+        entidadGrafica.setSprite("mario-eliminado", new Sprite(ruta + "/mario-eliminado.png"));
+        entidadGrafica.setSprite("marioestrella-quieto-derecha", new Sprite(ruta + "/marioestrella-quieto-derecha.gif"));
+        entidadGrafica.setSprite("marioestrella-quieto-izquierda", new Sprite(ruta + "/marioestrella-quieto-izquierda.gif"));
+        entidadGrafica.setSprite("marioestrella-saltando-derecha", new Sprite(ruta + "/marioestrella-saltando-derecha.gif"));
+        entidadGrafica.setSprite("marioestrella-saltando-izquierda", new Sprite(ruta + "/marioestrella-saltando-izquierda.gif"));
+        entidadGrafica.setSprite("marioestrella-movimiento-derecha", new Sprite(ruta + "/marioestrella-movimiento-derecha.gif"));
+        entidadGrafica.setSprite("marioestrella-movimiento-izquierda", new Sprite(ruta + "/marioestrella-movimiento-izquierda.gif"));
         Personaje personaje = new Personaje(x, y, entidadGrafica.getSprite("marionormal-quieto-derecha"));
         personaje.setEntidadGrafica(entidadGrafica);
         return personaje;

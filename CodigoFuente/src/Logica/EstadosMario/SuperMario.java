@@ -7,7 +7,7 @@ public class SuperMario extends EstadoMario {
     
     public SuperMario(Personaje p) {
         super(p);
-        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
+        personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE/2);
         actualizarSprite();
         personaje.getObserver().actualizarImagen();
     }
