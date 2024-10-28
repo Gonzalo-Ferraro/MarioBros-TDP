@@ -20,8 +20,20 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
         observador.actualizarPosicionTamano();
     }
 
+    public void setVelocidadY(int v) {
+        velocidadY = v;
+    }
+
     public int getVelocidadX() {
         return direccion * velocidadX;
+    }
+
+    public int getVelocidadY() {
+        return velocidadY;
+    }
+
+    public boolean estaEnElAire() {
+        return estaEnElAire;
     }
 
     public void moverY() {
@@ -42,7 +54,11 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
         estaEnElAire = b;
     }
 
-    public void cambiarDireccion(){
+    public void cambiarDireccion() {
         direccion = direccion * -1;
+    }
+
+    public void setPosicionY(int y) {
+        this.y = y;
     }
 }

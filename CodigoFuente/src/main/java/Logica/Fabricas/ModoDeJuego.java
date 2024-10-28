@@ -150,21 +150,29 @@ public abstract class ModoDeJuego {
 
     public Lakitu crearLakitu(int x, int y) {
         EntidadGrafica entidadGrafica = new EntidadGrafica();
+
         entidadGrafica.setSprite("lakitu-izquierda", new Sprite(ruta + "/lakitu-izquierda.png"));
         entidadGrafica.setSprite("lakitu-derecha", new Sprite(ruta + "/lakitu-derecha.png"));
         entidadGrafica.setSprite("lakitu-lanzando", new Sprite(ruta + "/lakitu-lanzando.png"));
+
         Lakitu lakitu = new Lakitu(x, y, entidadGrafica.getSprite("lakitu-izquierda"));
+
         lakitu.setEntidadGrafica(entidadGrafica);
+
         return lakitu;
     }
 
     public Spiny crearSpiny(int x, int y) {
         EntidadGrafica entidadGrafica = new EntidadGrafica();
+
         entidadGrafica.setSprite("spiny-izquierda", new Sprite(ruta + "/spiny-izquierda.gif"));
         entidadGrafica.setSprite("spiny-derecha", new Sprite(ruta + "/spiny-derecha.gif"));
         entidadGrafica.setSprite("spiny-lanzado", new Sprite(ruta + "/spiny-lanzado.gif"));
+
         Spiny spiny = new Spiny(x, y, entidadGrafica.getSprite("spiny-izquierda"));
+
         spiny.setEntidadGrafica(entidadGrafica);
+
         return spiny;
     }
 

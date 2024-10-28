@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RankingManager {
-    private static final String RUTA_RANKING = "src/Datos/Ranking/ranking.json";
+    private static final String RUTA_RANKING = "src/main/java/Datos/Ranking/ranking.json";
     private Ranking ranking;
     private Gson gson;
 

@@ -15,7 +15,6 @@ public class Launcher {
                     juego.setControladorVistas(controladorVistas);
                     juego.setEntidadSonora(new EntidadSonora());
                     controladorVistas.mostrarMenu();
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -169,7 +169,18 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - ConstantesVistas.TAMANO_BLOQUE - 20
                 );
+
+                for (int i=0; i<10; i++) {
+                    Spiny spinyGenerado = modo.crearSpiny(
+                        -10000,
+                        10000
+                    );
+                    lakituGenerado.agregarSpiny(spinyGenerado);
+                    nivel.ingresarEntidad(spinyGenerado);
+                }
+                
                 nivel.ingresarEntidad(lakituGenerado);
+                
                 break;
 
             case 'k':

@@ -50,28 +50,33 @@ public class ControladorEntidades extends Thread {
             }
         }
         
-        private synchronized void moverEntidades(){
+        private synchronized void moverEntidades() {
             
             Random r = new Random();
 
             for(Enemigo e : nivel.getEnemigos()){
-                if(r.nextInt(600) < 5) {
+                if (r.nextInt(600) < 5) {
                     e.cambiarDireccion();
                 }
+
                 if(sePuedeMoverHacia(e, e.getX() + e.getVelocidadX(), e.getY()) == null)
                     e.moverX();
-                
 
-                if (sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null) {
+
+                if (e.estaEnElAire()) {
+                    Plataforma p = sePuedeMoverHacia(e, e.getX(), e.getY() + e.getVelocidadY());
+                    if (p != null) {
+                        e.setEstaEnElAire(false);
+                        corregirPosicionArriba(p, e);
+                        e.setVelocidadY(0);
+                        
+                    } else {
+                        e.moverY();
+                    }
+                } else if (sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null) {
                     e.setEstaEnElAire(true);
                 }
-                else {
-                    e.setEstaEnElAire(false);
-                }
-                e.moverY();
         }
-
-
     }
 
     private Plataforma sePuedeMoverHacia(Enemigo e,int x, int y) {
@@ -82,9 +87,14 @@ public class ControladorEntidades extends Thread {
         for (Plataforma p : nivel.getPlataformas())
             if (hitbox.intersects(p.getBounds())) {
                 toRet = p;
+                break;
             }
 
         return toRet;
+    }
+
+    private void corregirPosicionArriba(Plataforma p, Enemigo e) {
+        e.setPosicionY(p.getY() - (int) e.getBounds().getHeight());
     }
 }  
 
