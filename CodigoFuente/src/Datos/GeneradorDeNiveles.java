@@ -77,11 +77,16 @@ public class GeneradorDeNiveles {
                 break;
 
             case 'T':
-                Plataforma tuberiaGenerada = modo.crearTuberia(
+                Tuberia tuberiaGenerada = modo.crearTuberia(
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - ConstantesVistas.TAMANO_BLOQUE - 20
                 );
                 nivel.ingresarEntidad(tuberiaGenerada);
+
+                if(tuberiaGenerada.getPiranhaPlant() != null){
+                    nivel.ingresarEntidad(tuberiaGenerada.getPiranhaPlant());
+                }
+                
                 break;
 
             case 't':

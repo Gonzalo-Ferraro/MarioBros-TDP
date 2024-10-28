@@ -1,5 +1,6 @@
 package Logica.Fabricas;
 import Logica.Entidades.*;
+import Vistas.ConstantesVistas;
 import java.util.Random;
 
 public abstract class ModoDeJuego {
@@ -85,8 +86,18 @@ public abstract class ModoDeJuego {
     }
 
     public Tuberia crearTuberia(int x, int y) {
-        Sprite sprite = new Sprite(ruta + "/tuberia.png");
-        Tuberia tuberia = new Tuberia(x, y, sprite, crearPiranhaPlant(x, y));
+        Random r = new Random();
+        int resultado = r.nextInt(7);
+
+        Tuberia tuberia = null;
+
+        if(resultado > 4){
+            PiranhaPlant piranhaPlant = crearPiranhaPlant(x + ConstantesVistas.TAMANO_BLOQUE / 2, y - ConstantesVistas.TAMANO_BLOQUE  - 20);
+            tuberia = new Tuberia(x, y, new Sprite(ruta + "/tuberia.png"), piranhaPlant);
+        } else {
+            tuberia = new Tuberia(x, y, new Sprite(ruta + "/tuberia.png"), null);
+        }
+
         return tuberia;
     }
 

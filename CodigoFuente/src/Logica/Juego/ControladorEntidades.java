@@ -59,7 +59,7 @@ public class ControladorEntidades extends Thread {
                     e.cambiarDireccion();
                 }
                 if(sePuedeMoverHacia(e, e.getX() + e.getVelocidadX(), e.getY()) == null)
-                 e.moverX();
+                    e.moverX();
                 
 
                 if (sePuedeMoverHacia(e, e.getX(), e.getY() + 1) == null) {
