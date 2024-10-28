@@ -97,8 +97,8 @@ public abstract class ModoDeJuego {
 
         Tuberia tuberia = null;
 
-        if(resultado > 4){
-            PiranhaPlant piranhaPlant = crearPiranhaPlant(x + ConstantesVistas.TAMANO_BLOQUE / 2, y - ConstantesVistas.TAMANO_BLOQUE  - 20);
+        if (resultado > 0){
+            PiranhaPlant piranhaPlant = crearPiranhaPlant(x + ConstantesVistas.TAMANO_BLOQUE / 2, y - ConstantesVistas.TAMANO_BLOQUE  - 25);
             tuberia = new Tuberia(x, y, new Sprite(ruta + "/tuberia.png"), piranhaPlant);
         } else {
             tuberia = new Tuberia(x, y, new Sprite(ruta + "/tuberia.png"), null);

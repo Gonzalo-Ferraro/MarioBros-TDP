@@ -62,14 +62,12 @@ public class ControladorEntidades extends Thread {
                 if(sePuedeMoverHacia(e, e.getX() + e.getVelocidadX(), e.getY()) == null)
                     e.moverX();
 
-
                 if (e.estaEnElAire()) {
                     Plataforma p = sePuedeMoverHacia(e, e.getX(), e.getY() + e.getVelocidadY());
                     if (p != null) {
                         e.setEstaEnElAire(false);
                         corregirPosicionArriba(p, e);
                         e.setVelocidadY(0);
-                        
                     } else {
                         e.moverY();
                     }

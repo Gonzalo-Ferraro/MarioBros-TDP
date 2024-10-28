@@ -83,7 +83,7 @@ public class GeneradorDeNiveles {
                 );
                 nivel.ingresarEntidad(tuberiaGenerada);
 
-                if(tuberiaGenerada.getPiranhaPlant() != null){
+                if (tuberiaGenerada.getPiranhaPlant() != null){
                     nivel.ingresarEntidad(tuberiaGenerada.getPiranhaPlant());
                 }
                 

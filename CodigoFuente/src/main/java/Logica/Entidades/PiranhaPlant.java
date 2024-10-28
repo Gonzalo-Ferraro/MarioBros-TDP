@@ -37,7 +37,7 @@ public class PiranhaPlant extends Enemigo {
 
     @Override
     public void moverY(){
-
+        System.out.println();
         tiempoAparicion++;
 
         if(tiempoAparicion == 60 * 5){
