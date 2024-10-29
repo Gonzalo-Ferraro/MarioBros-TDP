@@ -1,6 +1,7 @@
 package Logica.EstadosMario;
 
 import Logica.Entidades.*;
+import Vistas.ConstantesVistas;
 
 public class MarioInvulnerable extends EstadoMario {
     private EstadoMario estadoAnterior;
@@ -8,6 +9,9 @@ public class MarioInvulnerable extends EstadoMario {
 	public MarioInvulnerable(Personaje p, EstadoMario e) {
 		super(p);
         this.estadoAnterior = e;
+
+		personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE/2);
+
 		actualizarSprite();
         personaje.getObserver().actualizarImagen();
 
@@ -19,7 +23,7 @@ public class MarioInvulnerable extends EstadoMario {
 			}
 			personaje.setEstado(this.estadoAnterior);
 			personaje.getEntidadSonora().iniciarLoopMario();
-			personaje.setPosicionY(personaje.getY()-40);
+			personaje.setPosicionY(personaje.getY() + ConstantesVistas.TAMANO_BLOQUE/2);
 			
 		}).start();
 	}

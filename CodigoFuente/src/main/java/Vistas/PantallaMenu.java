@@ -65,13 +65,11 @@ public class PantallaMenu extends JPanel {
     }
 
     private void agregarBotonesModos() {
-        // Crear los botones
         modoNormal = new JButton();
         modoBarbie = new JButton();
         
-        // Establecer las posiciones y tamaños de los botones
-        modoNormal.setBounds(400, 330, 400, 60);
-        modoBarbie.setBounds(400, 390, 400, 60);
+        modoNormal.setBounds(500, 330, 280, 60);
+        modoBarbie.setBounds(500, 390, 280, 60);
 
         modoNormal.setContentAreaFilled(false);
         modoBarbie.setContentAreaFilled(false);

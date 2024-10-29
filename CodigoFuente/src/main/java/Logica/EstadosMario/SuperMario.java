@@ -11,7 +11,6 @@ public class SuperMario extends EstadoMario {
         personaje.getObserver().actualizarImagen();
     }
     
-    
     public void setDerecha(boolean d, boolean i) {
         derecha = d;
         izquierda = i;
@@ -88,7 +87,7 @@ public class SuperMario extends EstadoMario {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
         } else if (izquierda) {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-izquierda");
-        }else{
+        }else {
             spriteAsignar = personaje.getEntidadGrafica().getSprite("mariosuper-saltando-derecha");
         }
         personaje.setSprite(spriteAsignar);
