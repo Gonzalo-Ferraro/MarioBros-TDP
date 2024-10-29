@@ -275,10 +275,12 @@ public class Juego {
 
     public void agregarBolaDeFuego(int x, int y, int velocidadX) {
         int direccion = (velocidadX >= 0) ? 1 : -1;
+
         BolaDeFuego bola = modo.crearBolaDeFuego(x, y, direccion);
-        nivelActual.ingresarEntidad(bola);
 
         Observer observerBola = controladorVistas.registrarEntidadLogica(bola);
         bola.registrarObserver(observerBola);
+        
+        nivelActual.ingresarEntidad(bola);
     }
 }
