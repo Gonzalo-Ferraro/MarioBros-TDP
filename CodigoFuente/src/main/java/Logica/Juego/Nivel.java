@@ -50,19 +50,22 @@ public class Nivel {
     }
 
     public Iterable<Plataforma> getPlataformas() {
-        return plataformas;
+        return clonarLista(plataformas);
     }
 
     public Iterable<BolaDeFuego> getBolasDeFuego() {
-        return bolasDeFuego;
+        return clonarLista(bolasDeFuego);
     }
     
     public Iterable<Enemigo> getEnemigos() {
-        return enemigos;
+        return clonarLista(enemigos);
     }
 
     public Iterable<PiranhaPlant> getPiranhaPlants() {
-        return piranhaPlants;
+        return clonarLista(piranhaPlants);
+    }
+    public Iterable<PowerUp> getPowerUps() {
+        return powerUps;
     }
 
     public int obtenerCantidadBolasDeFuego() {
@@ -97,9 +100,6 @@ public class Nivel {
         powerUps.add(p);
     }
 
-    public List<PowerUp> getPowerUps() {
-        return powerUps;
-    }
 
     public void ingresarEntidad(Plataforma p) {
         plataformas.add(p);
@@ -120,5 +120,21 @@ public class Nivel {
     
     public synchronized void removerEntidad(Plataforma p) {
         plataformas.remove(p);
+    }
+
+    public synchronized void removerEntidad(BolaDeFuego b) {
+        bolasDeFuego.remove(b);
+    }
+
+    public synchronized void removerEntidad(PiranhaPlant p){
+        piranhaPlants.remove(p);
+    }
+
+    private <E> List<E> clonarLista(List<E> lista) {
+        LinkedList<E> clon = new LinkedList<>();
+        for (E e : lista) {
+            clon.add(e);
+        }
+        return clon;
     }
 }

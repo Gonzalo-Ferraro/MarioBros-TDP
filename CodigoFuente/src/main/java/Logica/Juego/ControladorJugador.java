@@ -6,6 +6,9 @@ import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
 import Vistas.ConstantesVistas;
+
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.Rectangle;
 
 
@@ -14,6 +17,9 @@ public class ControladorJugador implements Runnable {
     private boolean corriendo = false;
     private Personaje personaje;
     private Nivel nivelActual;
+
+    private List<Enemigo> enemigosAeliminar;
+    private List<PowerUp> powerUpsAeliminar;
 
     private final double TIME_PER_FRAME = 1_000_000_000.0 / ConstantesVistas.FPS;
 
@@ -67,8 +73,65 @@ public class ControladorJugador implements Runnable {
 
     private void moverPersonaje() {
         detectarColisiones();
+        eliminarEntidades();
         moverX();
         moverY();
+    }
+    
+    private synchronized void detectarColisiones() {
+        checkearColisionesConEnemigos();
+        checkearColisionesConPowerUps();
+    }
+    
+    private synchronized void checkearColisionesConEnemigos() {
+        enemigosAeliminar= new LinkedList<>();
+        for (Enemigo e : nivelActual.getEnemigos()) {
+            if (personaje.getBounds().intersects(e.getBounds())) {
+                if (personaje.estaCayendo()) {
+                    e.serAfectadoPor(personaje); 
+                    personaje.saltarLuegoDeColision();
+                    enemigosAeliminar.add(e);
+                } else {
+                    e.afectarAMario(personaje);
+                }
+            }
+        }
+
+        for (PiranhaPlant p : nivelActual.getPiranhaPlants()) {
+            if (personaje.getBounds().intersects(p.getBounds())) {
+                p.afectarAMario(personaje);
+            }
+        }
+    }
+    
+    private void checkearColisionesConPowerUps() {
+        powerUpsAeliminar = new LinkedList<>();
+        for (PowerUp p : nivelActual.getPowerUps()) {
+            if (personaje.getBounds().intersects(p.getBounds())) {
+                p.afectarAMario(personaje);
+                powerUpsAeliminar.add(p);
+            }
+        }
+    }
+
+    private synchronized void eliminarEntidades(){
+        for(Enemigo e : enemigosAeliminar)
+            nivelActual.removerEntidad(e);
+
+        for(PowerUp p : powerUpsAeliminar)
+            nivelActual.removerEntidad(p);
+    }
+    
+    private synchronized void moverX() {
+        boolean condicion = sePuedeMoverHacia(
+            personaje.getX() + personaje.getVelocidadX(), 
+            personaje.getY()
+        ) == null &&
+        personaje.getX() + personaje.getVelocidadX() > personaje.getJuego().getPosScroll();
+
+        if (condicion) {
+            personaje.moverX();
+        }
     }
 
     private synchronized void moverY() {
@@ -105,17 +168,6 @@ public class ControladorJugador implements Runnable {
         ) != null;
     }
 
-    private synchronized void moverX() {
-        boolean condicion = sePuedeMoverHacia(
-            personaje.getX() + personaje.getVelocidadX(), 
-            personaje.getY()
-        ) == null &&
-        personaje.getX() + personaje.getVelocidadX() > personaje.getJuego().getPosScroll();
-
-        if (condicion) {
-            personaje.moverX();
-        }
-    }
 
     private Plataforma sePuedeMoverHacia(int x, int y) {
         Rectangle hitbox = new Rectangle(personaje.getBounds());
@@ -130,38 +182,7 @@ public class ControladorJugador implements Runnable {
         return toRet;
     }
 
-    private synchronized void detectarColisiones() {
-        checkearColisionesConEnemigos();
-        checkearColisionesConPowerUps();
-    }
-
-    private synchronized void checkearColisionesConEnemigos() {
-        for (Enemigo e : nivelActual.getEnemigos()) {
-            if (personaje.getBounds().intersects(e.getBounds())) {
-                if (personaje.estaCayendo()) {
-                    e.serAfectadoPor(personaje); 
-                    personaje.saltarLuegoDeColision();  
-                } else {
-                    e.afectarAMario(personaje);
-                }
-            }
-        }
-
-        for (PiranhaPlant p : nivelActual.getPiranhaPlants()) {
-            if (personaje.getBounds().intersects(p.getBounds())) {
-                p.afectarAMario(personaje);
-            }
-        }
-    }
-
-    private void checkearColisionesConPowerUps() {
-        for (PowerUp p : nivelActual.getPowerUps()) {
-            if (personaje.getBounds().intersects(p.getBounds())) {
-                p.afectarAMario(personaje);
-            }
-        }
-    }
-    
+ 
     private void corregirPosicionArriba(Plataforma p) {
         personaje.setPosicionY(p.getY() - (int) personaje.getBounds().getHeight());
     }

@@ -54,7 +54,8 @@ public class Personaje extends Entidad implements EntidadJugador {
             puntaje = 0;
         else puntaje += punt;
 
-        juego.actualizarEtiquetaStatsPantallaJuego();
+        if(this.juego !=null)
+            juego.actualizarEtiquetaStatsPantallaJuego();
     }
     
     public void setVelocidadY(int v){

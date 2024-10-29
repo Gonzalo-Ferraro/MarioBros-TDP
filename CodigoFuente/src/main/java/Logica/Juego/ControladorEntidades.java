@@ -8,6 +8,8 @@ import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Plataforma;
 import Vistas.ConstantesVistas;
 import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class ControladorEntidades extends Thread {
@@ -16,7 +18,9 @@ public class ControladorEntidades extends Thread {
     private Thread hiloEntidades;
     private boolean corriendo;
     private final double TIME_PER_FRAME = 1_000_000_000.0 / ConstantesVistas.FPS;
-
+    private List<BolaDeFuego> bolasAeliminar;
+    private List<PiranhaPlant> piranhaPlantsAeliminar;
+    private List<Enemigo> enemigosAeliminar;
     public void setNivel(Nivel n){
         nivel = n;
     }
@@ -59,10 +63,15 @@ public class ControladorEntidades extends Thread {
 
     private synchronized void actualizarJuego() {
         checkearColisionesConBolasDeFuego();
+        eliminarEntidades();
         moverEntidades();
     }
 
     private synchronized void checkearColisionesConBolasDeFuego() {
+        bolasAeliminar= new LinkedList<>();
+        piranhaPlantsAeliminar = new LinkedList<>();
+        enemigosAeliminar = new LinkedList<>();
+
         for (BolaDeFuego bola : nivel.getBolasDeFuego()) {
             if (bola.getViva()) {
                 for (Enemigo e : nivel.getEnemigos())
@@ -71,6 +80,8 @@ public class ControladorEntidades extends Thread {
                         e.desaparecer();
                         nivel.decrementarBolasDeFuego();
                         bola.desaparecer();
+                        bolasAeliminar.add(bola);
+                        enemigosAeliminar.add(e);
                     }
             }
                 
@@ -80,11 +91,24 @@ public class ControladorEntidades extends Thread {
                         p.serAfectadoPorBola(nivel.getPersonaje());
                         nivel.decrementarBolasDeFuego();
                         bola.desaparecer();
+                        bolasAeliminar.add(bola);
+                        piranhaPlantsAeliminar.add(p);
                     }
             }
         }
     }
+    
+    private synchronized void eliminarEntidades(){
+        for(BolaDeFuego b : bolasAeliminar)
+            nivel.removerEntidad(b);
+
+        for(PiranhaPlant p : piranhaPlantsAeliminar)
+            nivel.removerEntidad(p);
         
+        for(Enemigo e : enemigosAeliminar)
+            nivel.removerEntidad(e);
+    }
+    
     private synchronized void moverEntidades() {
         Random r = new Random();
 
