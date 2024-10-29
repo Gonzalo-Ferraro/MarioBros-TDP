@@ -8,7 +8,7 @@ public class MarioFlorDeFuego extends SuperMario{
             super(p);      
     }
 
-      @Override
+    @Override
     public void setDerecha(boolean d, boolean i) {
         derecha = d;
         izquierda = i;

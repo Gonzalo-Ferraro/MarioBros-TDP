@@ -224,7 +224,7 @@ public class Juego {
         controladorVistas.actualizarEtiquetaStatsPantallaJuego();
     }
 
-    public void pasarNivel(){
+    public void pasarNivel() {
         if (nivelActual.getNumeroNivel() + 1 > 3) {
             ganaste();            
         } else {
@@ -252,10 +252,12 @@ public class Juego {
     private void ganaste(){
         JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
 
-        actualizarRanking();
-
         controladorEntidades.detener();
         controladorJugador.detener();
+
+        actualizarRanking();
+        controladorVistas.mostrarRanking();
+
         controladorVistas.dispose();
     }
 
@@ -273,7 +275,7 @@ public class Juego {
         personaje.lanzarBolaDeFuego();
     }
 
-    public void agregarBolaDeFuego(int x, int y, int velocidadX) {
+    public synchronized void agregarBolaDeFuego(int x, int y, int velocidadX) {
         int direccion = (velocidadX >= 0) ? 1 : -1;
 
         BolaDeFuego bola = modo.crearBolaDeFuego(x, y, direccion);

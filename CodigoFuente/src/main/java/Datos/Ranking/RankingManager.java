@@ -45,7 +45,6 @@ public class RankingManager {
         if (ranking != null) {
             try (FileWriter writer = new FileWriter(RUTA_RANKING)) {
                 gson.toJson(ranking, writer);
-                System.out.println("Ranking guardado exitosamente.");
             } catch (Exception e) {
                 System.out.println("Error al guardar el archivo de ranking: " + e.getMessage());
                 e.printStackTrace();

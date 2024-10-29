@@ -10,7 +10,7 @@ public class MarioInvulnerable extends EstadoMario {
 		super(p);
         this.estadoAnterior = e;
 
-		personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE/2);
+		personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE);
 
 		actualizarSprite();
         personaje.getObserver().actualizarImagen();
@@ -23,8 +23,6 @@ public class MarioInvulnerable extends EstadoMario {
 			}
 			personaje.setEstado(this.estadoAnterior);
 			personaje.getEntidadSonora().iniciarLoopMario();
-			personaje.setPosicionY(personaje.getY() + ConstantesVistas.TAMANO_BLOQUE/2);
-			
 		}).start();
 	}
 

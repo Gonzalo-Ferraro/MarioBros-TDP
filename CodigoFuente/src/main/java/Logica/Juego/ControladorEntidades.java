@@ -63,7 +63,7 @@ public class ControladorEntidades extends Thread {
     }
 
     private synchronized void checkearColisionesConBolasDeFuego() {
-        for (BolaDeFuego bola : nivel.getBolasDeFuego())
+        for (BolaDeFuego bola : nivel.getBolasDeFuego()) {
             if (bola.getViva()) {
                 for (Enemigo e : nivel.getEnemigos())
                     if (bola.getBounds().intersects(e.getBounds())) {
@@ -72,7 +72,9 @@ public class ControladorEntidades extends Thread {
                         nivel.decrementarBolasDeFuego();
                         bola.desaparecer();
                     }
+            }
                 
+            if (bola.getViva()) {
                 for (PiranhaPlant p : nivel.getPiranhaPlants())
                     if (bola.getBounds().intersects(p.getBounds())) {
                         p.serAfectadoPorBola(nivel.getPersonaje());
@@ -80,6 +82,7 @@ public class ControladorEntidades extends Thread {
                         bola.desaparecer();
                     }
             }
+        }
     }
         
     private synchronized void moverEntidades() {
