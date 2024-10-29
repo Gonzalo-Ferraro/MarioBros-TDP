@@ -20,7 +20,7 @@ public class Spiny extends Enemigo {
 
     @Override
     public void moverX() {
-        if (vivo) {
+        if (vivo && !estaEnElAire) {
             super.moverX();
 
             if (direccion == -1)
@@ -32,15 +32,29 @@ public class Spiny extends Enemigo {
         }
     }
 
+    @Override
     public void moverY() {
         if (vivo) {
             super.moverY();
+
+            if (estaEnElAire) {
+                sprite = entidadGrafica.getSprite("spiny-lanzado");
+                observador.actualizarImagen();
+            }
         }
     }
 
     @Override
     public void aparecer(int x, int y) {
         super.aparecer(x, y);
+
         vivo = true;
+        velocidadY = -15;
+    }
+
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        p.AfectarA(this);
+        desaparecer();
     }
 }

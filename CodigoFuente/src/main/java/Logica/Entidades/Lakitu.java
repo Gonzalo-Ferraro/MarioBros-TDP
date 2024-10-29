@@ -76,4 +76,9 @@ public class Lakitu extends Enemigo {
         Spiny s = spinys.remove(0);
         s.aparecer(x, y);
     }
+
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        serAfectadoPor(p);
+    }
 }

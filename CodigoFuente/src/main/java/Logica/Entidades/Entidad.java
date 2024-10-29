@@ -7,14 +7,13 @@ import java.awt.Rectangle;
 public abstract class Entidad implements EntidadLogica {
     protected int x;
     protected int y;
+
     protected Sprite sprite;
-    protected  int velocidadX;
-    protected  int direccion;
     
+    protected  int velocidadX;
 
     protected Observer observador;
     protected EntidadGrafica entidadGrafica;
-   
 
     protected Entidad(int x, int y, Sprite s){
         this.x = x;
@@ -43,10 +42,6 @@ public abstract class Entidad implements EntidadLogica {
 
     public void setEntidadGrafica(EntidadGrafica entidadGrafica){
         this.entidadGrafica = entidadGrafica;
-    }
-
-    public void setDireccion(int direccion){
-        this.direccion = direccion;
     }
 
     public Rectangle getBounds(){

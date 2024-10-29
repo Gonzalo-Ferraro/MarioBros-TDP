@@ -61,15 +61,16 @@ public class Personaje extends Entidad implements EntidadJugador {
         velocidadY = v;
     }
     
-    public void setPosicionY(int y){
+    public void setPosicionY(int y) {
         this.y = y;
         observador.actualizarPosicionTamano();
     }
     
-    
-    public void retroceder(){
-        this.x = x - ConstantesVistas.TAMANO_BLOQUE;
-        observador.actualizarPosicionTamano();
+    public void retroceder() {
+        if (izquierda)
+            x += ConstantesVistas.TAMANO_BLOQUE;
+        else
+            x -= ConstantesVistas.TAMANO_BLOQUE;
     }
         
         
@@ -220,8 +221,8 @@ public class Personaje extends Entidad implements EntidadJugador {
         estado.actualizarAlCaer(derecha,izquierda);
     }
 
-    public void espacio() {
-        estado.espacio();
+    public void lanzarBolaDeFuego() {
+        estado.lanzarBolaDeFuego();
     }
 
 
@@ -230,7 +231,6 @@ public class Personaje extends Entidad implements EntidadJugador {
 
         velocidadX = 7;
         velocidadY = 0;
-        direccion = 0;
 
         x = ConstantesVistas.POSICION_INICIAL_X;
         y = ConstantesVistas.POSICION_INICIAL_Y - 30;
@@ -242,7 +242,6 @@ public class Personaje extends Entidad implements EntidadJugador {
     public void pasarNivelPersonaje() {
         velocidadX = 7;
         velocidadY = 0;
-        direccion = 0;
 
         x = ConstantesVistas.POSICION_INICIAL_X;
         y = ConstantesVistas.POSICION_INICIAL_Y - 30;

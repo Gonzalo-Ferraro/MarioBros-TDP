@@ -28,4 +28,8 @@ public class BuzzyBeetle extends Enemigo {
         observador.actualizarImagen();
     }
 
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        serAfectadoPor(p);
+    }
 }

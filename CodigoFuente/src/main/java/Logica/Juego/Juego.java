@@ -11,7 +11,6 @@ import Vistas.ControladorVistas;
 import Vistas.Observer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import  javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -46,6 +45,7 @@ public class Juego {
     public void setIzquierda(boolean i){
         personaje.setIzquierda(i);
     }
+
     public void setControladorVistas(ControladorVistas c) {
         controladorVistas = c;
     }
@@ -154,7 +154,8 @@ public class Juego {
 
         registrarObserverEntidades(nivelActual.getEnemigos());
         registrarObserverEntidades(nivelActual.getPlataformas());
-        registrarObserverEntidades(nivelActual.getPowerUps());        
+        registrarObserverEntidades(nivelActual.getPowerUps());  
+        registrarObserverEntidades(nivelActual.getPiranhaPlants());      
     }
     
     protected void registrarObserverJugador(Personaje personaje) {
@@ -167,7 +168,7 @@ public class Juego {
         fondo.registrarObserver(observer);
     }
     
-    protected void registrarObserverEntidades(List<? extends Entidad> entidades) {
+    protected void registrarObserverEntidades(Iterable<? extends Entidad> entidades) {
         for(Entidad entidad : entidades) {
             Observer  observerEntidad = controladorVistas.registrarEntidadLogica(entidad);
             entidad.registrarObserver(observerEntidad);
@@ -199,16 +200,14 @@ public class Juego {
     }
 
     public void reiniciarNivel() {
+        controladorEntidades.detener();
         
-        System.out.println("Reiniciando nivel");
-
         try {
             Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        controladorEntidades.detener();
         controladorJugador.detener();
 
         controladorVistas.crearPantallaJuego(obtenerPersonaje());
@@ -268,5 +267,18 @@ public class Juego {
 
     public void finTimer() {
         personaje.perderVida();
+    }
+
+    public void lanzarBolaDeFuego() {
+        personaje.lanzarBolaDeFuego();
+    }
+
+    public void agregarBolaDeFuego(int x, int y, int velocidadX) {
+        int direccion = (velocidadX >= 0) ? 1 : -1;
+        BolaDeFuego bola = modo.crearBolaDeFuego(x, y, direccion);
+        nivelActual.ingresarEntidad(bola);
+
+        Observer observerBola = controladorVistas.registrarEntidadLogica(bola);
+        bola.registrarObserver(observerBola);
     }
 }

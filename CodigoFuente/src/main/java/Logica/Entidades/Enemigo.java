@@ -6,11 +6,12 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
 
     protected boolean estaEnElAire;
     protected  int velocidadY;
+    protected int direccion;
 
-    protected Enemigo(int x, int y, Sprite s){
+    protected Enemigo(int x, int y, Sprite s) {
         super(x, y, s);
         direccion = -1;
-        velocidadX = 2;
+        velocidadX = ConstantesEntidades.VELOCIDAD_ENEMIGOS ;
         velocidadY = 0;
     }
 
@@ -41,7 +42,7 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
             velocidadY += ConstantesVistas.GRAVEDAD;
             y += velocidadY;
 
-            if(y > ConstantesVistas.VENTANA_ALTO){
+            if (y > ConstantesVistas.VENTANA_ALTO) {
                 //me cai al vacio
                 desaparecer();
             }
@@ -61,4 +62,6 @@ public abstract class Enemigo extends Entidad implements AfectablePorMario, Afec
     public void setPosicionY(int y) {
         this.y = y;
     }
+
+    public abstract void serAfectadoPorBola(Personaje p);
 }

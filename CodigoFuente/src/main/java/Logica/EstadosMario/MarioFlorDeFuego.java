@@ -1,11 +1,12 @@
 package Logica.EstadosMario;
 
 import Logica.Entidades.*;
+import Logica.Juego.Juego;
 
 public class MarioFlorDeFuego extends SuperMario{
-      public MarioFlorDeFuego(Personaje p){
+    public MarioFlorDeFuego(Personaje p) {
             super(p);      
-      }
+    }
 
       @Override
     public void setDerecha(boolean d, boolean i) {
@@ -55,6 +56,19 @@ public class MarioFlorDeFuego extends SuperMario{
         this.izquierda = izquierda;
         personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
         actualizarSpriteSaltar();
+    }
+
+    @Override
+    public void lanzarBolaDeFuego() {
+        Juego juego = personaje.getJuego();
+        boolean condicion = 
+            juego.getNivelActual().obtenerCantidadBolasDeFuego() 
+            < ConstantesEstados.CANTIDAD_MAXIMA_BOLAS_DE_FUEGO;
+
+        if (condicion) {
+            juego.agregarBolaDeFuego(personaje.getX(), personaje.getY(), personaje.getVelocidadX());
+            juego.getEntidadSonora().reproducirSonido("bola");
+        }
     }
 
     private void actualizarSpriteSaltar() {

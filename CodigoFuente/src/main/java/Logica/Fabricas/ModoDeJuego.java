@@ -219,5 +219,9 @@ public abstract class ModoDeJuego {
         return fondo;
     }
 
-
+    public BolaDeFuego crearBolaDeFuego(int x, int y, int direccion) {
+        Sprite sprite = new Sprite(ruta + "/bola-de-fuego.gif");
+        BolaDeFuego bola = new BolaDeFuego(x, y, sprite, direccion);
+        return bola;
+    }
 }

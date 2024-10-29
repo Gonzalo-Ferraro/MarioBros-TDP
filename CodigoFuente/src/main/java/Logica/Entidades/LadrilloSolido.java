@@ -11,4 +11,8 @@ public class LadrilloSolido extends BloqueSolido {
         p.AfectarA(this);
     }
 
+    @Override
+    public void serAfectadoPorBola() {
+        desaparecer();
+    }
 }

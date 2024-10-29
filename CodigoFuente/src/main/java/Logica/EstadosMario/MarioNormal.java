@@ -69,6 +69,11 @@ public class MarioNormal extends EstadoMario {
         actualizarSpriteSaltar();
     }
 
+    @Override
+    public void lanzarBolaDeFuego() {
+        //Mario en estado normal no puede lanzar bolas de fuego
+    }
+
     private void actualizarSpriteSaltar() {
         Sprite spriteAsignar = personaje.getEntidadGrafica().getSprite("mario-eliminado");
         

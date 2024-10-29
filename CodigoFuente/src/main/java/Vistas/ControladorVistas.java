@@ -128,9 +128,8 @@ public class ControladorVistas extends JFrame implements KeyListener {
 				juego.setDerecha(true);
                 break;
             case KeyEvent.VK_SPACE:
-                System.out.println("Tecla Espacio presionada");
-                 
-                 break;
+                juego.lanzarBolaDeFuego();
+                break;
         }
     }
 
@@ -142,7 +141,6 @@ public class ControladorVistas extends JFrame implements KeyListener {
             case KeyEvent.VK_W -> {
             }
             case KeyEvent.VK_D -> juego.setDerecha(false);
-            case KeyEvent.VK_SPACE -> System.out.println("Tecla Espacio soltada");
         }
     }
 

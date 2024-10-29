@@ -16,14 +16,19 @@ public class KoopaTroopaNormal implements EstadoKoopaTroopa{
     }
 
     @Override
-    public void serAfectadoPor(Personaje p){
+    public void serAfectadoPor(Personaje p) {
         KoopaTroopaCaparazon caparazon = new KoopaTroopaCaparazon(koopa);
         caparazon.setEntidadGrafica(entidadGrafica);
         koopa.setEstado(caparazon);
     }
 
     @Override
-    public void cambiarDireccion(){
+    public void afectarAMario(Personaje p) {
+        p.serAfectadoPor(koopa);
+    }
+
+    @Override
+    public void cambiarDireccion() {
         direccion *= -1;
     }
     

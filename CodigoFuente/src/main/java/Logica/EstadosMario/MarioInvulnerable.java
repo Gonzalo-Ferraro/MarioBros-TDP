@@ -22,7 +22,6 @@ public class MarioInvulnerable extends EstadoMario {
 			personaje.setPosicionY(personaje.getY()-40);
 			
 		}).start();
-
 	}
 
 	@Override
@@ -83,6 +82,11 @@ public class MarioInvulnerable extends EstadoMario {
         personaje.setSprite(spriteAsignar);
         personaje.getObserver().actualizarImagen();
     }
+
+	@Override
+	public void lanzarBolaDeFuego() {
+		//No hace nada porque el enunciado es aburrido
+	}
 
 	public void saltar(boolean derecha, boolean izquierda) {
 		this.derecha = derecha;

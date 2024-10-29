@@ -6,4 +6,5 @@ public abstract class Plataforma extends Entidad implements AfectablePorMario {
         super(x, y, s);
     }
 
+    public void serAfectadoPorBola() {}
 }

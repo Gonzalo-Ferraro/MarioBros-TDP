@@ -4,7 +4,6 @@ import Logica.Entidades.*;
 import Vistas.ConstantesVistas;
 
 public class SuperMario extends EstadoMario {
-    
     public SuperMario(Personaje p) {
         super(p);
         personaje.setPosicionY(personaje.getY() - ConstantesVistas.TAMANO_BLOQUE/2);
@@ -75,6 +74,11 @@ public class SuperMario extends EstadoMario {
         this.izquierda = izquierda;
         personaje.setVelocidadY(ConstantesEstados.SALTO_MARIO_SUPER);
         actualizarSpriteSaltar();
+    }
+
+    @Override
+    public void lanzarBolaDeFuego() {
+        
     }
     
     private void actualizarSpriteSaltar() {

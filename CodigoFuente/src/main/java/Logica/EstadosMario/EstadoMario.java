@@ -34,9 +34,7 @@ public abstract class EstadoMario  {
     public abstract void saltar(boolean derecha, boolean izquierda);
     public abstract void actualizarAlCaer(boolean derecha, boolean izquierda);
     
-    public void espacio(){
-        personaje.espacio();
-    }
+    public abstract void lanzarBolaDeFuego();
     
     public void eliminar() {
 
@@ -48,7 +46,7 @@ public abstract class EstadoMario  {
         personaje.perderVida();
     }
 
-    public void serAfectadoPor(KoopaTroopa k){
+    public void serAfectadoPor(KoopaTroopa k) {
         personaje.setPuntaje(-45);
         personaje.perderVida();
     }
@@ -97,22 +95,26 @@ public abstract class EstadoMario  {
     public void AfectarA(Goomba g){
         personaje.setPuntaje(60);
     }
+
     public void AfectarA(KoopaTroopa k){
         personaje.setPuntaje(90);
     }
+
     public void AfectarA(PiranhaPlant p){
         personaje.setPuntaje(30);
     }
+
     public void AfectarA(Lakitu l){
         personaje.setPuntaje(60);
     }
+
     public void AfectarA(Spiny s){
         personaje.setPuntaje(60);
     }
+
     public void AfectarA(BuzzyBeetle b){
         personaje.setPuntaje(30);
     }
-
     
     public void AfectarA(BloqueDePregunta bloq){
         bloq.serAfectadoPor(personaje);

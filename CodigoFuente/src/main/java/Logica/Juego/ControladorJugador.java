@@ -2,6 +2,7 @@ package Logica.Juego;
 
 import Logica.Entidades.Enemigo;
 import Logica.Entidades.Personaje;
+import Logica.Entidades.PiranhaPlant;
 import Logica.Entidades.Plataforma;
 import Logica.Entidades.PowerUp;
 import Vistas.ConstantesVistas;
@@ -143,6 +144,12 @@ public class ControladorJugador implements Runnable {
                 } else {
                     e.afectarAMario(personaje);
                 }
+            }
+        }
+
+        for (PiranhaPlant p : nivelActual.getPiranhaPlants()) {
+            if (personaje.getBounds().intersects(p.getBounds())) {
+                p.afectarAMario(personaje);
             }
         }
     }

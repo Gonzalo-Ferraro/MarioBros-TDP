@@ -17,8 +17,8 @@ public class PiranhaPlant extends Enemigo {
 
         posicionX = x;
         posicionY = y;
-        this.x = -1000;
-        this.y = -1000;
+        this.x = posicionX;
+        this.y = posicionY;
     }
 
     @Override
@@ -32,30 +32,30 @@ public class PiranhaPlant extends Enemigo {
     }
 
     @Override
-    public void moverX(){
+    public void moverX() {
     }
 
     @Override
-    public void moverY(){
+    public void moverY() {
         tiempoAparicion++;
 
-        if(tiempoAparicion == 60 * 5){
+        if (tiempoAparicion == 60 * 5) {
             tiempoAparicion = 0;
             afuera = !afuera;
         }
 
-
-        if(afuera){
-            desaparecer();
-        }
-        else {
-            aparecer(posicionX, posicionY);
-        }
+        if (afuera && y > posicionY)
+            y -= 1;
+        else if (!afuera && y < posicionY + ConstantesEntidades.ALTO_PIRHANA_PLANT)
+            y += 1;
 
         observador.actualizarImagen();
         observador.actualizarPosicionTamano();
     }
 
-    
-
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        p.AfectarA(this);
+        desaparecer();
+    }
 }

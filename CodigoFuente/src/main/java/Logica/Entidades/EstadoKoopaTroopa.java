@@ -5,7 +5,5 @@ public interface EstadoKoopaTroopa {
     public Sprite moverX();
     public void cambiarDireccion();
     public void setEntidadGrafica(EntidadGrafica e);
-    
-    
-
+    public void afectarAMario(Personaje p);
 }

@@ -16,4 +16,9 @@ public class Goomba extends Enemigo {
     public void afectarAMario(Personaje p) {
         p.serAfectadoPor(this);
     }
+
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        serAfectadoPor(p);
+    }
 }   

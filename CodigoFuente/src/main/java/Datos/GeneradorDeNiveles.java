@@ -61,7 +61,7 @@ public class GeneradorDeNiveles {
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - 20
                 );
 
-                if(bloqueGenerado.getPowerUp()!=null){
+                if (bloqueGenerado.getPowerUp() != null) {
                     nivel.ingresarEntidad(bloqueGenerado.getPowerUp());
                 }
                 
@@ -81,6 +81,7 @@ public class GeneradorDeNiveles {
                     indiceCaracter * ConstantesVistas.TAMANO_BLOQUE,
                     indiceLinea * ConstantesVistas.TAMANO_BLOQUE - ConstantesVistas.TAMANO_BLOQUE - 20
                 );
+
                 nivel.ingresarEntidad(tuberiaGenerada);
 
                 if (tuberiaGenerada.getPiranhaPlant() != null){

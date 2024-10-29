@@ -1,7 +1,6 @@
 package Logica.Entidades;
 
 public class KoopaTroopa extends Enemigo {
-
     private EstadoKoopaTroopa estado;
 
     public KoopaTroopa(int x, int y, Sprite s){
@@ -23,7 +22,7 @@ public class KoopaTroopa extends Enemigo {
 
     @Override
     public void afectarAMario(Personaje p) {
-        p.serAfectadoPor(this);
+        estado.afectarAMario(p);
     }
 
     public void setEstado(EstadoKoopaTroopa e){
@@ -38,12 +37,24 @@ public class KoopaTroopa extends Enemigo {
         sprite = estado.moverX(); 
         observador.actualizarImagen();
         observador.actualizarPosicionTamano();
-        
     }
 
     @Override
     public void cambiarDireccion(){
         super.cambiarDireccion();
         estado.cambiarDireccion();
+    }
+
+    public void setVelocidadX(int x) {
+        velocidadX = x;
+    }
+
+    public void setDireccion(int d) {
+        direccion = d;
+    }
+
+    @Override
+    public void serAfectadoPorBola(Personaje p) {
+        estado.serAfectadoPor(p);
     }
 }
