@@ -231,14 +231,15 @@ public class Juego {
             personaje.pasarNivelPersonaje();
             
             controladorEntidades.detener();
-            controladorJugador.detener();
-
+            
             try {
-                Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 1000);
+                Thread.sleep(ConstantesVistas.TIEMPO_ENTRE_NIVELES * 500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+            controladorJugador.detener();
+            
             controladorVistas.crearPantallaJuego(obtenerPersonaje());
             controladorVistas.getPantallaStats().actualizarValores(nivelActual.getNumeroNivel() + 1);
 

@@ -5,6 +5,10 @@
       "puntaje": 3760
     },
     {
+      "nombre": "An?nimo",
+      "puntaje": 2690
+    },
+    {
       "nombre": "Manuel",
       "puntaje": 2640
     },
@@ -13,12 +17,8 @@
       "puntaje": 2410
     },
     {
-      "nombre": "Ule",
-      "puntaje": 1870
-    },
-    {
-      "nombre": "Anónimo",
-      "puntaje": 1485
+      "nombre": "Gonzalo",
+      "puntaje": 2385
     }
   ]
 }
