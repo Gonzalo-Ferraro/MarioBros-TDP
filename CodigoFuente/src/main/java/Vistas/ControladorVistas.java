@@ -16,6 +16,7 @@ public class ControladorVistas extends JFrame implements KeyListener {
     private PantallaJuego pantallaJuego;
     private PantallaMenu pantallaMenu;
 	private PantallaStats pantallaStats;
+    private PantallaPerdisteOGanaste pantallaPerdisteOGanaste;
     
     public ControladorVistas(Juego juego) {
         super("Super Mario Bros - Comision 06 TDP");
@@ -49,10 +50,17 @@ public class ControladorVistas extends JFrame implements KeyListener {
     public void crearPantallaStats(EntidadJugador personaje) {
         pantallaStats = new PantallaStats(this, personaje);
     }
+    public void crearPantallaPerdisteOGanaste(){
+        pantallaPerdisteOGanaste= new PantallaPerdisteOGanaste();
+    }
 
     
     public void mostrarMenu() {
     	setContentPane(pantallaMenu);
+        actualizarPanel();
+    }
+    public void mostrarPantallaPerdisteOGanaste() {
+        this.setContentPane(pantallaPerdisteOGanaste);
         actualizarPanel();
     }
 

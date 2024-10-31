@@ -191,6 +191,9 @@ public class Juego {
         controladorJugador.detener();
         controladorEntidades.detener();
 
+        controladorVistas.crearPantallaPerdisteOGanaste();
+        controladorVistas.mostrarPantallaPerdisteOGanaste();        
+
         JOptionPane.showMessageDialog(null, "Perdiste, puntaje final: " + personaje.getPuntaje());
 
         actualizarRanking();
@@ -255,6 +258,9 @@ public class Juego {
 
         controladorEntidades.detener();
         controladorJugador.detener();
+
+        controladorVistas.crearPantallaPerdisteOGanaste();
+        controladorVistas.mostrarPantallaPerdisteOGanaste();
 
         actualizarRanking();
         controladorVistas.mostrarRanking();
