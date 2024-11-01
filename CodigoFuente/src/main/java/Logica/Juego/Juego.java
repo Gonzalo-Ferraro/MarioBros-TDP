@@ -6,6 +6,7 @@ import Datos.Ranking.Ranking;
 import Datos.Ranking.RankingManager;
 import Logica.Entidades.*;
 import Logica.Fabricas.ModoDeJuego;
+import Logica.Launcher.Launcher;
 import Vistas.ConstantesVistas;
 import Vistas.ControladorVistas;
 import Vistas.Observer;
@@ -196,8 +197,8 @@ public class Juego {
 
         actualizarRanking();
 
-        controladorVistas.mostrarRanking();
         controladorVistas.dispose();
+        Launcher.main(null);
     }
 
     public void reiniciarNivel() {
@@ -259,9 +260,9 @@ public class Juego {
         controladorVistas.mostrarPantallaPerdisteOGanaste();
 
         actualizarRanking();
-        controladorVistas.mostrarRanking();
 
         controladorVistas.dispose();
+        Launcher.main(null);
     }
 
     private void actualizarRanking() {
