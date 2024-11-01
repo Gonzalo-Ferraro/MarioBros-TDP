@@ -191,10 +191,8 @@ public class Juego {
         controladorJugador.detener();
         controladorEntidades.detener();
 
-        controladorVistas.crearPantallaPerdisteOGanaste();
+        controladorVistas.crearPantallaPerdisteOGanaste(personaje);
         controladorVistas.mostrarPantallaPerdisteOGanaste();        
-
-        JOptionPane.showMessageDialog(null, "Perdiste, puntaje final: " + personaje.getPuntaje());
 
         actualizarRanking();
 
@@ -254,12 +252,10 @@ public class Juego {
     }
 
     private void ganaste(){
-        JOptionPane.showMessageDialog(null, "Ganaste, puntaje final: " + personaje.getPuntaje());
-
         controladorEntidades.detener();
         controladorJugador.detener();
 
-        controladorVistas.crearPantallaPerdisteOGanaste();
+        controladorVistas.crearPantallaPerdisteOGanaste(personaje);
         controladorVistas.mostrarPantallaPerdisteOGanaste();
 
         actualizarRanking();
@@ -269,7 +265,7 @@ public class Juego {
     }
 
     private void actualizarRanking() {
-        String nombre = obtenerNombreJugador();
+        String nombre = controladorVistas.getPantallaPerdisteOGanaste().pedirNombre();
         rankingManager.agregarJugador(nombre, personaje.getPuntaje());
         rankingManager.guardarRanking();
     }

@@ -50,8 +50,8 @@ public class ControladorVistas extends JFrame implements KeyListener {
     public void crearPantallaStats(EntidadJugador personaje) {
         pantallaStats = new PantallaStats(this, personaje);
     }
-    public void crearPantallaPerdisteOGanaste(){
-        pantallaPerdisteOGanaste= new PantallaPerdisteOGanaste();
+    public void crearPantallaPerdisteOGanaste(EntidadJugador personaje) {
+        pantallaPerdisteOGanaste= new PantallaPerdisteOGanaste(this, personaje);
     }
 
     
@@ -161,5 +161,8 @@ public class ControladorVistas extends JFrame implements KeyListener {
 
     public PantallaStats getPantallaStats(){
         return pantallaStats;
+    }
+    public PantallaPerdisteOGanaste getPantallaPerdisteOGanaste(){
+        return pantallaPerdisteOGanaste;
     }
 }
