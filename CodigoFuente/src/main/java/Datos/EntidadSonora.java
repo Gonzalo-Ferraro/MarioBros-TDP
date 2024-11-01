@@ -2,6 +2,9 @@ package Datos;
 
 
 import javax.sound.sampled.*;
+
+import Logica.Entidades.Entidad;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +13,9 @@ import java.util.Map;
 public class EntidadSonora {
     private Clip backgroundClip;
     private Map<String, Clip> efectosDeSonido;
+    private static EntidadSonora instance;
 
-    public EntidadSonora() {
+    private EntidadSonora() {
         efectosDeSonido = new HashMap<>();
             cargarSonido("salto", "/Datos/sonidos/mario-bros-jump.wav");
             cargarSonido("vida", "/Datos/sonidos/mario-bros-vida.wav");
@@ -23,6 +27,11 @@ public class EntidadSonora {
             
     }
 
+    public static EntidadSonora getInstance() {
+        if(instance == null)
+            instance = new EntidadSonora();
+        return instance;
+    }
     private void cargarSonido(String nombre,String ruta){
        
         try{

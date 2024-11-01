@@ -18,7 +18,7 @@ public class ControladorJugador implements Runnable {
     private Personaje personaje;
     private Nivel nivelActual;
 
-    private List<Enemigo> enemigosAeliminar;
+
     private List<PowerUp> powerUpsAeliminar;
 
     private final double TIME_PER_FRAME = 1_000_000_000.0 / ConstantesVistas.FPS;
@@ -84,13 +84,13 @@ public class ControladorJugador implements Runnable {
     }
     
     private synchronized void checkearColisionesConEnemigos() {
-        enemigosAeliminar= new LinkedList<>();
+        
         for (Enemigo e : nivelActual.getEnemigos()) {
             if (personaje.getBounds().intersects(e.getBounds())) {
                 if (personaje.estaCayendo()) {
                     e.serAfectadoPor(personaje); 
                     personaje.saltarLuegoDeColision();
-                    enemigosAeliminar.add(e);
+                    
                 } else {
                     e.afectarAMario(personaje);
                 }
@@ -115,9 +115,6 @@ public class ControladorJugador implements Runnable {
     }
 
     private synchronized void eliminarEntidades(){
-        for(Enemigo e : enemigosAeliminar)
-            nivelActual.removerEntidad(e);
-
         for(PowerUp p : powerUpsAeliminar)
             nivelActual.removerEntidad(p);
     }

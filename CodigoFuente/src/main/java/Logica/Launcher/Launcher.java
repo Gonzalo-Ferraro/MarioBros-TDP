@@ -13,7 +13,7 @@ public class Launcher {
                     Juego juego = new Juego();
                     ControladorVistas controladorVistas = new ControladorVistas(juego);
                     juego.setControladorVistas(controladorVistas);
-                    juego.setEntidadSonora(new EntidadSonora());
+                    juego.setEntidadSonora(EntidadSonora.getInstance());
                     controladorVistas.mostrarMenu();
 				} catch (Exception e) {
 					e.printStackTrace();

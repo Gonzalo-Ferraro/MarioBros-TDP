@@ -191,7 +191,7 @@ public class Juego {
     public void perdiste() {
         controladorJugador.detener();
         controladorEntidades.detener();
-
+        entidadSonora.detenerLoopMario();
         controladorVistas.crearPantallaPerdisteOGanaste(personaje);
         controladorVistas.mostrarPantallaPerdisteOGanaste();        
 
@@ -255,7 +255,7 @@ public class Juego {
     private void ganaste(){
         controladorEntidades.detener();
         controladorJugador.detener();
-
+        entidadSonora.detenerLoopMario();
         controladorVistas.crearPantallaPerdisteOGanaste(personaje);
         controladorVistas.mostrarPantallaPerdisteOGanaste();
 
