@@ -5,6 +5,8 @@ import Logica.Entidades.EntidadLogica;
 import Logica.Entidades.Fondo;
 import Logica.Fabricas.ModoDeJuego;
 import Logica.Juego.Juego;
+
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
@@ -13,6 +15,9 @@ import javax.swing.ImageIcon;
 public class ControladorVistas extends JFrame implements KeyListener {
     private Juego juego;
 	
+    private boolean puedoSaltar;
+    private boolean puedoLanzarBolaDeFuego;
+
     private PantallaJuego pantallaJuego;
     private PantallaMenu pantallaMenu;
 	private PantallaStats pantallaStats;
@@ -24,7 +29,10 @@ public class ControladorVistas extends JFrame implements KeyListener {
 		this.juego = juego;
         
 		pantallaMenu = new PantallaMenu(this);
-        
+
+        puedoSaltar = true;
+        puedoLanzarBolaDeFuego = true;
+
 		configurar_ventana();
 		registrarOyentes();
 	}
@@ -130,13 +138,19 @@ public class ControladorVistas extends JFrame implements KeyListener {
                 juego.setIzquierda(true);
                 break;
             case KeyEvent.VK_W:
-                juego.salto();
+                if(puedoSaltar){
+                    juego.salto();
+                    puedoSaltar=false;
+                }
                 break;
             case KeyEvent.VK_D:
 				juego.setDerecha(true);
                 break;
             case KeyEvent.VK_SPACE:
-                juego.lanzarBolaDeFuego();
+                if(puedoLanzarBolaDeFuego){
+                    juego.lanzarBolaDeFuego();
+                    puedoLanzarBolaDeFuego=false;
+                }
                 break;
         }
     }
@@ -146,8 +160,8 @@ public class ControladorVistas extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case KeyEvent.VK_A -> juego.setIzquierda(false);
-            case KeyEvent.VK_W -> {
-            }
+            case KeyEvent.VK_W -> puedoSaltar = true;
+            case KeyEvent.VK_SPACE -> puedoLanzarBolaDeFuego = true;
             case KeyEvent.VK_D -> juego.setDerecha(false);
         }
     }

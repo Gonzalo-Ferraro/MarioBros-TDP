@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 
+
 public class PantallaJuego extends JPanel {
     private JPanel panelJuego;
     private JScrollPane panelScrollJuego;
@@ -162,25 +163,48 @@ public class PantallaJuego extends JPanel {
 
     public void actualizarScroll(EntidadJugador personaje) {
         if (personaje != null) {
-            int x = 
-                personaje.getX() + 
-                ConstantesVistas.TAMANO_BLOQUE / 2 - 
-                ConstantesVistas.PANEL_ANCHO / 2;
-
-            if(panelScrollJuego.getHorizontalScrollBar().getValue() < x){
+            int x = personaje.getX() + ConstantesVistas.TAMANO_BLOQUE / 2 - ConstantesVistas.PANEL_ANCHO / 2;
+    
+            int scrollValue = panelScrollJuego.getHorizontalScrollBar().getValue();
+    
+            if (scrollValue < x) {
+                // Movemos el scroll al valor deseado
                 panelScrollJuego.getHorizontalScrollBar().setValue(x);
-                
-
-                int scrollValue = panelScrollJuego.getHorizontalScrollBar().getValue();
-                etiquetaPuntajeContorno.setLocation(new Point(scrollValue + 130, etiquetaPuntaje.getY()));
-                etiquetaPuntaje.setLocation(new Point(scrollValue + 125, etiquetaPuntaje.getY()));
-
-                etiquetaVidasContorno.setLocation(new Point(scrollValue + 905, etiquetaVidas.getY()));
-                etiquetaVidas.setLocation(new Point(scrollValue + 900, etiquetaVidas.getY()));
-
-                etiquetaTiempoContorno.setLocation(new Point(scrollValue + 545, etiquetaTiempo.getY()));
-                etiquetaTiempo.setLocation(new Point(scrollValue + 540, etiquetaTiempo.getY()));
+                scrollValue = panelScrollJuego.getHorizontalScrollBar().getValue();
+    
+                // Nuevas posiciones objetivo para las etiquetas
+                int destinoPuntajeX = scrollValue + 125;
+                int destinoVidasX = scrollValue + 900;
+                int destinoTiempoX = scrollValue + 540;
+    
+                // Movemos las etiquetas de manera suave
+                moverEtiquetaSuave(etiquetaPuntaje, destinoPuntajeX, etiquetaPuntaje.getY());
+                moverEtiquetaSuave(etiquetaPuntajeContorno, destinoPuntajeX + 5, etiquetaPuntajeContorno.getY());
+    
+                moverEtiquetaSuave(etiquetaVidas, destinoVidasX, etiquetaVidas.getY());
+                moverEtiquetaSuave(etiquetaVidasContorno, destinoVidasX + 5, etiquetaVidasContorno.getY());
+    
+                moverEtiquetaSuave(etiquetaTiempo, destinoTiempoX, etiquetaTiempo.getY());
+                moverEtiquetaSuave(etiquetaTiempoContorno, destinoTiempoX + 5, etiquetaTiempoContorno.getY());
             }
+        }
+
+    }
+
+    private void moverEtiquetaSuave(JLabel etiqueta, int destinoX, int destinoY) {
+        Point posActual = etiqueta.getLocation();
+        int dx = destinoX - posActual.x;
+        int dy = destinoY - posActual.y;
+    
+        // Se usa una pequeña fracción de movimiento para interpolación suave
+        int nuevoX = posActual.x + (int) Math.round(dx * 0.1); 
+        int nuevoY = posActual.y + (int) Math.round(dy * 0.1);
+    
+        etiqueta.setLocation(nuevoX, nuevoY);
+    
+        // Si está suficientemente cerca del destino, establece la posición exacta
+        if (Math.abs(destinoX - nuevoX) < 2) {
+            etiqueta.setLocation(destinoX, destinoY);
         }
     }
     

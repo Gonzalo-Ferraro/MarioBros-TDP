@@ -7,7 +7,7 @@ import javax.swing.border.LineBorder;
 
 import Logica.Entidades.EntidadJugador;
 
-import javax.sound.sampled.Control;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;

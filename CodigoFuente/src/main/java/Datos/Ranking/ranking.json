@@ -1,24 +1,24 @@
 {
   "jugadores": [
     {
-      "nombre": "Manuel",
-      "puntaje": 3760
+      "nombre": "Jugador 1",
+      "puntaje": 0
     },
     {
-      "nombre": "An?nimo",
-      "puntaje": 2690
+      "nombre": "Jugador 2",
+      "puntaje": 0
     },
     {
-      "nombre": "Manuel",
-      "puntaje": 2640
+      "nombre": "Jugador 3",
+      "puntaje": 0
     },
     {
-      "nombre": "Vegetta777",
-      "puntaje": 2410
+      "nombre": "Jugador 4",
+      "puntaje": 0
     },
     {
-      "nombre": "Gonzalo",
-      "puntaje": 2385
+      "nombre": "Jugador 5",
+      "puntaje": 0
     }
   ]
 }
