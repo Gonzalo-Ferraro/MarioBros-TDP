@@ -7,7 +7,6 @@ import javax.swing.border.LineBorder;
 
 import Logica.Entidades.EntidadJugador;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,10 +35,12 @@ public class PantallaPerdisteOGanaste extends JPanel {
         crearEtiquetas();
         agregarEtiquetasPanel();
     }
-     private void insertarFondo(){
+
+    private void insertarFondo(){
         ImageIcon iconoImagen = new ImageIcon(getClass().getResource(rutaImagen));
         imagenFondo = iconoImagen.getImage();
     }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Dibujar la imagen en el JPanel
@@ -47,7 +48,7 @@ public class PantallaPerdisteOGanaste extends JPanel {
     }
     
     private void crearEtiquetas() {
-        labelPuntaje=new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
+        labelPuntaje = new JLabel(String.valueOf("Puntaje: " + personaje.getPuntaje()), SwingConstants.CENTER);
         labelPuntaje.setForeground(Color.WHITE);
         Font fuente;
         try {
@@ -56,59 +57,67 @@ public class PantallaPerdisteOGanaste extends JPanel {
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
-        labelPuntaje.setBounds(26, 100,300, 300);
+        labelPuntaje.setBounds(430, 240, 300, 50);
     }
+
     private void agregarEtiquetasPanel() {
        this.add(labelPuntaje);
     }
 
     public String pedirNombre() {
 
-    JLabel labelNombre = new JLabel("Ingresar nombre:");
-    JTextField campoNombre = new JTextField();
-    JButton botonAceptar = new JButton("Aceptar");
-    Font fuente;
+        JLabel gameOver = new JLabel("GAME OVER");
+        JLabel labelNombre = new JLabel("Ingresar nombre:");
+        JTextField campoNombre = new JTextField();
+        JButton botonAceptar = new JButton("Aceptar");
+        Font fuenteGameOver;
+        Font fuente;
+
         try {
+            fuenteGameOver = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 72f);
             fuente = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Datos/font/PressStart2P-Regular.ttf")).deriveFont(Font.BOLD, 22f);
+            gameOver.setFont(fuenteGameOver);
             labelNombre.setFont(fuente);
             campoNombre.setFont(fuente);
             botonAceptar.setFont(fuente);
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
+        
+        gameOver.setBounds(310, 120, 700, 100);
+        gameOver.setForeground(new Color(224, 93, 28));
+        add(gameOver);
     
-    
-        labelNombre.setBounds(50, 150, 400, 50); // Ancho aumentado a 400 y alto a 50
+        labelNombre.setBounds(275, 340, 400, 50);
         labelNombre.setForeground(Color.WHITE);
         add(labelNombre);
     
-        campoNombre.setBounds(460, 150, 300, 50); // Ancho aumentado a 300 y altura a 50
+        campoNombre.setBounds(685, 340, 300, 50); 
         add(campoNombre);
     
-        botonAceptar.setBounds(780, 150, 220, 50); // Ancho aumentado a 150 y altura a 50
+        botonAceptar.setBounds(520, 425, 220, 50);
         botonAceptar.setForeground(Color.WHITE);
         botonAceptar.setBackground(Color.BLACK);
         botonAceptar.setBorder(new LineBorder(java.awt.Color.BLACK, 2));
         add(botonAceptar);
 
-    final CountDownLatch latch = new CountDownLatch(1);
-    final String[] nombreUsuario = new String[1];
+        final CountDownLatch latch = new CountDownLatch(1);
+        final String[] nombreUsuario = new String[1];
 
-    botonAceptar.addActionListener(e -> {
-        nombreUsuario[0] = campoNombre.getText();
-        latch.countDown(); 
-    });
+        botonAceptar.addActionListener(e -> {
+            nombreUsuario[0] = campoNombre.getText();
+            latch.countDown(); 
+        });
 
-    this.revalidate();
-    this.repaint();
+        this.revalidate();
+        this.repaint();
 
-    try {
-        latch.await(); 
-    } catch (InterruptedException e) {
-        e.printStackTrace();
+        try {
+            latch.await(); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return nombreUsuario[0]; 
     }
-
-    return nombreUsuario[0]; 
-}
-    
 }
